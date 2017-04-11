@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, NavParams } from 'ionic-angular';
 
 import {  } from '../pages';
 
@@ -9,8 +9,10 @@ import {  } from '../pages';
 
  export class OrderPage {
 
+    order: any;
 
-    constructor(private nav: NavController){ }
-
+    constructor(private nav: NavController, private navParams: NavParams){
+        this.order = this.navParams.data;
+     }
 
  }

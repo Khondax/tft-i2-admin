@@ -18,19 +18,19 @@
 <ion-content>
     <ion-grid>
         <ion-row>
-            <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of packs" >
+            <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders" >
 
-                <ion-card>
-                    <ion-card-header>
-                        <p>{{item.id}}</p>
-                    </ion-card-header>
-                    <ion-card-content>
-                        <p>{{item.destino}}</p>
-                        <p>{{item.direccion}}</p>
-                        <p>Paquetes: {{item.numPaquetes}}</p>
-                        <p>{{item.telf}}</p>
-                    </ion-card-content>
-                </ion-card>
+                    <ion-card (click)="goToOrder($event, item)">
+                        <ion-card-header>
+                            {{item.pack.id}}
+                        </ion-card-header>
+                        <ion-card-content>
+                            <h2>{{item.pack.destino}}</h2>
+                            <h2>{{item.pack.direccion}}</h2>
+                            <p>Paquetes: {{item.pack.numPaquetes}}</p>
+                            <p>{{item.pack.telf}}</p>
+                        </ion-card-content>
+                    </ion-card>
 
             </ion-col>
         </ion-row>
