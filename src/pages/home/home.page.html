@@ -3,22 +3,32 @@
         <button ion-button menuToggle item-left>
             <ion-icon name="menu"></ion-icon>
         </button>
-        
+
         <ion-title>Home</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="newPackage()" >
+                <ion-icon name="cube"></ion-icon>
+            </button>
+       </ion-buttons>
+
     </ion-navbar>
 </ion-header>
 
 <ion-content>
     <ion-grid>
         <ion-row>
-            <ion-col col-12 col-sm *ngFor="let item of packs"  >
+            <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of packs" >
 
                 <ion-card>
                     <ion-card-header>
                         <p>{{item.id}}</p>
                     </ion-card-header>
                     <ion-card-content>
-                        <p>{{item.desc}}</p>
+                        <p>{{item.destino}}</p>
+                        <p>{{item.direccion}}</p>
+                        <p>Paquetes: {{item.numPaquetes}}</p>
+                        <p>{{item.telf}}</p>
                     </ion-card-content>
                 </ion-card>
 

@@ -9,7 +9,8 @@ import {  } from '../pages';
 
  export class OrderPage {
 
-    constructor(){ }
+
+    constructor(private nav: NavController){ }
 
 
  }
