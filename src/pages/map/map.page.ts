@@ -5,22 +5,20 @@ import { OrderPage } from '../pages';
 
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from "@ionic-native/google-maps";
 
-
-declare var window: any;
-
 @Component({
-  templateUrl: 'map.page.html'
+  templateUrl: 'map.page.html',
+  selector: 'map.page.scss'
 })
+
 export class MapPage {
 
-//  map: any = {};
   order: any;
 
   constructor(private navParams: NavParams, private googleMaps: GoogleMaps) {
     this.order = this.navParams.data;
   }
 
-  ngAfterViewInit(){
+  ionViewDidLoad(){
     this.loadMap();
   }
 
@@ -29,11 +27,11 @@ export class MapPage {
 
     let map: GoogleMap = this.googleMaps.create(element);
 
-    let direccion: LatLng = new LatLng(this.order.lat, this.order.long);
+    let direccion: LatLng = new LatLng(43.0741904,-89.3809802);
 
     let position: CameraPosition = {
       target: direccion,
-      zoom: 13,
+      zoom: 18,
       tilt: 30
     };
 
@@ -44,9 +42,9 @@ export class MapPage {
       title: this.order.direccion
     };
 
-/*    const marker: Marker = map.addMarker(markerOptions)
-      .then((marker: Marker) => {
-        marker.showInfoWindow();
+    /*const marker: Marker = map.addMarker(markerOptions)
+   .then((marker: Marker) => {
+      marker.showInfoWindow();
     });*/
 
 
