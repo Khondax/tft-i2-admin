@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Order</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <button ion-button full color="primary" (click)="scan()">Escanear</button>
+    <button ion-button full color="secondary" (click)="reset()">Borrar</button>
+    
+    <div *ngIf="results">
+        <h2>Formato: {{results.format}}</h2>
+        <h2>Contenido: {{results.text}}</h2>
+        
+        <button ion-button full (click)="save()">Guardar paquete</button>
+    </div>
+
+</ion-content>

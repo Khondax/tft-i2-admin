@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle item-left>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+
+        <ion-title>Home</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="newPackage()" >
+                <ion-icon name="cube"></ion-icon>
+            </button>
+       </ion-buttons>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders" >
+
+                    <ion-card (click)="goToOrder($event, item)">
+                        <ion-card-header>
+                            {{item.pack.id}}
+                        </ion-card-header>
+                        <ion-card-content>
+                            <h2>Rem: {{item.pack.empresa}}</h2>
+                            <p>Paquetes: {{item.pack.numPaquetes}}</p>
+                            <p>Peso: {{item.pack.peso}}</p>
+                            <p>Fech. Entrada: {{item.pack.fechaEntradaAlmacen | date:'d/M/yy'}} - {{item.pack.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                            <!--<h2>{{item.pack.destino}}</h2>-->
+                            <!--<h2>{{item.pack.direccion}}</h2>-->
+                            <!--<p>{{item.pack.telf}}</p>-->
+                            
+                        </ion-card-content>
+                    </ion-card>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>    
+
+</ion-content>
