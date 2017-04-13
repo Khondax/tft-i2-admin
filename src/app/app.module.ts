@@ -8,38 +8,50 @@ import { HomePage, DeliveryManPage, NewOrderPage, RegistryPage, OrderPage, MapPa
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from "@ionic-native/google-maps";
+import { GoogleMaps } from "@ionic-native/google-maps";
+
+import { AngularFireModule } from "angularfire2";
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyDka8ZQF6bzjPhVJMZFAf7d0BBztxP_spg",
+    authDomain: "app-repartos-tft.firebaseapp.com",
+    databaseURL: "https://app-repartos-tft.firebaseio.com",
+    storageBucket: "",
+    messagingSenderId: "1059307361256"
+};
+
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    OrderPage,
-    DeliveryManPage,
-    NewOrderPage,
-    RegistryPage,
-    MapPage,
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    OrderPage,
-    DeliveryManPage,
-    NewOrderPage,
-    RegistryPage,
-    MapPage,
-  ],
-  providers: [
-    BarcodeScanner,
-    GoogleMaps,
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    declarations: [
+        MyApp,
+        HomePage,
+        OrderPage,
+        DeliveryManPage,
+        NewOrderPage,
+        RegistryPage,
+        MapPage,
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(MyApp),
+        AngularFireModule.initializeApp(firebaseConfig)
+     ],
+     bootstrap: [IonicApp],
+     entryComponents: [
+        MyApp,
+        HomePage,
+        OrderPage,
+        DeliveryManPage,
+        NewOrderPage,
+        RegistryPage,
+        MapPage,
+    ],
+    providers: [
+        BarcodeScanner,
+        GoogleMaps,
+        StatusBar,
+        SplashScreen,
+        {provide: ErrorHandler, useClass: IonicErrorHandler}
+    ]
 })
-export class AppModule {}
+export class AppModule { }

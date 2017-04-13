@@ -12,10 +12,10 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerO
 
 export class MapPage {
 
-  order: any;
+  //order: any;
 
   constructor(private navParams: NavParams, private googleMaps: GoogleMaps) {
-    this.order = this.navParams.data;
+    //this.order = this.navParams.data;
   }
 
   ionViewDidLoad(){
@@ -26,6 +26,8 @@ export class MapPage {
     let element: HTMLElement = document.getElementById('map');
 
     let map: GoogleMap = this.googleMaps.create(element);
+
+    map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
 
     let direccion: LatLng = new LatLng(43.0741904,-89.3809802);
 
@@ -39,13 +41,13 @@ export class MapPage {
 
     let markerOptions: MarkerOptions = {
       position: direccion,
-      title: this.order.direccion
+      title: 'CalleFalsa123'
     };
 
-    /*const marker: Marker = map.addMarker(markerOptions)
+    map.addMarker(markerOptions)
    .then((marker: Marker) => {
       marker.showInfoWindow();
-    });*/
+    });
 
 
   }
