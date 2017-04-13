@@ -28,4 +28,18 @@
             <p>Dimensiones: {{order.dimensiones}}</p>
     </ion-list>
 
+    <ion-card>
+        <ion-card-content>
+            <ion-slides pager>
+            <ion-slide  *ngFor="let deliveryMan of deliveryMen | async" >
+                <p>Nombre: {{deliveryMan.nombre}}</p>
+                <p>Número de pedidos asignados: {{deliveryMan.numPedidos}}</p>
+                <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
+                <p>Coche asignado: {{deliveryMan.coche}}</p>
+                <br />
+            </ion-slide>
+        </ion-slides>   
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>
