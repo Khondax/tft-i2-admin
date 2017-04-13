@@ -1,10 +1,30 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>Delivery men</ion-title>
+        <ion-title>Repartidores</ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let deliveryMan of deliveryMen | async">
 
+                    <ion-card>
+                        <ion-card-header>
+                            {{deliveryMan.nombre}}
+                        </ion-card-header>
+                        <ion-card-content>
+                            <p>DNI: {{deliveryMan.dni}}</p>
+                            <p>Número de pedidos asignados: {{deliveryMan.numPedidos}}</p>
+                            <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
+                            <p>Coche asignado: {{deliveryMan.coche}}</p>
+                            <p>Siguiente Dirección de reparto: {{deliveryMan.sigDireccion}}</p>
+                            
+                        </ion-card-content>
+                    </ion-card>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>    
 
 </ion-content>
