@@ -17,7 +17,8 @@ export const firebaseConfig = {
     apiKey: "AIzaSyDka8ZQF6bzjPhVJMZFAf7d0BBztxP_spg",
     authDomain: "app-repartos-tft.firebaseapp.com",
     databaseURL: "https://app-repartos-tft.firebaseio.com",
-    storageBucket: "",
+    projectId: "app-repartos-tft",
+    storageBucket: "app-repartos-tft.appspot.com",
     messagingSenderId: "1059307361256"
 };
 
@@ -35,10 +36,10 @@ export const firebaseConfig = {
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
-        AngularFireModule.initializeApp(firebaseConfig),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBXhy5nvQy6bLf9B-FCTqyOk78Py9L-b4U'
-        })
+        }),
+        AngularFireModule.initializeApp(firebaseConfig)
      ],
      bootstrap: [IonicApp],
      entryComponents: [

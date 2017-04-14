@@ -12,8 +12,8 @@ export class MapPage {
 
   map: any = {};
 
-  constructor(private navParams: NavParams) {
-  }
+  constructor(private navParams: NavParams) { }
+
 
   ionViewDidLoad(){
     let order = this.navParams.data;
