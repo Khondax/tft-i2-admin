@@ -6,12 +6,12 @@
 
 <ion-content class="map-page">
 
-    <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" >
-        <sebm-google-map-marker [latitude]="map.lat" [longitude]="map.lng">
-            <sebm-google-map-info-window>
+    <agm-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" >
+        <agm-marker [latitude]="map.lat" [longitude]="map.lng">
+            <agm-info-window>
                 <strong>{{map.markerLabel}}</strong>
-            </sebm-google-map-info-window>
-        </sebm-google-map-marker>
-    </sebm-google-map>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
 
 </ion-content>
