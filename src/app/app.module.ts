@@ -8,7 +8,8 @@ import { HomePage, DeliveryManPage, NewOrderPage, RegistryPage, OrderPage, MapPa
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
-import { GoogleMaps } from "@ionic-native/google-maps";
+
+import { AgmCoreModule } from "angular2-google-maps/core";
 
 import { AngularFireModule } from "angularfire2";
 
@@ -34,7 +35,10 @@ export const firebaseConfig = {
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
-        AngularFireModule.initializeApp(firebaseConfig)
+        AngularFireModule.initializeApp(firebaseConfig),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBXhy5nvQy6bLf9B-FCTqyOk78Py9L-b4U'
+        })
      ],
      bootstrap: [IonicApp],
      entryComponents: [
@@ -48,7 +52,6 @@ export const firebaseConfig = {
     ],
     providers: [
         BarcodeScanner,
-        GoogleMaps,
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler}

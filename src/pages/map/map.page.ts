@@ -3,8 +3,6 @@ import { NavParams } from 'ionic-angular';
 
 import { OrderPage } from '../pages'; 
 
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from "@ionic-native/google-maps";
-
 @Component({
   templateUrl: 'map.page.html',
   selector: 'map.page.scss'
@@ -12,44 +10,23 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerO
 
 export class MapPage {
 
-  //order: any;
+  map: any = {};
 
-  constructor(private navParams: NavParams, private googleMaps: GoogleMaps) {
-    //this.order = this.navParams.data;
+  constructor(private navParams: NavParams) {
   }
 
   ionViewDidLoad(){
-    this.loadMap();
-  }
-
-  loadMap(){
-    let element: HTMLElement = document.getElementById('map');
-
-    let map: GoogleMap = this.googleMaps.create(element);
-
-    map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
-
-    let direccion: LatLng = new LatLng(43.0741904,-89.3809802);
-
-    let position: CameraPosition = {
-      target: direccion,
-      zoom: 18,
-      tilt: 30
+    let order = this.navParams.data;
+    
+    this.map = {
+      lat: order.latitud,
+      lng: order.longitud,
+      zoom: 15,
+      markerLabel: order.direccion
     };
 
-    map.moveCamera(position);
-
-    let markerOptions: MarkerOptions = {
-      position: direccion,
-      title: 'CalleFalsa123'
-    };
-
-    map.addMarker(markerOptions)
-   .then((marker: Marker) => {
-      marker.showInfoWindow();
-    });
-
-
   }
+
+
 
 }

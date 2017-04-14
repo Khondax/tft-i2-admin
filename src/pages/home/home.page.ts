@@ -10,13 +10,14 @@ import { NewOrderPage, OrderPage } from '../pages';
 
  export class HomePage {
 
+    //TODO: Estos datos deben importarse de Firebase
     orders = [{
         pack: { id: '123',
         dni: '44734470E',
         destino: 'Mike',
         direccion: 'Calle Falsa 123',
-        lat: 39.248958,
-        long: -76.822041,
+        latitud: 28.132074,
+        longitud: -15.43794,
         estado: '',
         empresa: 'Ebay',
         fechaEntradaAlmacen: '2017-11-16T08:00:00',
