@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 
-import { AgmCoreModule } from "angular2-google-maps/core";
+import { AgmCoreModule } from "@agm/core";
 
 import { AngularFireModule } from "angularfire2";
 
