@@ -18,21 +18,31 @@
 <ion-content>
     <ion-grid>
         <ion-row>
-            <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders" >
+            <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders | async" >
 
                     <ion-card (click)="goToOrder($event, item)">
                         <ion-card-header>
-                            {{item.pack.id}}
+                            {{item.$key}}
                         </ion-card-header>
                         
                         <ion-card-content>
-                            <h2>Rem: {{item.pack.empresa}}</h2>
-                            <p>Paquetes: {{item.pack.numPaquetes}}</p>
-                            <p>Peso: {{item.pack.peso}}</p>
-                            <p>Fech. Entrada: {{item.pack.fechaEntradaAlmacen | date:'d/M/yy'}} - {{item.pack.fechaEntradaAlmacen | date:'shortTime'}}</p>
-                            <!--<h2>{{item.pack.destino}}</h2>-->
-                            <!--<h2>{{item.pack.direccion}}</h2>-->
-                            <!--<p>{{item.pack.telf}}</p>-->
+                            <ion-row>
+                                <ion-col width-90>
+                                    <h2>Rem: {{item.remitente}}</h2>
+                                    <p>Paquetes: {{item.numPaquetes}}</p>
+                                    <p>Peso: {{item.peso}}</p>
+                                    <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/M/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                </ion-col>
+
+                                <ion-col width-10>
+                                    <ion-buttons end>
+                                        <button ion-button icon-only outline *ngIf="item.urgente">
+                                            <ion-icon name="alert"></ion-icon>
+                                        </button>
+                                    </ion-buttons>
+                                </ion-col>
+                            </ion-row>
+                            
                             
                         </ion-card-content>
                     </ion-card>

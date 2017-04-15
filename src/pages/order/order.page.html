@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>{{order.id}}</ion-title>
+        <ion-title>{{order.$key}}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
         <ion-item-divider color="secondary" >Información Destino</ion-item-divider>
             <ion-row>
                 <ion-col width-70>
-                    <p>Destino: {{order.destino}}</p>
+                    <p>Destino: {{order.destinatario}}</p>
                     <p>DNI: {{order.dni}}</p>
                     <p>Dirección: {{order.direccion}}</p>
                     <p>Teléfono: {{order.telf}}</p>
@@ -21,11 +21,12 @@
                 </ion-col>
             </ion-row>    
         <ion-item-divider color="secondary" >Información Paquete</ion-item-divider>
-            <p>Empresa: {{order.empresa}}</p>
+            <p>Remitente: {{order.remitente}}</p>
             <p>Fecha de Entrada al Almacén: {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
             <p>Número de Paquetes: {{order.numPaquetes}}</p>
             <p>Peso: {{order.peso}}</p>
             <p>Dimensiones: {{order.dimensiones}}</p>
+            <p>Repartidor: {{order.repartidor}}</p>
         </ion-list>
 
         <ion-card>

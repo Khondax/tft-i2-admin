@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, LoadingController, NavParams, AlertController, ToastController } from 'ionic-angular';
 
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 
@@ -13,14 +13,17 @@ import { MapPage } from '../pages';
 
     order: any;
     deliveryMen: FirebaseListObservable<any>;
+    orders: FirebaseListObservable<any>;
 
     constructor(private nav: NavController, 
                 private navParams: NavParams,
+                private toastController: ToastController,
                 private angularFire: AngularFire,
                 private alertController: AlertController){
 
         this.order = this.navParams.data;
         this.deliveryMen = angularFire.database.list('/repartidores');
+        this.orders = angularFire.database.list('/pedidos');
      }
 
 
@@ -53,7 +56,20 @@ import { MapPage } from '../pages';
                     text: 'Si',
                     handler: data =>{
                         //TODO: cosas
+
+                        this.orders.update(this.order.$key, {repartidor: deliveryMan.nombre});
+
                         this.nav.popToRoot();
+
+                        let toast = this.toastController.create({
+                            message: "Se ha asignado el paquete " + this.order.$key + " al repartidor " + deliveryMan.nombre,
+                            duration: 4000,
+                            position: 'bottom'
+                        });
+
+                        toast.present();
+
+                        
                     }
                 }
             ]
