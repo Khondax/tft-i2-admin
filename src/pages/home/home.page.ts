@@ -12,7 +12,6 @@ import { NewOrderPage, OrderPage } from '../pages';
  export class HomePage {
 
      orders: FirebaseListObservable<any>;
-
     
     constructor(private loadingController: LoadingController,
                 private nav: NavController,
