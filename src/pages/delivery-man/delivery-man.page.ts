@@ -21,20 +21,6 @@ import {  } from '../pages';
 
     }
 
-    ionViewDidLoad(){
-    let loader = this.loadingController.create({
-      content: 'Cargando...',
-      spinner: 'bubbles'
-    });
-
-    loader.present();
-
-    setTimeout(() => {
-        loader.dismiss();
-    }, 1000);
-    
-  }
-
   getCorrectColor(deliveryMan){
     return deliveryMan.disponibilidad === "Ocupado" ? 'primary' : 'verde';
   }

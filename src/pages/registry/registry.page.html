@@ -1,21 +1,15 @@
 <ion-header>
     <ion-navbar color="primary">
         <ion-title>Historial</ion-title>
-        
-        <ion-buttons end>
-            <button ion-button icon-only>
-                <ion-icon name="add"></ion-icon>
-            </button>
-        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-    <ion-list >
-        <ion-item-group *ngFor="let fechaEntrega of orders">
+    <ion-list *ngFor="let fechaEntrega of orders" >
+        <ion-item-group *ngIf="fechaEntrega.date" >
             <ion-item-divider color="secondary">
-                {{fechaEntrega.date}}
+                {{fechaEntrega.date | date:'d/MM/yy'}}
             </ion-item-divider>
 
             <button ion-item *ngFor="let order of fechaEntrega.order" (click)="itemTapped($event, order)">

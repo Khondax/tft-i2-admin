@@ -31,7 +31,8 @@ import { OrderPage } from '../pages';
     ionViewDidLoad(){
 
         let loader = this.loadingController.create ({
-            content: 'Obteniendo datos...'
+            content: 'Obteniendo datos...',
+            spinner: 'bubbles'
         });
 
         loader.present().then(() => {
@@ -46,7 +47,6 @@ import { OrderPage } from '../pages';
                     .value();
 
                 this.orders = this.allDates;
-                console.log('Datos o yo que se', this.orders);
                 loader.dismiss();
 
             });
