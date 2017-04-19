@@ -29,18 +29,22 @@
             <p>Repartidor: {{order.repartidor}}</p>
         </ion-list>
 
-        <ion-card>
+        <ion-card *ngIf="!order.repartidor">
             <ion-card-content>
                 <ion-slides pager>
-                    <ion-slide  *ngFor="let deliveryMan of deliveryMen | async" (click)="assignDeliveryMan($event, deliveryMan)" >
+                    <ion-slide *ngFor="let deliveryMan of deliveryMen" (click)="assignDeliveryMan($event, deliveryMan)" >
                         <p>Nombre: {{deliveryMan.nombre}}</p>
                         <p>Número de pedidos asignados: {{deliveryMan.numPedidos}}</p>
                         <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
                         <p>Coche asignado: {{deliveryMan.coche}}</p>
-                        <br />
+                        <br>
                     </ion-slide>
                 </ion-slides>   
             </ion-card-content>
         </ion-card>
+
+        <button *ngIf="order.repartidor" ion-button full (click)="removeDeliveryMan()" >
+            Desasignar repartidor
+        </button>
 
 </ion-content>

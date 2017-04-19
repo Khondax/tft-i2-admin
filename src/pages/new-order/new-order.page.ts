@@ -5,6 +5,8 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 
+import moment from 'moment';
+
 import {  } from '../pages';
 
  @Component ({
@@ -66,7 +68,7 @@ import {  } from '../pages';
                             direccion: this.string[3],
                             dni: this.string[4],
                             estado: "En el almacén",
-                            fechaEntradaAlmacen: Date.now(),
+                            fechaEntradaAlmacen: moment().format(),
                             fechaEntrega: "",
                             latitud: this.string[5],
                             longitud: this.string[6],

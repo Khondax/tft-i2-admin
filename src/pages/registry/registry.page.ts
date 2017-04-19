@@ -5,6 +5,8 @@ import { AngularFire, FirebaseListObservable } from "angularfire2";
 
 import _ from 'lodash';
 
+import moment from 'moment';
+
 import { OrderPage } from '../pages';
 
  @Component ({
@@ -15,7 +17,6 @@ import { OrderPage } from '../pages';
 
     //orders: FirebaseListObservable<any>;
     orders = [];
-    private allOrders: any;
     private allDates: any;
 
 
@@ -26,8 +27,6 @@ import { OrderPage } from '../pages';
 
     }
 
-    //TODO Importar datos de paquetes entregados de firebase
-
     ionViewDidLoad(){
 
         let loader = this.loadingController.create ({
@@ -37,28 +36,24 @@ import { OrderPage } from '../pages';
 
         loader.present().then(() => {
             this.angularFire.database.list('/pedidos').subscribe(data => {
-                this.allOrders = data;
                 this.allDates = 
                     _.chain(data)
-                    .groupBy('fechaEntrega')
+                    .groupBy(fecha => fecha.fechaEntrega.split('T').shift())
                     .toPairs()
                     .map(item => _.zipObject(['date', 'order'],
                     item))
                     .value();
 
                 this.orders = this.allDates;
+                console.log('Datos chachis:', this.orders);
                 loader.dismiss();
 
             });
-
-
         });
-
 
     }
 
     itemTapped($event, order){
-
         this.nav.push(OrderPage, order);
     }
 

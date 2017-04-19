@@ -3,6 +3,8 @@ import { NavController, LoadingController, NavParams, AlertController, ToastCont
 
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 
+import _ from 'lodash';
+
 import { MapPage } from '../pages';
 
  @Component ({
@@ -12,20 +14,42 @@ import { MapPage } from '../pages';
  export class OrderPage {
 
     order: any;
-    deliveryMen: FirebaseListObservable<any>;
+    deliveryMen = [];
+    private allMen: any;
     orders: FirebaseListObservable<any>;
 
-    constructor(private nav: NavController, 
-                private navParams: NavParams,
-                private toastController: ToastController,
-                private angularFire: AngularFire,
-                private alertController: AlertController){
+    constructor(public nav: NavController, 
+                public navParams: NavParams,
+                public toastController: ToastController,
+                public angularFire: AngularFire,
+                public alertController: AlertController,
+                public loadingController: LoadingController){
 
         this.order = this.navParams.data;
-        this.deliveryMen = angularFire.database.list('/repartidores');
         this.orders = angularFire.database.list('/pedidos');
+
      }
 
+     ionViewDidLoad(){
+         let loader = this.loadingController.create({
+             content: 'Cargando...',
+             spinner: 'bubbles'
+        });
+        
+        loader.present().then(() => {
+            this.angularFire.database.list('/repartidores').subscribe(data => {
+                this.allMen =
+                    _.chain(data)
+                    .orderBy('numPedidos')
+                    .value();
+
+                this.deliveryMen = this.allMen;
+                console.log('Datos o yo que se', this.deliveryMen);
+                loader.dismiss();
+            });
+        });
+
+     }
 
     goToMap(){
         this.nav.push(MapPage, this.order);
@@ -55,7 +79,6 @@ import { MapPage } from '../pages';
                 {
                     text: 'Si',
                     handler: data =>{
-                        //TODO: cosas
 
                         this.orders.update(this.order.$key, {repartidor: deliveryMan.nombre});
 
@@ -68,14 +91,15 @@ import { MapPage } from '../pages';
                         });
 
                         toast.present();
-
-                        
                     }
                 }
             ]
         });
 
         prompt.present();
+    }
+
+    removeDeliveryMan(){
 
     }
 
