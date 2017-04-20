@@ -12,11 +12,12 @@ import { NewOrderPage, OrderPage } from '../pages';
  export class HomePage {
 
      orders: FirebaseListObservable<any>;
+     orderFilter: string = "notAssigned"; 
     
     constructor(private loadingController: LoadingController,
                 private nav: NavController,
                 public angularFire: AngularFire){ 
-             this.orders = angularFire.database.list('/pedidos');       
+             this.orders = angularFire.database.list('/pedidos');      
     }
 
     newPackage(){
@@ -26,5 +27,6 @@ import { NewOrderPage, OrderPage } from '../pages';
     goToOrder($event, order){
         this.nav.push(OrderPage, order);
     }
+
 
  }

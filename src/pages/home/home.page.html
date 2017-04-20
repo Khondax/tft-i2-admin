@@ -13,42 +13,88 @@
        </ion-buttons>
 
     </ion-navbar>
+
+     <ion-toolbar no-border-top>
+        <ion-segment secondary [(ngModel)]="orderFilter">
+            <ion-segment-button value="notAssigned">
+                Sin Asignar
+            </ion-segment-button>
+            <ion-segment-button value="assigned">
+                Asignados
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-grid>
-        <ion-row>
-            <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders | async" >
+    <div [ngSwitch]="orderFilter" >
+        <ion-grid *ngSwitchCase="'notAssigned'">
+            <ion-row>
+                <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders | async" >
 
-                    <ion-card (click)="goToOrder($event, item)" *ngIf="!item.repartidor">
-                        <ion-card-header>
-                            {{item.$key}}
-                        </ion-card-header>
-                        
-                        <ion-card-content>
-                            <ion-row>
-                                <ion-col width-90>
-                                    <h2>Rem: {{item.remitente}}</h2>
-                                    <p>Paquetes: {{item.numPaquetes}}</p>
-                                    <p>Peso: {{item.peso}}</p>
-                                    <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
-                                </ion-col>
-
-                                <ion-col width-10>
-                                    <ion-buttons end>
-                                        <button ion-button icon-only outline *ngIf="item.urgente">
-                                            <ion-icon name="alert"></ion-icon>
-                                        </button>
-                                    </ion-buttons>
-                                </ion-col>
-                            </ion-row>
+                        <ion-card (click)="goToOrder($event, item)" *ngIf="!item.repartidor">
+                            <ion-card-header>
+                                {{item.$key}}
+                            </ion-card-header>
                             
-                            
-                        </ion-card-content>
-                    </ion-card>
+                            <ion-card-content>
+                                <ion-row>
+                                    <ion-col width-90>
+                                        <h2>Rem: {{item.remitente}}</h2>
+                                        <p>Paquetes: {{item.numPaquetes}}</p>
+                                        <p>Peso: {{item.peso}}</p>
+                                        <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                    </ion-col>
 
-            </ion-col>
-        </ion-row>
-    </ion-grid>    
+                                    <ion-col width-10>
+                                        <ion-buttons end>
+                                            <button ion-button icon-only outline *ngIf="item.urgente">
+                                                <ion-icon name="alert"></ion-icon>
+                                            </button>
+                                        </ion-buttons>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-card-content>
+                        </ion-card>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid *ngSwitchCase="'assigned'">
+            <ion-row>
+                <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders | async" >
+
+                        <ion-card (click)="goToOrder($event, item)" *ngIf="item.repartidor && !item.fechaEntrega">
+                            <ion-card-header>
+                                {{item.$key}}
+                            </ion-card-header>
+                            
+                            <ion-card-content>
+                                <ion-row>
+                                    <ion-col width-90>
+                                        <h2>Rem: {{item.remitente}}</h2>
+                                        <p>Paquetes: {{item.numPaquetes}}</p>
+                                        <p>Peso: {{item.peso}}</p>
+                                        <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                    </ion-col>
+
+                                    <ion-col width-10>
+                                        <ion-buttons end>
+                                            <button ion-button icon-only outline *ngIf="item.urgente">
+                                                <ion-icon name="alert"></ion-icon>
+                                            </button>
+                                        </ion-buttons>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-card-content>
+                        </ion-card>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        
+    </div>
+        
 
 </ion-content>

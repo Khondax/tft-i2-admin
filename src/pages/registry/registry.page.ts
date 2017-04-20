@@ -5,8 +5,6 @@ import { AngularFire, FirebaseListObservable } from "angularfire2";
 
 import _ from 'lodash';
 
-import moment from 'moment';
-
 import { OrderPage } from '../pages';
 
  @Component ({
@@ -15,7 +13,6 @@ import { OrderPage } from '../pages';
 
  export class RegistryPage {
 
-    //orders: FirebaseListObservable<any>;
     orders = [];
     private allDates: any;
 
