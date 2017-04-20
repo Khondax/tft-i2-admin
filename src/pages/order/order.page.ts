@@ -81,7 +81,7 @@ import { MapPage } from '../pages';
                     text: 'Si',
                     handler: data =>{
 
-                        this.orders.update(this.order.$key, {repartidor: deliveryMan.nombre, idRepartidor: deliveryMan.$key});
+                        this.orders.update(this.order.$key, {repartidor: deliveryMan.nombre, idRepartidor: deliveryMan.$key, estado: "Asignado"});
                         this.employees.update(deliveryMan.$key, {numPedidos: deliveryMan.numPedidos+1});
 
                         this.nav.popToRoot();
@@ -103,7 +103,7 @@ import { MapPage } from '../pages';
 
     removeDeliveryMan(){
         
-        this.orders.update(this.order.$key, {repartidor: ""});
+        this.orders.update(this.order.$key, {repartidor: "", estado: "En el almacén"});
         var numOrders = 0;
         var deliveryMan = this.angularFire.database.object(`repartidores/${this.order.idRepartidor}`).subscribe((deliveryMan) =>
                 numOrders = deliveryMan.numPedidos-1

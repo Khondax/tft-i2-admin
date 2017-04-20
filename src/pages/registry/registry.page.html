@@ -13,7 +13,9 @@
             </ion-item-divider>
 
             <button ion-item *ngFor="let order of fechaEntrega.order" (click)="itemTapped($event, order)">
-                {{order.$key}}
+                <h3>{{order.$key}}</h3>
+                <p>{{order.repartidor}}</p>
+                <p>{{order.fechaEntrega | date:'d/MM/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
             </button>
             
 

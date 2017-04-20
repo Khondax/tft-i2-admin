@@ -8,13 +8,13 @@
     <ion-list >
         <ion-item-divider color="secondary" >Información Destino</ion-item-divider>
             <ion-row>
-                <ion-col width-70>
+                <ion-col width-90>
                     <p>Destino: {{order.destinatario}}</p>
                     <p>DNI: {{order.dni}}</p>
                     <p>Dirección: {{order.direccion}}</p>
                     <p>Teléfono: {{order.telf}}</p>
                 </ion-col>
-                <ion-col width-30 text-right>
+                <ion-col width-10 text-right>
                     <button ion-button icon-only outline (click)="goToMap()">
                         <ion-icon name="map"></ion-icon>
                     </button>
@@ -23,10 +23,13 @@
         <ion-item-divider color="secondary" >Información Paquete</ion-item-divider>
             <p>Remitente: {{order.remitente}}</p>
             <p>Fecha de Entrada al Almacén: {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+            <p>Estado del Pedido: {{order.estado}}</p>
+            <p *ngIf="order.fechaEntrega">Fecha de Entrega: {{order.fechaEntrega | date:'d/M/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
             <p>Número de Paquetes: {{order.numPaquetes}}</p>
             <p>Peso: {{order.peso}}</p>
             <p>Dimensiones: {{order.dimensiones}}</p>
-            <p>Repartidor: {{order.repartidor}}</p>
+            <p *ngIf="order.repartidor">Repartidor: {{order.repartidor}}</p>
+            <p *ngIf="!order.repartidor">Repartidor: Sin asignar</p>
         </ion-list>
 
         <ion-card *ngIf="!order.repartidor">
@@ -43,7 +46,7 @@
             </ion-card-content>
         </ion-card>
 
-        <button *ngIf="order.repartidor" ion-button full (click)="removeDeliveryMan()" >
+        <button *ngIf="order.repartidor && !order.fechaEntrega" ion-button full (click)="removeDeliveryMan()" >
             Desasignar repartidor
         </button>
 
