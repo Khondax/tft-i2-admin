@@ -17,6 +17,7 @@ import { MapPage } from '../pages';
     deliveryMen = [];
     private allMen: any;
     orders: FirebaseListObservable<any>;
+    employees: FirebaseListObservable<any>;
 
     constructor(public nav: NavController, 
                 public navParams: NavParams,
@@ -27,6 +28,7 @@ import { MapPage } from '../pages';
 
         this.order = this.navParams.data;
         this.orders = angularFire.database.list('/pedidos');
+        this.employees = angularFire.database.list('/repartidores');
 
      }
 
@@ -44,7 +46,6 @@ import { MapPage } from '../pages';
                     .value();
 
                 this.deliveryMen = this.allMen;
-                console.log('Datos o yo que se', this.deliveryMen);
                 loader.dismiss();
             });
         });
@@ -80,7 +81,8 @@ import { MapPage } from '../pages';
                     text: 'Si',
                     handler: data =>{
 
-                        this.orders.update(this.order.$key, {repartidor: deliveryMan.nombre});
+                        this.orders.update(this.order.$key, {repartidor: deliveryMan.nombre, idRepartidor: deliveryMan.$key});
+                        this.employees.update(deliveryMan.$key, {numPedidos: deliveryMan.numPedidos+1});
 
                         this.nav.popToRoot();
 
@@ -100,6 +102,23 @@ import { MapPage } from '../pages';
     }
 
     removeDeliveryMan(){
+        
+        this.orders.update(this.order.$key, {repartidor: ""});
+        var numOrders = 0;
+        var deliveryMan = this.angularFire.database.object(`repartidores/${this.order.idRepartidor}`).subscribe((deliveryMan) =>
+                numOrders = deliveryMan.numPedidos-1
+        );
+        this.employees.update(this.order.idRepartidor, {numPedidos: numOrders})
+
+        this.nav.popToRoot();
+
+        let toast = this.toastController.create({
+            message: "Se ha desasignado el paquete " + this.order.$key + " del repartidor " + this.order.repartidor,
+            duration: 4000,
+            position: 'bottom'
+        });
+
+        toast.present();
 
     }
 

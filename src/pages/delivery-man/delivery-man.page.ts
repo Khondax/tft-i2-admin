@@ -39,7 +39,6 @@ import {  } from '../pages';
                 .value();
 
             this.deliveryMen = this.allMen;
-            console.log('Datos o yo que se', this.deliveryMen);
             loader.dismiss();
         });
     }); 

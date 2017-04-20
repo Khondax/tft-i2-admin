@@ -70,6 +70,7 @@ import {  } from '../pages';
                             estado: "En el almacén",
                             fechaEntradaAlmacen: moment().format(),
                             fechaEntrega: "",
+                            idRepartidor: "",
                             latitud: this.string[5],
                             longitud: this.string[6],
                             numPaquetes: this.string[7],

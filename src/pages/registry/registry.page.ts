@@ -45,7 +45,6 @@ import { OrderPage } from '../pages';
                     .value();
 
                 this.orders = this.allDates;
-                console.log('Datos chachis:', this.orders);
                 loader.dismiss();
 
             });
