@@ -8,13 +8,13 @@
     <ion-list >
         <ion-item-divider color="secondary" >Información Destino</ion-item-divider>
             <ion-row>
-                <ion-col width-90>
+                <ion-col col-10>
                     <p>Destino: {{order.destinatario}}</p>
                     <p>DNI: {{order.dni}}</p>
                     <p>Dirección: {{order.direccion}}</p>
                     <p>Teléfono: {{order.telf}}</p>
                 </ion-col>
-                <ion-col width-10 text-right>
+                <ion-col col-2 text-right>
                     <button ion-button icon-only outline (click)="goToMap()">
                         <ion-icon name="map"></ion-icon>
                     </button>
