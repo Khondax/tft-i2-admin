@@ -15,4 +15,4 @@ TAREAS PENDIENTES
 - El botón de desasignar repartidor en pedido se muestra cuando el paquete está entregado (quitar)
 - Añadir Splash
 - Poner un icono para la App
-- Ponerle un nombre
+- Cambiar el nombre de la App (se puede quedar el actual)
