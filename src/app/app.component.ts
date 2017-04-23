@@ -6,40 +6,53 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage, DeliveryManPage, RegistryPage, VehiclesPage } from '../pages/pages';
 
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
+
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+    @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+    rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+    pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+        this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Repartidores', component: DeliveryManPage },
-      { title: 'Vehiculos', component: VehiclesPage },
-      { title: 'Historial', component: RegistryPage },
-    ];
+        // used for an example of ngFor and navigation
+    /*    this.pages = [
+        { title: 'Repartidores', component: DeliveryManPage },
+        { title: 'Vehiculos', component: VehiclesPage },
+        { title: 'Historial', component: RegistryPage },
+        ];*/
 
-  }
+    }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
+    initializeApp() {
+        this.platform.ready().then(() => {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            this.statusBar.styleDefault();
+            this.splashScreen.hide();
+        });
+    }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    
-    this.nav.push(page.component);
-  }
+    /*  openPage(page) {
+        // Reset the content nav to have just this page
+        
+        this.nav.push(page.component);
+    }*/
+
+    goDeliverers(){
+        this.nav.push(DeliveryManPage);
+    }
+
+    goVehicles(){
+        this.nav.push(VehiclesPage);
+    }
+
+    goRegistry(){
+        this.nav.push(RegistryPage);
+    }
+
 }
