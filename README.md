@@ -3,9 +3,12 @@ Proyecto en ionic2 para el trabajo final del Grado en Ingeniería Informática -
 
 TAREAS PENDIENTES
 
-- Buscador en Historial
+- Asignar vehículos a repartidores (desde la vista de cada repartidor)
+- Desasignar vehículos a repartidores (desde la vista de cada repartidor y la vista general)
+- Añadir imágenes a los repartidores
 
-- Modificar SCSS a lo largo de la app para que las tarjetas (cards) tengan un tamaño mínimo (y no se ordenen incorrectamente)
+- Nueva página para vehículos
+    Nuevos campos en Firebase
 
 - Añadir Splash
 - Poner un icono para la App
