@@ -15,7 +15,7 @@ import { OrderPage } from '../pages';
 
     orders = [];
     private allDates: any;
-
+    queryText: string = "";
 
     constructor(public nav: NavController,
                 public alertController: AlertController,
@@ -51,6 +51,23 @@ import { OrderPage } from '../pages';
 
     itemTapped($event, order){
         this.nav.push(OrderPage, order);
+    }
+
+    search(){
+        let queryTextLower = this.queryText.toLowerCase();
+
+        let filteredOrders = [];
+
+        _.forEach(this.allDates, dat => {
+            let orders = _.filter(dat.order, or => (<any>or).repartidor.toLowerCase()
+            .includes(queryTextLower));
+
+            if (orders.length) {
+                filteredOrders.push({ date: dat.date, order: orders});
+            }
+        });
+
+        this.orders = filteredOrders;
     }
 
 
