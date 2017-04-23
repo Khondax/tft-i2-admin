@@ -3,7 +3,7 @@ import { Nav, Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage, DeliveryManPage, RegistryPage } from '../pages/pages';
+import { HomePage, DeliveryManPage, RegistryPage, VehiclesPage } from '../pages/pages';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,6 +21,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Repartidores', component: DeliveryManPage },
+      { title: 'Vehiculos', component: VehiclesPage },
       { title: 'Historial', component: RegistryPage },
     ];
 
