@@ -13,6 +13,17 @@ $font-path: "../assets/fonts";
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
 
+$grid-columns:               12 !default;
+
+$grid-padding-width:         10px !default;
+
+$grid-padding-widths: (
+  xs: 0,
+  sm: 440,
+  md: 768,
+  lg: 992,
+  xl: 1200
+) !default;
 
 
 // Named Color Variables

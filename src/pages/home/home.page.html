@@ -29,24 +29,25 @@
 <ion-content>
     <div [ngSwitch]="orderFilter" >
         <ion-grid *ngSwitchCase="'notAssigned'">
-            <ion-row>
-                <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders | async" >
+            <ion-row >
+                <ng-container *ngFor="let item of orders | async">
+                    <ion-col col-sm-4 col-md-6 col-lg-4 col-xl-3 *ngIf="!item.repartidor">
 
-                        <ion-card (click)="goToOrder($event, item)" *ngIf="!item.repartidor">
+                        <ion-card (click)="goToOrder($event, item)" >
                             <ion-card-header>
                                 {{item.$key}}
                             </ion-card-header>
                             
                             <ion-card-content>
                                 <ion-row>
-                                    <ion-col width-90>
+                                    <ion-col col-10>
                                         <h2>Rem: {{item.remitente}}</h2>
                                         <p>Paquetes: {{item.numPaquetes}}</p>
                                         <p>Peso: {{item.peso}}</p>
                                         <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
                                     </ion-col>
 
-                                    <ion-col width-10>
+                                    <ion-col col-2>
                                         <ion-buttons end>
                                             <button ion-button icon-only outline *ngIf="item.urgente">
                                                 <ion-icon name="alert"></ion-icon>
@@ -58,12 +59,14 @@
                         </ion-card>
 
                 </ion-col>
+                </ng-container>
+                
             </ion-row>
         </ion-grid>
 
         <ion-grid *ngSwitchCase="'assigned'">
             <ion-row>
-                <ion-col col-12 col-sm-4 col-md-3 col-xl-2 *ngFor="let item of orders | async" >
+                <ion-col col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2 *ngFor="let item of orders | async" >
 
                         <ion-card (click)="goToOrder($event, item)" *ngIf="item.repartidor && !item.fechaEntrega">
                             <ion-card-header>
@@ -72,14 +75,14 @@
                             
                             <ion-card-content>
                                 <ion-row>
-                                    <ion-col width-90>
+                                    <ion-col col-10>
                                         <h2>Rem: {{item.remitente}}</h2>
                                         <p>Paquetes: {{item.numPaquetes}}</p>
                                         <p>Peso: {{item.peso}}</p>
                                         <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
                                     </ion-col>
 
-                                    <ion-col width-10>
+                                    <ion-col col-2>
                                         <ion-buttons end>
                                             <button ion-button icon-only outline *ngIf="item.urgente">
                                                 <ion-icon name="alert"></ion-icon>

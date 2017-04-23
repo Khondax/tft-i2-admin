@@ -17,6 +17,7 @@ import { NewOrderPage, OrderPage } from '../pages';
     constructor(private loadingController: LoadingController,
                 private nav: NavController,
                 public angularFire: AngularFire){ 
+                    
              this.orders = angularFire.database.list('/pedidos');      
     }
 
