@@ -5,10 +5,10 @@ TAREAS PENDIENTES
 
 - Asignar vehículos a repartidores (desde la vista de cada repartidor)
 - Desasignar vehículos a repartidores (desde la vista de cada repartidor y la vista general)
+
 - Añadir imágenes a los repartidores
 
-- Nueva página para vehículos
-    Nuevos campos en Firebase
+- Configurar siguiente dirección de entrega en repartidores
 
 - Añadir Splash
 - Poner un icono para la App
