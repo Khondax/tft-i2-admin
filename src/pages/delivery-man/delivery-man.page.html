@@ -13,14 +13,28 @@
                         <ion-card-header>
                             {{deliveryMan.nombre}}
                         </ion-card-header>
-                        <ion-card-content>
-                            <p>DNI: {{deliveryMan.dni}}</p>
-                            <p>Número de pedidos asignados: {{deliveryMan.numPedidos}}</p>
-                            <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
-                            <p>Coche asignado: {{deliveryMan.coche}}</p>
-                            <p>Siguiente Dirección de reparto: {{deliveryMan.sigDireccion}}</p>
-                            
-                        </ion-card-content>
+
+                        <ion-row>
+                            <ion-col col-10>
+                                <ion-card-content>
+                                    <p>DNI: {{deliveryMan.dni}}</p>
+                                    <p>Número de pedidos asignados: {{deliveryMan.numPedidos}}</p>
+                                    <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
+                                    <p>Coche asignado: {{deliveryMan.coche}}</p>
+                                    <p>Siguiente Dirección de reparto: {{deliveryMan.sigDireccion}}</p>
+                                </ion-card-content>
+                            </ion-col>
+                            <ion-col col-2>
+                                <button ion-button color="verde" icon-only  (click)="addCar(deliveryMan)" *ngIf="!deliveryMan.coche" >
+                                    <ion-icon name="car"></ion-icon>
+                                </button>
+                                <button ion-button icon-only (click)="removeCar(deliveryMan)" *ngIf="deliveryMan.coche" >
+                                    <ion-icon name="close-circle"></ion-icon>
+                                </button>
+                            </ion-col>
+
+                        </ion-row>
+                        
                     </ion-card>
 
             </ion-col>

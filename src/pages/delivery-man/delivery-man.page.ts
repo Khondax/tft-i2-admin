@@ -13,15 +13,19 @@ import {  } from '../pages';
 
  export class DeliveryManPage {
 
-     //deliveryMen: FirebaseListObservable<any>;
      deliveryMen = [];
      private allMen: any;
+
+     deliveryMenDatabase: FirebaseListObservable<any>;
+     vehiclesDatabase: FirebaseListObservable<any>;
+
 
     constructor(public nav: NavController,
                 public loadingController: LoadingController,
                 public angularFire: AngularFire){
 
-       // this.deliveryMen = angularFire.database.list('/repartidores');
+        this.deliveryMenDatabase = angularFire.database.list('/repartidores');
+        this.vehiclesDatabase = angularFire.database.list('/coches');
 
     }
 
@@ -39,15 +43,23 @@ import {  } from '../pages';
                 .value();
 
             this.deliveryMen = this.allMen;
-            loader.dismiss();
-        });
-    }); 
+                loader.dismiss();
+            });
+        }); 
     
-  }
+    }
 
-  getCorrectColor(deliveryMan){
-      return deliveryMan.disponibilidad === "Ocupado" ? 'primary' : 'verde';
-  }
+    getCorrectColor(deliveryMan){
+        return deliveryMan.disponibilidad === "Ocupado" ? 'primary' : 'verde';
+    }
+
+    addCar(deliveryMan){
+
+    }
+
+    removeCar(deliveryMan){
+        
+    }
 
 
 
