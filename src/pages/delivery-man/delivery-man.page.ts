@@ -19,7 +19,6 @@ import {  } from '../pages';
      deliveryMenDatabase: FirebaseListObservable<any>;
      vehiclesDatabase: FirebaseListObservable<any>;
 
-
     constructor(public nav: NavController,
                 public loadingController: LoadingController,
                 public toastController: ToastController,
@@ -33,8 +32,8 @@ import {  } from '../pages';
 
     ionViewDidLoad(){
         let loader = this.loadingController.create({
-        content: 'Cargando...',
-        spinner: 'bubbles'
+            content: 'Cargando...',
+            spinner: 'bubbles'
         });
 
         loader.present().then(() => {
@@ -51,13 +50,51 @@ import {  } from '../pages';
     
     }
 
+
     getCorrectColor(deliveryMan){
         return deliveryMan.disponibilidad === "Ocupado" ? 'primary' : 'verde';
     }
 
+
     addCar($event, deliveryMan){
-        
+
+        this.angularFire.database.list('/coches', {
+            query: {
+                orderByChild: 'disponibilidad',
+                equalTo: 'Libre'
+            }
+        }).subscribe(data => {
+
+            let prompt = this.alertController.create({
+                title: 'Elegir vehiculo',
+                message: 'Seleccione el vehículo que quiere asignar al repartidor ' + deliveryMan.nombre
+            });
+
+            for (var index = 0; index < data.length; index++) {
+                prompt.addInput({
+                    type: 'radio',
+                    label: data[index].matricula,
+                    value: data[index],
+                    checked: false
+                });
+            }
+
+            prompt.addButton('Cancelar');
+            prompt.addButton({
+                text: 'Asignar',
+                handler: dat => {
+                    this.deliveryMenDatabase.update(deliveryMan.$key, {coche: dat.matricula});
+                    
+                    //TODO: Esta linea causa problemas
+                    this.vehiclesDatabase.update(dat.$key, {repartidor: deliveryMan.nombre, disponibilidad: "Ocupado"});
+                }
+            });
+
+            prompt.present();
+        });
+
     }
+
 
     removeCar($event, deliveryMan){
         this.angularFire.database.list('/coches', { 
@@ -71,6 +108,7 @@ import {  } from '../pages';
             this.vehiclesDatabase.update(data[0].$key, {repartidor: "", disponibilidad: "Libre"});
         });
 
+        this.deliveryMenDatabase.update(deliveryMan.$key, {coche: ""});
 
         let toast = this.toastController.create({
             message: "Se ha desasignado el vehículo del repartidor " + deliveryMan.nombre,
