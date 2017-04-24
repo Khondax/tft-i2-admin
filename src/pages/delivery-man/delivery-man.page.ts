@@ -32,20 +32,20 @@ import {  } from '../pages';
     }
 
     ionViewDidLoad(){
-    let loader = this.loadingController.create({
-      content: 'Cargando...',
-      spinner: 'bubbles'
-    });
+        let loader = this.loadingController.create({
+        content: 'Cargando...',
+        spinner: 'bubbles'
+        });
 
-    loader.present().then(() => {
-        this.angularFire.database.list('/repartidores').subscribe(data => {
-            this.allMen =
-                _.chain(data)
-                .orderBy('nombre')
-                .value();
+        loader.present().then(() => {
+            this.angularFire.database.list('/repartidores').subscribe(data => {
+                this.allMen =
+                    _.chain(data)
+                    .orderBy('nombre')
+                    .value();
 
-            this.deliveryMen = this.allMen;
-                loader.dismiss();
+                this.deliveryMen = this.allMen;
+                    loader.dismiss();
             });
         }); 
     
@@ -60,7 +60,6 @@ import {  } from '../pages';
     }
 
     removeCar($event, deliveryMan){
-        //this.deliveryMenDatabase.update(deliveryMan.$key, {coche: ""});
         var vehicle = this.angularFire.database.list('/coches', { 
             query: {
                 orderByChild: 'matricula',
@@ -68,6 +67,8 @@ import {  } from '../pages';
             }
         }).subscribe(data => {
             console.log(data)
+
+            this.vehiclesDatabase.update(data[0].$key, {repartidor: "", disponibilidad: "Libre"});
         });
 
 
