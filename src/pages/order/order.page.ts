@@ -61,11 +61,6 @@ import { MapPage } from '../pages';
     }
 
     assignDeliveryMan($event, deliveryMan){
-        /*  TODO: Editar base de datos para añadir repartidor al paquete seleccionado
-        *   Editar base de datos para que el repartidor tenga otro paquete
-        *   En HomePage, los paquetes con repartidor no pueden verse (Refresher automático) 
-        *   Añadir Toast para indicar que el repartidor se ha añadido al pedido
-        */
 
         let prompt = this.alertController.create({
             title: 'Asignar',

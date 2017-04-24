@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, ToastController } from 'ionic-angular';
 
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 
@@ -22,7 +22,9 @@ import {  } from '../pages';
 
     constructor(public nav: NavController,
                 public loadingController: LoadingController,
-                public angularFire: AngularFire){
+                public toastController: ToastController,
+                public angularFire: AngularFire,
+                public alertController: AlertController,){
 
         this.deliveryMenDatabase = angularFire.database.list('/repartidores');
         this.vehiclesDatabase = angularFire.database.list('/coches');
@@ -53,12 +55,28 @@ import {  } from '../pages';
         return deliveryMan.disponibilidad === "Ocupado" ? 'primary' : 'verde';
     }
 
-    addCar(deliveryMan){
-
+    addCar($event, deliveryMan){
+        
     }
 
-    removeCar(deliveryMan){
-        
+    removeCar($event, deliveryMan){
+        //this.deliveryMenDatabase.update(deliveryMan.$key, {coche: ""});
+        var vehicle = this.angularFire.database.list('/coches', { 
+            query: {
+                orderByChild: 'matricula',
+                equalTo: deliveryMan.coche,
+            }
+        }).subscribe(data => {
+            console.log(data)
+        });
+
+
+        let toast = this.toastController.create({
+            message: "Se ha desasignado el vehículo del repartidor " + deliveryMan.nombre,
+            duration: 4000,
+            position: 'bottom'
+        });
+        toast.present();
     }
 
 

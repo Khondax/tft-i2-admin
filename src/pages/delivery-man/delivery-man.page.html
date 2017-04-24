@@ -25,10 +25,10 @@
                                 </ion-card-content>
                             </ion-col>
                             <ion-col col-2>
-                                <button ion-button color="verde" icon-only  (click)="addCar(deliveryMan)" *ngIf="!deliveryMan.coche" >
+                                <button ion-button color="verde" icon-only  (click)="addCar($event, deliveryMan)" *ngIf="!deliveryMan.coche" >
                                     <ion-icon name="car"></ion-icon>
                                 </button>
-                                <button ion-button icon-only (click)="removeCar(deliveryMan)" *ngIf="deliveryMan.coche" >
+                                <button ion-button icon-only (click)="removeCar($event, deliveryMan)" *ngIf="deliveryMan.coche" >
                                     <ion-icon name="close-circle"></ion-icon>
                                 </button>
                             </ion-col>
