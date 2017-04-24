@@ -60,7 +60,7 @@ import {  } from '../pages';
     }
 
     removeCar($event, deliveryMan){
-        var vehicle = this.angularFire.database.list('/coches', { 
+        this.angularFire.database.list('/coches', { 
             query: {
                 orderByChild: 'matricula',
                 equalTo: deliveryMan.coche,
