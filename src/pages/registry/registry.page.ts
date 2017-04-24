@@ -55,13 +55,11 @@ import { OrderPage } from '../pages';
 
     search(){
         let queryTextLower = this.queryText.toLowerCase();
-
         let filteredOrders = [];
-
+        
         _.forEach(this.allDates, dat => {
             let orders = _.filter(dat.order, or => (<any>or).repartidor.toLowerCase()
             .includes(queryTextLower));
-
             if (orders.length) {
                 filteredOrders.push({ date: dat.date, order: orders});
             }

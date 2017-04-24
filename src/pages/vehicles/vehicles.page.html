@@ -6,4 +6,26 @@
 
 <ion-content>  
 
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngFor="let car of vehicles">
+
+                    <ion-card>
+                        <ion-card-header>
+                            {{car.matricula}}
+                        </ion-card-header>
+                        <ion-card-content>
+                            <p>Modelo: {{car.modelo}}</p>
+                            <p>Fecha de última revisión: {{car.ultimaRevision | date:'d/M/yy'}}</p>
+                            <p>Capacidad de carga: {{car.carga}} Kg</p>
+                            <p>Disponibilidad: <ion-badge [color]="getCorrectColor(car)">{{car.disponibilidad}}</ion-badge></p>
+                            <p>Repartidor asignado: {{car.repartidor}}</p>
+                            
+                        </ion-card-content>
+                    </ion-card>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>   
+
 </ion-content>
