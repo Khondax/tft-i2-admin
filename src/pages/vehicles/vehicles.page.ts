@@ -52,7 +52,6 @@ import {  } from '../pages';
     }
 
     newRevision(car){
-        //console.log('test', car.ultimaRevision);
 
         this.vehiclesDatabase.update(car.$key, {ultimaRevision: moment().format()});
 
@@ -61,6 +60,8 @@ import {  } from '../pages';
             duration: 4000,
             position: 'bottom'
         });
+        
+        toast.present();
 
     }
 
