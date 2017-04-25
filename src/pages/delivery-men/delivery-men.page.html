@@ -9,7 +9,7 @@
         <ion-row>
             <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngFor="let deliveryMan of deliveryMen">
 
-                    <ion-card>
+                    <ion-card (click)="goToDeliverer($event, deliveryMan)">
                         <ion-card-header>
                             {{deliveryMan.nombre}}
                         </ion-card-header>
@@ -25,7 +25,7 @@
                                 </ion-card-content>
                             </ion-col>
                             <ion-col col-2>
-                                <button ion-button color="verde" icon-only  (click)="addCar($event, deliveryMan)" *ngIf="!deliveryMan.coche" >
+                                <button ion-button color="verde" icon-only *ngIf="!deliveryMan.coche" >
                                     <ion-icon name="car"></ion-icon>
                                 </button>
                                 <button ion-button icon-only (click)="removeCar($event, deliveryMan)" *ngIf="deliveryMan.coche" >

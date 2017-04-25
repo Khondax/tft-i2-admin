@@ -5,7 +5,7 @@ import { AngularFire, FirebaseListObservable } from "angularfire2";
 
 import _ from 'lodash';
 
-import {  } from '../pages';
+import { DelivererPage } from '../pages';
 
  @Component ({
      templateUrl: 'delivery-men.page.html',
@@ -25,9 +25,6 @@ import {  } from '../pages';
                 public angularFire: AngularFire,
                 public alertController: AlertController,){
 
-        this.deliveryMenDatabase = angularFire.database.list('/repartidores');
-        this.vehiclesDatabase = angularFire.database.list('/coches');
-
     }
 
     ionViewDidLoad(){
@@ -44,7 +41,9 @@ import {  } from '../pages';
                     .value();
 
                 this.deliveryMen = this.allMen;
-                    loader.dismiss();
+                this.deliveryMenDatabase = this.angularFire.database.list('/repartidores');
+                this.vehiclesDatabase = this.angularFire.database.list('/coches');
+                loader.dismiss();
             });
         }); 
     
@@ -53,47 +52,6 @@ import {  } from '../pages';
 
     getCorrectColor(deliveryMan){
         return deliveryMan.disponibilidad === "Ocupado" ? 'primary' : 'verde';
-    }
-
-
-    addCar($event, deliveryMan){
-
-        this.angularFire.database.list('/coches', {
-            query: {
-                orderByChild: 'disponibilidad',
-                equalTo: 'Libre'
-            }
-        }).subscribe(data => {
-
-            let prompt = this.alertController.create({
-                title: 'Elegir vehiculo',
-                message: 'Seleccione el vehículo que quiere asignar al repartidor ' + deliveryMan.nombre
-            });
-
-            for (var index = 0; index < data.length; index++) {
-                prompt.addInput({
-                    type: 'radio',
-                    label: data[index].matricula,
-                    value: data[index],
-                    checked: false
-                });
-            }
-
-            prompt.addButton('Cancelar');
-            prompt.addButton({
-                text: 'Asignar',
-                handler: dat => {
-                    this.deliveryMenDatabase.update(deliveryMan.$key, {coche: dat.matricula});
-                    
-                    //TODO: Esta linea causa problemas porque cambiamos la disponibilidad mientras se está observando la base de datos
-                    //this.vehiclesDatabase.update(dat.$key, {repartidor: deliveryMan.nombre, disponibilidad: "Ocupado"});
-
-                }
-            });
-
-            prompt.present();
-        });
-        
     }
 
 
@@ -117,6 +75,11 @@ import {  } from '../pages';
             position: 'bottom'
         });
         toast.present();
+    }
+
+
+    goToDeliverer($event, deliveryMan){
+        this.nav.push(DelivererPage, deliveryMan);
     }
 
 
