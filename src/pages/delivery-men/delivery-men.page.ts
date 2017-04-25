@@ -8,10 +8,10 @@ import _ from 'lodash';
 import {  } from '../pages';
 
  @Component ({
-     templateUrl: 'delivery-man.page.html',
+     templateUrl: 'delivery-men.page.html',
  })
 
- export class DeliveryManPage {
+ export class DeliveryMenPage {
 
      deliveryMen = [];
      private allMen: any;
@@ -85,14 +85,15 @@ import {  } from '../pages';
                 handler: dat => {
                     this.deliveryMenDatabase.update(deliveryMan.$key, {coche: dat.matricula});
                     
-                    //TODO: Esta linea causa problemas
-                    this.vehiclesDatabase.update(dat.$key, {repartidor: deliveryMan.nombre, disponibilidad: "Ocupado"});
+                    //TODO: Esta linea causa problemas porque cambiamos la disponibilidad mientras se está observando la base de datos
+                    //this.vehiclesDatabase.update(dat.$key, {repartidor: deliveryMan.nombre, disponibilidad: "Ocupado"});
+
                 }
             });
 
             prompt.present();
         });
-
+        
     }
 
 
@@ -103,7 +104,7 @@ import {  } from '../pages';
                 equalTo: deliveryMan.coche,
             }
         }).subscribe(data => {
-            console.log(data)
+            //console.log(data)
 
             this.vehiclesDatabase.update(data[0].$key, {repartidor: "", disponibilidad: "Libre"});
         });
