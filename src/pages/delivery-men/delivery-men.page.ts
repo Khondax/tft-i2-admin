@@ -55,29 +55,6 @@ import { DelivererPage } from '../pages';
     }
 
 
-    removeCar($event, deliveryMan){
-        this.angularFire.database.list('/coches', { 
-            query: {
-                orderByChild: 'matricula',
-                equalTo: deliveryMan.coche,
-            }
-        }).subscribe(data => {
-            //console.log(data)
-
-            this.vehiclesDatabase.update(data[0].$key, {repartidor: "", disponibilidad: "Libre"});
-        });
-
-        this.deliveryMenDatabase.update(deliveryMan.$key, {coche: ""});
-
-        let toast = this.toastController.create({
-            message: "Se ha desasignado el vehículo del repartidor " + deliveryMan.nombre,
-            duration: 4000,
-            position: 'bottom'
-        });
-        toast.present();
-    }
-
-
     goToDeliverer($event, deliveryMan){
         this.nav.push(DelivererPage, deliveryMan);
     }
