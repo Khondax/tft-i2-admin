@@ -16,6 +16,8 @@ import { OrderPage } from '../pages';
     deliverer: any;
     orders = [];
     vehicles = [];
+    vehiclesDatabase: FirebaseListObservable<any>;
+    deliveryMen: FirebaseListObservable<any>;
 
     constructor(public nav: NavController,
                 public navParams: NavParams,
@@ -25,6 +27,8 @@ import { OrderPage } from '../pages';
                 public alertController: AlertController){
         
         this.deliverer = this.navParams.data;
+        this.vehiclesDatabase = this.angularFire.database.list('/coches');
+        this.deliveryMen = this.angularFire.database.list('/repartidores');
     }
 
     ionViewDidLoad(){
@@ -40,7 +44,14 @@ import { OrderPage } from '../pages';
                     equalTo: this.deliverer.$key
                 }
             }).subscribe(data => {
-                this.orders = data;
+                var i:number;
+                for(i = 0; i<data.length; i++){
+                    if(data[i].fechaEntrega == ""){
+                        this.orders[i]=data[i];
+                    }
+                }
+
+                //this.orders= data;
 
             });
 
@@ -60,18 +71,67 @@ import { OrderPage } from '../pages';
 
 
     getCorrectColor(deliveryMan){
-
-    }
-
-
-    addCar($event, deliveryMan){
         
+
+    }
+
+
+    addCar($event, vehicle){
+        let prompt = this.alertController.create({
+            title: 'Asignar',
+            message: "¿Quieres añadir el vehículo con matrícula " + vehicle.matricula + " a este repartidor? ",
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    handler: data => {
+                        console.log('Cancelado');
+                    }
+                },
+                {
+                    text: 'Si',
+                    handler: data =>{
+
+                        this.deliveryMen.update(this.deliverer.$key, {coche: vehicle.matricula});
+                        this.vehiclesDatabase.update(vehicle.$key, {repartidor: this.deliverer.nombre,  disponibilidad: "Ocupado"});
+
+                        let toast = this.toastController.create({
+                            message: "Se ha asignado el vehículo " + vehicle.matricula + " al repartidor ",
+                            duration: 4000,
+                            position: 'bottom'
+                        });
+
+                        toast.present();
+                    }
+                }
+            ]
+        });
+
+        prompt.present();
     }
 
 
-    removeCar($event, deliveryMan){
+    removeCar(){
+
+        this.deliveryMen.update(this.deliverer.$key, {coche: ""});
+        this.angularFire.database.list('/coches', { 
+            query: {
+                orderByChild: 'matricula',
+                equalTo: this.deliverer.coche,
+            }
+        }).subscribe(data => {
+            this.vehiclesDatabase.update(data[0].$key, {repartidor: "", disponibilidad: "Libre"});
+        }); 
+
+        let toast = this.toastController.create({
+            message: "Se ha desasignado el vehículo al repartidor",
+            duration: 4000,
+            position: 'bottom'
+        });
+
+        toast.present();
 
     }
+
 
     goToOrder($event, order){
         this.nav.push(OrderPage, order);
