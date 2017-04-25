@@ -24,8 +24,6 @@ import {  } from '../pages';
                  public angularFire: AngularFire,
                  public toastController: ToastController){
 
-        this.vehiclesDatabase = angularFire.database.list('/coches');
-
     }
 
     ionViewDidLoad(){
@@ -42,6 +40,7 @@ import {  } from '../pages';
                     .value();
 
                 this.vehicles = this.allVehicles;
+                this.vehiclesDatabase = this.angularFire.database.list('/coches');
                 loader.dismiss();
             });
         });

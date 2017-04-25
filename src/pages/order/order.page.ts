@@ -25,10 +25,8 @@ import { MapPage } from '../pages';
                 public angularFire: AngularFire,
                 public alertController: AlertController,
                 public loadingController: LoadingController){
-
+        
         this.order = this.navParams.data;
-        this.orders = angularFire.database.list('/pedidos');
-        this.employees = angularFire.database.list('/repartidores');
 
      }
 
@@ -46,6 +44,9 @@ import { MapPage } from '../pages';
                     .value();
 
                 this.deliveryMen = this.allMen;
+                
+                this.orders = this.angularFire.database.list('/pedidos');
+                this.employees = this.angularFire.database.list('/repartidores');
                 loader.dismiss();
             });
         });
