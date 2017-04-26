@@ -11,14 +11,17 @@ import { DelivererPage } from '../pages';
      templateUrl: 'delivery-men.page.html',
  })
 
- export class DeliveryMenPage {
+export class DeliveryMenPage {
+     
+    deliveryMen = [];
+    private allMen: any;
+    
+    carsData: any;
+    car = [];
 
-     deliveryMen = [];
-     private allMen: any;
-
-     deliveryMenDatabase: FirebaseListObservable<any>;
-     vehiclesDatabase: FirebaseListObservable<any>;
-
+    deliveryMenDatabase: FirebaseListObservable<any>;
+    vehiclesDatabase: FirebaseListObservable<any>;
+     
     constructor(public nav: NavController,
                 public loadingController: LoadingController,
                 public toastController: ToastController,
@@ -41,8 +44,10 @@ import { DelivererPage } from '../pages';
                     .value();
 
                 this.deliveryMen = this.allMen;
-                this.deliveryMenDatabase = this.angularFire.database.list('/repartidores');
+
                 this.vehiclesDatabase = this.angularFire.database.list('/coches');
+                this.deliveryMenDatabase = this.angularFire.database.list('/repartidores');
+
                 loader.dismiss();
             });
         }); 
@@ -60,5 +65,29 @@ import { DelivererPage } from '../pages';
     }
 
 
+    removeCar($event, deliverer){
 
- }
+        this.angularFire.database.list('/coches').subscribe(data =>{
+            this.carsData = _.chain(data)
+                            .filter(c => c.matricula === deliverer.coche)
+                            .value();
+
+            this.car = this.carsData;
+        });
+
+        this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
+        this.deliveryMenDatabase.update(deliverer.$key, {coche: ""});
+
+        let toast = this.toastController.create({
+            message: "Se ha desasignado el vehículo al repartidor",
+            duration: 4000,
+            position: 'bottom'
+        });
+
+        toast.present();
+
+    }
+
+
+
+}

@@ -14,8 +14,16 @@ import { OrderPage } from '../pages';
  export class DelivererPage {
 
     deliverer: any;
+
+    ordersData: any;
     orders = [];
+    
+    vehiclesData: any;
     vehicles = [];
+    
+    carsData: any;
+    car = [];
+    
     vehiclesDatabase: FirebaseListObservable<any>;
     deliveryMen: FirebaseListObservable<any>;
 
@@ -31,44 +39,40 @@ import { OrderPage } from '../pages';
     }
 
     ionViewDidLoad(){
+
         let loader = this.loadingController.create({
             content: 'Cargando...',
             spinner: 'bubbles'
         });
 
         loader.present().then(() => {
-            this.angularFire.database.list('/pedidos', {
-                query: {
-                    orderByChild: 'idRepartidor',
-                    equalTo: this.deliverer.$key
-                }
-            }).subscribe(data => {
-                var i:number;
-                for(i = 0; i < data.length; i++){
-                    if(data[i].fechaEntrega == ""){
-                        this.orders[i] = data[i];
+            this.angularFire.database.list('/pedidos').subscribe(data => {
+                this.ordersData = _.chain(data)
+                                    .filter(o => o.idRepartidor === this.deliverer.$key)
+                                    .value();
+
+                for (var index = 0; index < this.ordersData.length; index++) {
+                    if (this.ordersData[index].fechaEntrega == "") {
+                        this.orders[index] = this.ordersData[index];
                     }
                 }
-
-                //this.orders = data;
-                
             });
 
-            this.angularFire.database.list('/coches', {
-                query: {
-                    orderByChild: 'disponibilidad',
-                    equalTo: "Libre"
-                }
-            }).subscribe(data => {
-                this.vehicles = data;
+
+            this.angularFire.database.list('/coches').subscribe(data =>{
+                this.vehiclesData = _.chain(data)
+                                    .filter(v => v.disponibilidad === "Libre")
+                                    .value();
+
+                this.vehicles = this.vehiclesData;
 
                 this.vehiclesDatabase = this.angularFire.database.list('/coches');
                 this.deliveryMen = this.angularFire.database.list('/repartidores');
-                
+
                 loader.dismiss();
             });
-            
         });
+            
     }
 
 
@@ -111,18 +115,20 @@ import { OrderPage } from '../pages';
 
     removeCar(){
 
-        this.angularFire.database.list('/coches', { 
-            query: {
-                orderByChild: 'matricula',
-                equalTo: this.deliverer.coche,
-            }
-        }).subscribe(data => {
-            console.log(data);
+        this.angularFire.database.list('/coches').subscribe(data =>{
+            this.carsData = _.chain(data)
+                            .filter(c => c.matricula === this.deliverer.coche)
+                            .value();
 
-            this.vehiclesDatabase.update(data[0].$key, {repartidor: "", disponibilidad: "Libre"});
+            this.car = this.carsData;
+            //SER UN GENIO NIVEL DIOS
+            //this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
         });
 
+        this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
         this.deliveryMen.update(this.deliverer.$key, {coche: ""});
+
+        this.nav.pop();
 
         let toast = this.toastController.create({
             message: "Se ha desasignado el vehículo al repartidor",
