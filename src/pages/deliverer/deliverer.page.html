@@ -2,37 +2,47 @@
     <ion-navbar color="primary">
         <ion-title>{{deliverer.nombre}}</ion-title>
     </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
 
-    <ion-list >
-        <ion-item-divider color="secondary" >Información del repartidor</ion-item-divider>
+    <ion-row>
+        <ion-col col-9>
+            <ion-list >
+                <ion-item-divider color="secondary" >Información del repartidor</ion-item-divider>
 
-        <p>DNI: {{deliverer.dni}}</p>
+                <p>DNI: {{deliverer.dni}}</p>
 
-        <ion-item-divider color="secondary" >Paquetes asignados</ion-item-divider>
-           
-        <ion-list >
-            <ion-item *ngFor="let order of orders"  (click)="goToOrder($event, order)" >
-                <p>{{order.$key}}</p>
-                <br>
-                <p>{{order.direccion}}</p>
-            </ion-item>
-        </ion-list>
+                <ion-item-divider color="secondary" >Paquetes asignados</ion-item-divider>
+                
+                <ion-list >
+                    <ion-item *ngFor="let order of orders"  (click)="goToOrder($event, order)" >
+                        <p>{{order.$key}}</p>
+                        <br>
+                        <p>{{order.direccion}}</p>
+                    </ion-item>
+                </ion-list>
+            </ion-list>
+        </ion-col>
 
-    </ion-list>
+        <ion-col col-3>
+            <ion-card>
+                <img src={{deliverer.imagen}} style="width:100%; max-height:auto"/>
+            </ion-card>
+        </ion-col>
+    </ion-row>
 
-    <ion-card *ngIf="!deliverer.coche">
-        <ion-card-content>
+    
+    <ion-card *ngIf="!deliverer.coche"  class="card-background-page">
             <ion-slides pager>
                 <ion-slide *ngFor="let vehicle of vehicles" (click)="addCar($event, vehicle)" >
-                    <p>Matricula: {{vehicle.matricula}}</p>
-                    <p>Modelo: {{vehicle.modelo}}</p>
+                    <img src={{vehicle.imagen}}/>
+                    <div class="card-title">Matricula: {{vehicle.matricula}}</div>
+                    <div class="card-subtitle">Modelo: {{vehicle.modelo}}</div>
                     <br>
                 </ion-slide>
             </ion-slides>   
-        </ion-card-content>
     </ion-card>
 
     <button *ngIf="deliverer.coche" ion-button full (click)="removeCar()" >

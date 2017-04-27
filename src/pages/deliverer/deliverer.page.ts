@@ -9,6 +9,7 @@ import { OrderPage } from '../pages';
 
  @Component ({
      templateUrl: 'deliverer.page.html',
+     selector: 'deliverer.page.scss'
  })
 
  export class DelivererPage {
