@@ -4,6 +4,7 @@ Proyecto en ionic2 para el trabajo final del Grado en Ingeniería Informática -
 TAREAS PENDIENTES
 
 - Quitar página new-order (y lo que ello conlleva)
+- Realizar un unsubscribe sobre las promesas para terminarlas (las que sean necesarias, como los updates de los repartidores y coches)
 
 ~ HOME ~
 - Filtrar los pedidos por código postal y organizarlos por dirección (orden alfabético)
@@ -11,12 +12,12 @@ TAREAS PENDIENTES
 - Ver ubicaciones de los repartidores en tiempo real (geolocalización)
 - Poder escribir un campo de observaciones en los pedidos que tengan algún defecto (también difuminar el pedido en la vista general)
 
-~Repartidor~
+~ Repartidor ~
 - Poner tabs (una página para la información general/actual (del repartidor y de los paquetes seleccionados por él) y otra (con dos segment) para los paquetes asignados y entregados)
 - Configurar siguiente dirección de entrega en repartidores
 
 
-~HISTORIAL~ 
+~ HISTORIAL ~ 
 - Multifiltrado en el historial (poder filtrar por varios campos a la vez) - Repartidor, empresa, ID, ¿código postal/dirección?
 
 
