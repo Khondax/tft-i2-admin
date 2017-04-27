@@ -9,11 +9,16 @@
     <ion-grid>
         <ion-row>
             <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngFor="let car of vehicles">
-
-                    <ion-card>
+                <ion-card>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src={{car.imagen}}>
+                        </ion-avatar>
                         <ion-card-header>
                             {{car.matricula}}
                         </ion-card-header>
+                    </ion-item>
+                        
                         <ion-card-content>
                             <ion-row>
                                 <ion-col col-10>
