@@ -106,6 +106,7 @@ import { MapPage } from '../pages';
         );
         this.employees.update(this.order.idRepartidor, {numPedidos: numOrders})
 
+        deliveryMan.unsubscribe();
         this.nav.popToRoot();
 
         let toast = this.toastController.create({

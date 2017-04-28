@@ -116,7 +116,7 @@ import { OrderPage } from '../pages';
 
     removeCar(){
 
-        this.angularFire.database.list('/coches').subscribe(data =>{
+        var temp = this.angularFire.database.list('/coches').subscribe(data =>{
             this.carsData = _.chain(data)
                             .filter(c => c.matricula === this.deliverer.coche)
                             .value();
@@ -128,6 +128,8 @@ import { OrderPage } from '../pages';
 
         this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
         this.deliveryMen.update(this.deliverer.$key, {coche: ""});
+
+        temp.unsubscribe();
 
         this.nav.pop();
 

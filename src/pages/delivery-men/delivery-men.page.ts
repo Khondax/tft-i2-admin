@@ -67,7 +67,7 @@ export class DeliveryMenPage {
 
     removeCar($event, deliverer){
 
-        this.angularFire.database.list('/coches').subscribe(data =>{
+        var temp = this.angularFire.database.list('/coches').subscribe(data =>{
             this.carsData = _.chain(data)
                             .filter(c => c.matricula === deliverer.coche)
                             .value();
@@ -77,12 +77,16 @@ export class DeliveryMenPage {
 
         this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
         this.deliveryMenDatabase.update(deliverer.$key, {coche: ""});
+        
+        temp.unsubscribe();
 
         let toast = this.toastController.create({
             message: "Se ha desasignado el vehículo al repartidor",
             duration: 4000,
             position: 'bottom'
         });
+
+        
 
         toast.present();
 
