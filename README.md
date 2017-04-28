@@ -9,7 +9,8 @@ TAREAS PENDIENTES
 - Ver ubicaciones de los repartidores en tiempo real (geolocalización)
 - Poder escribir un campo de observaciones en los pedidos que tengan algún defecto (también difuminar el pedido en la vista general)
 
-~ Repartidor ~
+
+~ REPARTIDOR ~
 - Poner tabs (una página para la información general/actual (del repartidor y de los paquetes seleccionados por él) y otra (con dos segment) para los paquetes asignados y entregados)
 - Configurar siguiente dirección de entrega en repartidores
 
@@ -23,6 +24,7 @@ TAREAS PENDIENTES
 - Quitar campo numPaquetes
 - Habilitar control de usuarios (admin, repartidores, clientes) con sus permisos y autenticación.
 
+~ OTROS ~
 - Añadir Splash (actualmente hay uno provisional)
 - Poner un icono para la App (actualmente hay uno provisional)
-- Cambiar el nombre de la App (se puede quedar el actual) (actualmente hay uno provisional)
+- Cambiar el nombre de la App (se puede quedar el actual)
