@@ -3,9 +3,6 @@ Proyecto en ionic2 para el trabajo final del Grado en Ingeniería Informática -
 
 TAREAS PENDIENTES
 
-- Quitar página new-order (y lo que ello conlleva)
-- Realizar un unsubscribe sobre las promesas para terminarlas (las que sean necesarias, como los updates de los repartidores y coches)
-
 ~ HOME ~
 - Filtrar los pedidos por código postal y organizarlos por dirección (orden alfabético)
 - Buscador de pedidos no entregados (multifiltrado)
