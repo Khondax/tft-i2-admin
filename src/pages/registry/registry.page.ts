@@ -37,8 +37,7 @@ import { OrderPage } from '../pages';
                     _.chain(data)
                     .groupBy(fecha => fecha.fechaEntrega.split('T').shift())
                     .toPairs()
-                    .map(item => _.zipObject(['date', 'order'],
-                    item))
+                    .map(item => _.zipObject(['date', 'order'], item))
                     .value();
 
                 this.orders = this.allDates;

@@ -4,7 +4,7 @@
             <ion-icon name="menu"></ion-icon>
         </button>
 
-        <ion-title>Home</ion-title>
+        <ion-title>Portada</ion-title>
 
     </ion-navbar>
 
@@ -24,32 +24,40 @@
     <div [ngSwitch]="orderFilter" >
         <ion-grid *ngSwitchCase="'notAssigned'">
             <ion-row >
-                <ng-container *ngFor="let item of orders | async">
-                    <ion-col col-sm-4 col-md-6 col-lg-4 col-xl-3 *ngIf="!item.repartidor">
+                <ng-container *ngFor="let codsPostales of orders">
+                    <ion-col col-sm-4 col-md-6 col-lg-4 col-xl-3 *ngIf="!codsPostales.pedido.repartidor && !codsPostales.pedido.fechaEntrega">
 
-                        <ion-card (click)="goToOrder($event, item)" >
+                        <ion-card>
                             <ion-card-header>
-                                {{item.$key}}
+                                {{codsPostales.codPos}}
                             </ion-card-header>
                             
-                            <ion-card-content>
-                                <ion-row>
-                                    <ion-col col-10>
-                                        <h2>Rem: {{item.remitente}}</h2>
-                                        <p>Paquetes: {{item.numPaquetes}}</p>
-                                        <p>Peso: {{item.peso}}</p>
-                                        <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
-                                    </ion-col>
+                            <ion-list >
+                                <ion-item-group>
+                                    <ion-item-divider >
+                                    <!--TODO: Montar la lógica del divisor por dirección y el botoncillo de debajo también-->
+                                    </ion-item-divider>
+                                
+                                    <ng-container *ngFor="let item of codsPostales.pedido">
+                                        <button ion-item icon-right outline *ngIf="!item.repartidor && !item.fechaEntrega" (click)="goToOrder($event, item)">
+                                            <ion-row>
+                                                <ion-col col-10>
+                                                    <h2>Remitente: {{item.remitente}}</h2>
+                                                    <h3>Dirección: {{item.direccion}}</h3>
+                                                    <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                                    
+                                                </ion-col>
+                                                <ion-col col-2>
+                                                    <br>
+                                                    <ion-icon *ngIf="item.urgente" name="alert"></ion-icon>
+                                                </ion-col>
+                                            </ion-row>
+                                        </button>
+                                    </ng-container>
 
-                                    <ion-col col-2>
-                                        <ion-buttons end>
-                                            <button ion-button icon-only outline *ngIf="item.urgente">
-                                                <ion-icon name="alert"></ion-icon>
-                                            </button>
-                                        </ion-buttons>
-                                    </ion-col>
-                                </ion-row>
-                            </ion-card-content>
+                                </ion-item-group>
+                            </ion-list>
+
                         </ion-card>
 
                     </ion-col>
@@ -60,7 +68,7 @@
 
         <ion-grid *ngSwitchCase="'assigned'">
             <ion-row>
-                <ng-container *ngFor="let item of orders | async">
+                <ng-container *ngFor="let item of orders">
                     <ion-col col-sm-4 col-md-6 col-lg-4 col-xl-3 *ngIf="item.repartidor && !item.fechaEntrega" >
 
                         <ion-card (click)="goToOrder($event, item)">
