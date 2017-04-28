@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 
-import { NewOrderPage, OrderPage } from '../pages';
+import { OrderPage } from '../pages';
 
  @Component ({
      templateUrl: 'home.page.html',
@@ -21,9 +21,7 @@ import { NewOrderPage, OrderPage } from '../pages';
              this.orders = angularFire.database.list('/pedidos');      
     }
 
-    newPackage(){
-        this.nav.push(NewOrderPage);
-    }
+
 
     goToOrder($event, order){
         this.nav.push(OrderPage, order);
