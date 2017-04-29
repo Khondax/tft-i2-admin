@@ -2,25 +2,33 @@
     <ion-menu [content]="content">
         <ion-header>
             <ion-toolbar>
-                <ion-title>Admin</ion-title>
+                <ion-title>Navegar</ion-title>
             </ion-toolbar>
         </ion-header>
 
         <ion-content>
             <ion-list>
-                <ion-list-header>Navegar</ion-list-header>
-                    <button menuClose ion-item (click)="goDeliverers()">
-                        <ion-icon name="people"></ion-icon>
-                        Repartidores
-                    </button>
-                    <button menuClose ion-item (click)="goVehicles()">
-                        <ion-icon name="car"></ion-icon>
-                        Vehículos
-                    </button>
-                    <button menuClose ion-item (click)="goRegistry()">
-                        <ion-icon name="albums"></ion-icon>
-                        Historial
-                    </button>
+                <br>
+                <button menuClose ion-item (click)="goHome()">
+                    <ion-icon name="home"></ion-icon>
+                    Portada
+                </button>
+                <button menuClose ion-item (click)="goDeliverers()">
+                    <ion-icon name="people"></ion-icon>
+                    Repartidores
+                </button>
+                <button menuClose ion-item (click)="goDelivererLocation()">
+                    <ion-icon name="locate"></ion-icon>
+                    Localización de repartidores
+                </button>
+                <button menuClose ion-item (click)="goVehicles()">
+                    <ion-icon name="car"></ion-icon>
+                    Vehículos
+                </button>
+                <button menuClose ion-item (click)="goRegistry()">
+                    <ion-icon name="albums"></ion-icon>
+                    Historial
+                </button>
             </ion-list>
         </ion-content>
 

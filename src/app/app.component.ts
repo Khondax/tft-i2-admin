@@ -3,7 +3,7 @@ import { Nav, Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage, DeliveryMenPage, RegistryPage, VehiclesPage } from '../pages/pages';
+import { HomePage, DeliveryMenPage, RegistryPage, VehiclesPage, DelivererLocationPage } from '../pages/pages';
 
 @Component({
     templateUrl: 'app.html'
@@ -43,8 +43,16 @@ export class MyApp {
         this.nav.push(page.component);
     }*/
 
+    goHome(){
+        this.nav.setRoot(HomePage);
+    }
+
     goDeliverers(){
         this.nav.push(DeliveryMenPage);
+    }
+    
+    goDelivererLocation(){
+        this.nav.push(DelivererLocationPage);
     }
 
     goVehicles(){
