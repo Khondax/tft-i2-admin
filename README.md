@@ -6,7 +6,13 @@ TAREAS PENDIENTES
 ~ HOME ~
 - Filtrar los pedidos por código postal y organizarlos por dirección (orden alfabético)
 - Buscador de pedidos no entregados (multifiltrado)
-- Ver ubicaciones de los repartidores en tiempo real (geolocalización)
+
+
+~ PANEL LATERAL ~
+- Ver ubicaciones de los repartidores en tiempo real (geolocalización) (añadir botón en vista general de repartidores)
+
+
+~ PEDIDO ~
 - Poder escribir un campo de observaciones en los pedidos que tengan algún defecto (también difuminar el pedido en la vista general)
 
 
