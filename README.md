@@ -8,7 +8,7 @@ TAREAS PENDIENTES
 - Buscador de pedidos no entregados (multifiltrado)
 
 
-~ PANEL LATERAL ~
+~ Localización de repartidores ~
 - Ver ubicaciones de los repartidores en tiempo real (geolocalización) (añadir botón en vista general de repartidores)
 
 
@@ -29,6 +29,7 @@ TAREAS PENDIENTES
 - Nuevos campos de IDPaquete y de observaciones en /pedidos
 - Quitar campo numPaquetes
 - Habilitar control de usuarios (admin, repartidores, clientes) con sus permisos y autenticación.
+
 
 ~ OTROS ~
 - Añadir Splash (actualmente hay uno provisional)
