@@ -14,6 +14,8 @@ import { OrderPage } from '../pages';
  export class HomePage {
 
      private ordersData: any;
+     nAssignedOrders = [];
+     assignedOrders = [];
      orders = [];
      orderFilter: string = "notAssigned"; 
     
@@ -44,8 +46,34 @@ import { OrderPage } from '../pages';
                                   .map(item => _.zipObject(['codPos', 'pedido'], item))
                                   .value();
 
-                this.orders = this.ordersData;
+                var index = 0;
+                var index2 = 0;
+                for(var i = 0; i < this.ordersData.length; i++){
+                    var indexTemp = 0;
+                    var indexTempA = 0;
+                    var temp = [];
+                    var tempAssign = [];
+                    for(var j = 0; j < this.ordersData[i].pedido.length; j++){
+                        if(this.ordersData[i].pedido[j].estado == "En el almacén"){
+                            temp[indexTemp] = this.ordersData[i].pedido[j];
+                            indexTemp++;
+                        }else if (this.ordersData[i].pedido[j].estado == "Asignado") {
+                            tempAssign[indexTempA] = this.ordersData[i].pedido[j];
+                            indexTempA++;
+                        }
+                    }
+                    if(indexTemp !=0){
+                        this.nAssignedOrders[index] = temp;
+                        index++;        
+                    }
 
+                    if(indexTempA !=0){
+                        this.assignedOrders[index2] = tempAssign;
+                        index2++;        
+                    } 
+                }
+                
+                //this.orders = this.ordersData;
                 loader.dismiss();
             });
         });
