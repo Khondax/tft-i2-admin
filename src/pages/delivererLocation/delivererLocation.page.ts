@@ -3,10 +3,10 @@ import { NavController } from 'ionic-angular';
 
 
  @Component ({
-     templateUrl: 'deliverLocation.page.html',
+     templateUrl: 'delivererLocation.page.html',
  })
 
- export class DeliverLocationPage {
+ export class DelivererLocationPage {
 
     constructor(public nav: NavController){
 

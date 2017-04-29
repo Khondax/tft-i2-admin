@@ -5,3 +5,4 @@ export * from './deliverer/deliverer.page';
 export * from './registry/registry.page';
 export * from './map/map.page';
 export * from './vehicles/vehicles.page';
+export * from './delivererLocation/delivererLocation.page';
