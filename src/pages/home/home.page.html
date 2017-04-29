@@ -42,6 +42,8 @@
                                         <button ion-item icon-right outline *ngIf="!item.repartidor && !item.fechaEntrega" (click)="goToOrder($event, item)">
                                             <ion-row>
                                                 <ion-col col-10>
+                                                    <h1>{{item.idPaquete}}</h1>
+                                                    <br>
                                                     <h2>Remitente: {{item.remitente}}</h2>
                                                     <h3>Dirección: {{item.direccion}}</h3>
                                                     <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>

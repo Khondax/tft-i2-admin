@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>{{order.$key}}</ion-title>
+        <ion-title>{{order.idPaquete}}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -25,7 +25,6 @@
             <p>Fecha de Entrada al Almacén: {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
             <p>Estado del Pedido: {{order.estado}}</p>
             <p *ngIf="order.fechaEntrega">Fecha de Entrega: {{order.fechaEntrega | date:'d/M/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
-            <p>Número de Paquetes: {{order.numPaquetes}}</p>
             <p>Peso: {{order.peso}}</p>
             <p>Dimensiones: {{order.dimensiones}}</p>
             <p *ngIf="order.repartidor">Repartidor: {{order.repartidor}}</p>
@@ -37,7 +36,7 @@
                 <ion-slides pager>
                     <ion-slide *ngFor="let deliveryMan of deliveryMen" (click)="assignDeliveryMan($event, deliveryMan)" >
                         <p>Nombre: {{deliveryMan.nombre}}</p>
-                        <p>Número de pedidos asignados: {{deliveryMan.numPedidos}}</p>
+                        <p>Número de paquetes asignados: {{deliveryMan.numPedidos}}</p>
                         <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
                         <p>Coche asignado: {{deliveryMan.coche}}</p>
                         <br>

@@ -18,7 +18,7 @@
                 
                 <ion-list >
                     <ion-item *ngFor="let order of orders"  (click)="goToOrder($event, order)" >
-                        <p>{{order.$key}}</p>
+                        <p>{{order.idPaquete}}</p>
                         <br>
                         <p>{{order.direccion}}</p>
                     </ion-item>

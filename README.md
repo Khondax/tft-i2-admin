@@ -26,8 +26,6 @@ TAREAS PENDIENTES
 
 
 ~ FIREBASE ~
-- Nuevos campos de IDPaquete y de observaciones en /pedidos
-- Quitar campo numPaquetes
 - Habilitar control de usuarios (admin, repartidores, clientes) con sus permisos y autenticación.
 
 
