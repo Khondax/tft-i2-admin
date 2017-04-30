@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, ToastController } from 'ionic-angular';
 
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 
@@ -22,6 +22,7 @@ import {  } from '../pages';
      constructor(public nav: NavController,
                  public loadingController: LoadingController,
                  public angularFire: AngularFire,
+                 public alertController: AlertController,
                  public toastController: ToastController){
 
     }
@@ -52,16 +53,33 @@ import {  } from '../pages';
 
     newRevision(car){
 
-        this.vehiclesDatabase.update(car.$key, {ultimaRevision: moment().format()});
+        let prompt = this.alertController.create({
+            title: 'Fecha de última revisión',
+            message: "¿Quieres actualizar la fecha de la última revisión de este vehículo?",
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    handler: data => {
+                        console.log('Cancelado');
+                    }
+                },
+                {
+                    text: 'Si',
+                    handler: data =>{
+                        this.vehiclesDatabase.update(car.$key, {ultimaRevision: moment().format()});
 
-        let toast = this.toastController.create({
-            message: "Se ha actualizado la fecha de la última revisión del coche " + car.matricula,
-            duration: 4000,
-            position: 'bottom'
+                        let toast = this.toastController.create({
+                            message: "Se ha actualizado la fecha de la última revisión del coche " + car.matricula,
+                            duration: 4000,
+                            position: 'bottom'
+                        });
+                        
+                        toast.present();
+                    }
+                }
+            ]
         });
-        
-        toast.present();
-
+        prompt.present();
     }
 
 }

@@ -53,7 +53,7 @@ import { OrderPage } from '../pages';
                                     .value();
 
                 for (var index = 0; index < this.ordersData.length; index++) {
-                    if (this.ordersData[index].fechaEntrega == "" && this.ordersData[index].seleccionado != "" ) {
+                    if (this.ordersData[index].fechaEntrega == "" && this.ordersData[index].estado == "En ruta" ) {
                         this.orders[index] = this.ordersData[index];
                     }
                 }
