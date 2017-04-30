@@ -4,7 +4,6 @@ Proyecto en ionic2 para el trabajo final del Grado en Ingeniería Informática -
 TAREAS PENDIENTES
 
 ~ HOME ~
-- Filtrar los pedidos por código postal y organizarlos por dirección (orden alfabético)
 - Buscador de pedidos no entregados (multifiltrado)
 
 

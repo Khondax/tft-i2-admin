@@ -62,15 +62,16 @@ import { OrderPage } from '../pages';
                             indexTempA++;
                         }
                     }
-                    if(indexTemp !=0){
-                        this.nAssignedOrders[index] = temp;
-                        index++;        
-                    }
+                    this.nAssignedOrders[index] =  _.chain(temp)
+                                                    .orderBy('direccion')
+                                                    .value();
+                    index++;        
 
-                    if(indexTempA !=0){
-                        this.assignedOrders[index2] = tempAssign;
-                        index2++;        
-                    } 
+                
+                    this.assignedOrders[index2] = _.chain(tempAssign)
+                                                    .orderBy('direccion')
+                                                    .value();;
+                    index2++;
                 }
                 
                 //this.orders = this.ordersData;
