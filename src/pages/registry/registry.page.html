@@ -14,13 +14,14 @@
     <ion-list *ngFor="let fechaEntrega of orders" >
         <ion-item-group *ngIf="fechaEntrega.date" >
             <ion-item-divider color="secondary">
-                {{fechaEntrega.date | date:'d/MM/yy'}}
+                {{fechaEntrega.date | date:'dd/MM/yy'}}
             </ion-item-divider>
 
             <button ion-item *ngFor="let order of fechaEntrega.order" (click)="itemTapped($event, order)">
                 <h3>{{order.idPaquete}}</h3>
                 <p>{{order.repartidor}}</p>
-                <p>{{order.fechaEntrega | date:'d/MM/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
+                <p>{{order.remitente}}</p>
+                <p>{{order.fechaEntrega | date:'dd/MM/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
             </button>
             
 

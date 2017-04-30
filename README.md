@@ -20,10 +20,6 @@ TAREAS PENDIENTES
 - Configurar siguiente dirección de entrega en repartidores
 
 
-~ HISTORIAL ~ 
-- Multifiltrado en el historial (poder filtrar por varios campos a la vez) - Repartidor, empresa, ID, ¿código postal/dirección?
-
-
 ~ FIREBASE ~
 - Habilitar control de usuarios (admin, repartidores, clientes) con sus permisos y autenticación.
 

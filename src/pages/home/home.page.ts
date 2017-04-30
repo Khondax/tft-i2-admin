@@ -17,7 +17,8 @@ import { OrderPage } from '../pages';
      nAssignedOrders = [];
      assignedOrders = [];
      orders = [];
-     orderFilter: string = "notAssigned"; 
+     orderFilter: string = "notAssigned";
+    queryText: string = "";
     
     constructor(private loadingController: LoadingController,
                 private nav: NavController,
@@ -78,8 +79,9 @@ import { OrderPage } from '../pages';
                 loader.dismiss();
             });
         });
-
     }
 
+    search(){
 
+    }
  }

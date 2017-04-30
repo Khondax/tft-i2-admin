@@ -58,7 +58,9 @@ import { OrderPage } from '../pages';
         
         _.forEach(this.allDates, dat => {
             let orders = _.filter(dat.order, or => (<any>or).repartidor.toLowerCase()
-            .includes(queryTextLower));
+            .includes(queryTextLower) || (<any>or).fechaEntrega.toLowerCase()
+            .includes(queryTextLower) || (<any>or).remitente.toLowerCase()
+            .includes(queryTextLower) || (<any>or).idPaquete.toString().includes(queryTextLower));
             if (orders.length) {
                 filteredOrders.push({ date: dat.date, order: orders});
             }
