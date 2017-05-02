@@ -16,7 +16,7 @@ import { OrderPage } from '../pages';
      private ordersData: any;
      nAssignedOrders = [];
      assignedOrders = [];
-     orders = [];
+     ordersError = [];
      orderFilter: string = "notAssigned";
      queryText: string = "";
     
@@ -49,13 +49,19 @@ import { OrderPage } from '../pages';
 
                 var index = 0;
                 var index2 = 0;
+                var index3 = 0;
                 for(var i = 0; i < this.ordersData.length; i++){
                     var indexTemp = 0;
                     var indexTempA = 0;
+                    var k = 0;
+                    var orderError = [];
                     var temp = [];
                     var tempAssign = [];
                     for(var j = 0; j < this.ordersData[i].pedido.length; j++){
-                        if(this.ordersData[i].pedido[j].estado == "En el almacén"){
+                        if(this.ordersData[i].pedido[j].observaciones !=""){
+                            orderError[k] = this.ordersData[i].pedido[j];
+                            k++;
+                        }else if(this.ordersData[i].pedido[j].estado == "En el almacén"){
                             temp[indexTemp] = this.ordersData[i].pedido[j];
                             indexTemp++;
                         }else if (this.ordersData[i].pedido[j].estado == "Asignado") {
@@ -74,9 +80,15 @@ import { OrderPage } from '../pages';
                 
                     this.assignedOrders[index2] = _.chain(tempAssign)
                                                     .orderBy('direccion')
-                                                    .value();;
+                                                    .toPairs()
+                                                    .map(item => _.zipObject(['dir', 'pedido'], item))
+                                                    .value();
                     index2++;
+
+                    this.ordersError[index3] = orderError;
+                    index3++;
                 }
+                console.log(this.ordersError);
                 
                 //this.orders = this.ordersData;
                 loader.dismiss();
