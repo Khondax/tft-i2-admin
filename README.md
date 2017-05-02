@@ -4,7 +4,7 @@ Proyecto en ionic2 para el trabajo final del Grado en Ingeniería Informática -
 TAREAS PENDIENTES
 
 ~ HOME ~
-- Buscador de pedidos no entregados (multifiltrado)
+- Buscador de pedidos no entregados (multifiltrado) (requiere revisión)
 
 
 ~ Localización de repartidores ~
@@ -12,7 +12,7 @@ TAREAS PENDIENTES
 
 
 ~ PEDIDO ~
-- Poder escribir un campo de observaciones en los pedidos que tengan algún defecto (también difuminar el pedido en la vista general)
+- Poder escribir un campo de observaciones en los pedidos que tengan algún defecto (también difuminar el pedido en la vista general o un tercer segment para esos pedidos)
 
 
 ~ REPARTIDOR ~

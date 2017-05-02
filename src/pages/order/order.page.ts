@@ -68,10 +68,7 @@ import { MapPage } from '../pages';
             message: "¿Quieres añadir el repartidor " + deliveryMan.nombre + " al pedido? ",
             buttons: [
                 {
-                    text: 'Cancelar',
-                    handler: data => {
-                        console.log('Cancelado');
-                    }
+                    text: 'Cancelar'
                 },
                 {
                     text: 'Si',
@@ -117,6 +114,41 @@ import { MapPage } from '../pages';
 
         toast.present();
 
+    }
+
+    addComment(){
+        let prompt = this.alertController.create({
+            title: 'Incidencia',
+            message: "Describe aquí la incidencia del paquete " + this.order.idPaquete,
+            inputs: [{
+                type: 'text',
+                name: 'incidencia'
+            }],
+            buttons: [
+                {
+                    text: 'Cancelar'
+                },
+                {
+                    text: 'Añadir',
+                    handler: data =>{
+
+                        this.orders.update(this.order.$key, {observaciones: data.incidencia, estado: "Incidencia registrada"});
+
+                        this.nav.popToRoot();
+
+                        let toast = this.toastController.create({
+                            message: "Se ha regsitrado la incidencia",
+                            duration: 4000,
+                            position: 'bottom'
+                        });
+
+                        toast.present();
+                    }
+                }
+            ]
+        });
+
+        prompt.present();
     }
 
 

@@ -7,46 +7,55 @@
 <ion-content padding>
     <ion-list >
         <ion-item-divider color="secondary" >Información Destino</ion-item-divider>
-            <ion-row>
-                <ion-col col-10>
-                    <p>Destino: {{order.destinatario}}</p>
-                    <p>DNI: {{order.dni}}</p>
-                    <p>Dirección: {{order.direccion}}</p>
-                    <p>Teléfono: {{order.telf}}</p>
-                </ion-col>
-                <ion-col col-2 text-right>
-                    <button ion-button icon-only outline (click)="goToMap()">
-                        <ion-icon name="map"></ion-icon>
-                    </button>
-                </ion-col>
-            </ion-row>    
+        <ion-row>
+            <ion-col col-10>
+                <p>Destino: {{order.destinatario}}</p>
+                <p>DNI: {{order.dni}}</p>
+                <p>Dirección: {{order.direccion}}</p>
+                <p>Teléfono: {{order.telf}}</p>
+            </ion-col>
+            <ion-col col-2 text-right>
+                <button ion-button icon-only outline (click)="goToMap()">
+                    <ion-icon name="map"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>    
         <ion-item-divider color="secondary" >Información Paquete</ion-item-divider>
-            <p>Remitente: {{order.remitente}}</p>
-            <p>Fecha de Entrada al Almacén: {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
-            <p>Estado del Pedido: {{order.estado}}</p>
-            <p *ngIf="order.fechaEntrega">Fecha de Entrega: {{order.fechaEntrega | date:'d/M/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
-            <p>Peso: {{order.peso}}</p>
-            <p>Dimensiones: {{order.dimensiones}}</p>
-            <p *ngIf="order.repartidor">Repartidor: {{order.repartidor}}</p>
-            <p *ngIf="!order.repartidor">Repartidor: Sin asignar</p>
-        </ion-list>
+        <ion-row>
+            <ion-col col-10>
+                <p>Remitente: {{order.remitente}}</p>
+                <p>Fecha de Entrada al Almacén: {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                <p>Estado del Pedido: {{order.estado}}</p>
+                <p *ngIf="order.fechaEntrega">Fecha de Entrega: {{order.fechaEntrega | date:'d/M/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
+                <p>Peso: {{order.peso}}</p>
+                <p>Dimensiones: {{order.dimensiones}}</p>
+                <p *ngIf="order.repartidor">Repartidor: {{order.repartidor}}</p>
+                <p *ngIf="!order.repartidor">Repartidor: Sin asignar</p>
+            </ion-col>
+            <ion-col col-2 text-right>
+                <button ion-button icon-only outline (click)="addComment()">
+                    <ion-icon name="warning"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-list>
 
-        <ion-card *ngIf="!order.repartidor">
-            <ion-card-content>
-                <ion-slides pager>
-                    <ion-slide *ngFor="let deliveryMan of deliveryMen" (click)="assignDeliveryMan($event, deliveryMan)" >
-                        <p>Nombre: {{deliveryMan.nombre}}</p>
-                        <p>Número de paquetes asignados: {{deliveryMan.numPedidos}}</p>
-                        <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
-                        <p>Coche asignado: {{deliveryMan.coche}}</p>
-                        <br>
-                    </ion-slide>
-                </ion-slides>   
-            </ion-card-content>
-        </ion-card>
+    <ion-card *ngIf="!order.repartidor">
+        <ion-card-content>
+            <ion-slides pager>
+                <ion-slide *ngFor="let deliveryMan of deliveryMen" (click)="assignDeliveryMan($event, deliveryMan)" >
+                    <p>Nombre: {{deliveryMan.nombre}}</p>
+                    <p>Número de paquetes asignados: {{deliveryMan.numPedidos}}</p>
+                    <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
+                    <p>Coche asignado: {{deliveryMan.coche}}</p>
+                    <br>
+                </ion-slide>
+            </ion-slides>   
+        </ion-card-content>
+    </ion-card>
 
-        <button *ngIf="order.repartidor && !order.fechaEntrega" ion-button full (click)="removeDeliveryMan()" >
-            Desasignar repartidor
-        </button>
+    <button *ngIf="order.repartidor && !order.fechaEntrega" ion-button full (click)="removeDeliveryMan()" >
+        Desasignar repartidor
+    </button>
 
 </ion-content>
