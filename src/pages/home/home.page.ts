@@ -63,8 +63,11 @@ import { OrderPage } from '../pages';
                             indexTempA++;
                         }
                     }
+                    
                     this.nAssignedOrders[index] =  _.chain(temp)
-                                                    .orderBy('direccion')
+                                                    .groupBy('direccion')
+                                                    .toPairs()
+                                                    .map(item => _.zipObject(['dir', 'pedido'], item))
                                                     .value();
                     index++;        
 
