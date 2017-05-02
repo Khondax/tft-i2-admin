@@ -31,8 +31,8 @@
             <ion-row >
                 <!--<ng-container *ngFor="let codsPostales of orders">-->
                 <ng-container *ngFor="let codsPostales of nAssignedOrders">
-                    <ion-col col-sm-4 col-md-6 col-lg-4 col-xl-3 *ngIf="codsPostales.length != 0">
-                    <!--<ion-col col-sm-4 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of codsPostales" >-->
+                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="codsPostales.length != 0">
+                    <!--<ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of codsPostales" >-->
 
                         <ion-card>
                             <ion-card-header>
@@ -81,8 +81,8 @@
             <ion-row >
                 <!--<ng-container *ngFor="let codsPostales of orders">-->
                 <ng-container *ngFor="let codsPostales of assignedOrders">
-                    <!--<ion-col col-sm-4 col-md-6 col-lg-4 col-xl-3 *ngIf="!codsPostales.pedido.repartidor && !codsPostales.pedido.fechaEntrega">-->
-                    <ion-col col-sm-4 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of codsPostales" >
+                    <!--<ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="!codsPostales.pedido.repartidor && !codsPostales.pedido.fechaEntrega">-->
+                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of codsPostales" >
 
                         <ion-card>
                             <ion-card-header>

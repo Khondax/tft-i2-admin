@@ -12,13 +12,13 @@ import { OrderPage } from '../pages';
  })
 
  export class HomePage {
-
+     
      private ordersData: any;
      nAssignedOrders = [];
      assignedOrders = [];
      orders = [];
      orderFilter: string = "notAssigned";
-    queryText: string = "";
+     queryText: string = "";
     
     constructor(private loadingController: LoadingController,
                 private nav: NavController,
@@ -82,6 +82,18 @@ import { OrderPage } from '../pages';
     }
 
     search(){
+        let queryTextLower = this.queryText.toLowerCase();
+        let filteredOrders = [];
+        
+        _.forEach(this.nAssignedOrders, dat => {
+            let orders = _.filter(dat => dat.repartidor.toLowerCase()
+            .includes(queryTextLower) || dat.remitente.toLowerCase()
+            .includes(queryTextLower) || dat.idPaquete.toString().includes(queryTextLower));
+            if (orders.length) {
+                filteredOrders.push({orders});
+            }
+        });
 
+        this.nAssignedOrders = filteredOrders;
     }
  }
