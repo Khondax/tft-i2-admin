@@ -58,10 +58,7 @@ import {  } from '../pages';
             message: "¿Quieres actualizar la fecha de la última revisión de este vehículo?",
             buttons: [
                 {
-                    text: 'Cancelar',
-                    handler: data => {
-                        console.log('Cancelado');
-                    }
+                    text: 'Cancelar'
                 },
                 {
                     text: 'Si',

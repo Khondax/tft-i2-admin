@@ -83,10 +83,7 @@ import { OrderPage } from '../pages';
             message: "¿Quieres añadir el vehículo con matrícula " + vehicle.matricula + " a este repartidor? ",
             buttons: [
                 {
-                    text: 'Cancelar',
-                    handler: data => {
-                        console.log('Cancelado');
-                    }
+                    text: 'Cancelar'
                 },
                 {
                     text: 'Si',
