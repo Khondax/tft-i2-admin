@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>{{deliverer.nombre}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-tabs>
+    <ion-tab tabIcon="contact" tabTitle="Info" [root]="delivererTab" [rootParams]="deliverer"></ion-tab>
+    <ion-tab tabIcon="clipboard" tabTitle="Asignados" [root]="delivererPacksTab" [rootParams]="deliverer"></ion-tab>    
+    <ion-tab tabIcon="archive" tabTitle="Entregados" [root]="delivererPackFinishTab" [rootParams]="deliverer"></ion-tab>    
+</ion-tabs>

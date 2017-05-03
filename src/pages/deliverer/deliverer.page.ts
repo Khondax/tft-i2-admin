@@ -14,7 +14,7 @@ import { OrderPage } from '../pages';
 
  export class DelivererPage {
 
-    deliverer: any;
+    deliverer: any = {};
 
     ordersData: any;
     orders = [];
@@ -59,6 +59,7 @@ import { OrderPage } from '../pages';
                 }
             });
 
+            
 
             this.angularFire.database.list('/coches').subscribe(data =>{
                 this.vehiclesData = _.chain(data)

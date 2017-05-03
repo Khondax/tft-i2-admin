@@ -5,7 +5,7 @@ import { AngularFire, FirebaseListObservable } from "angularfire2";
 
 import _ from 'lodash';
 
-import { DelivererPage, DelivererLocationPage } from '../pages';
+import { DelivererHomePage, DelivererLocationPage } from '../pages';
 
  @Component ({
      templateUrl: 'delivery-men.page.html',
@@ -61,12 +61,12 @@ export class DeliveryMenPage {
 
 
     goToDeliverer($event, deliveryMan){
-        this.nav.push(DelivererPage, deliveryMan);
+        this.nav.push(DelivererHomePage, deliveryMan);
     }
 
     goDelivererLocation(){
-            this.nav.push(DelivererLocationPage);
-        }
+        this.nav.push(DelivererLocationPage);
+    }
 
     removeCar($event, deliverer){
 
