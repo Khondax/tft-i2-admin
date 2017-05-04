@@ -8,13 +8,10 @@ import _ from 'lodash';
 import { OrderPage } from '../pages';
 
  @Component ({
-     templateUrl: 'deliverer.page.html',
-     selector: 'deliverer.page.scss'
+     templateUrl: 'deliverer.page.html'
  })
 
  export class DelivererPage {
-    
-    withCar: boolean = false;
 
     deliverer: any = {};
 
@@ -37,13 +34,13 @@ import { OrderPage } from '../pages';
                 public angularFire: AngularFire,
                 public alertController: AlertController){
 
-        
-
     }
 
     ionViewDidLoad(){
         this.deliverer = this.navParams.data;
+
         console.log(this.deliverer);
+
         let loader = this.loadingController.create({
             content: 'Cargando...',
             spinner: 'bubbles'
@@ -52,8 +49,8 @@ import { OrderPage } from '../pages';
         loader.present().then(() => {
             this.angularFire.database.list('/pedidos').subscribe(data => {
                 this.ordersData = _.chain(data)
-                                    .filter(o => o.idRepartidor === this.deliverer.$key)
-                                    .value();
+                                  .filter(o => o.idRepartidor === this.deliverer.$key)
+                                  .value();
 
                 for (var index = 0; index < this.ordersData.length; index++) {
                     if (this.ordersData[index].fechaEntrega == "" && this.ordersData[index].estado == "En ruta" ) {
@@ -62,11 +59,7 @@ import { OrderPage } from '../pages';
                 }
             });
 
-            if(this.deliverer.coche){
-                this.withCar = true;
-            }
-
-            this.angularFire.database.list('/coches').subscribe(data =>{
+            this.angularFire.database.list('/coches').subscribe(data => {
                 this.vehiclesData = _.chain(data)
                                     .filter(v => v.disponibilidad === "Libre")
                                     .value();
@@ -95,8 +88,6 @@ import { OrderPage } from '../pages';
                     handler: data =>{
                         this.vehiclesDatabase.update(vehicle.$key, {repartidor: this.deliverer.nombre,  disponibilidad: "Ocupado"});
                         this.deliveryMen.update(this.deliverer.$key, {coche: vehicle.matricula});
-
-                        
 
                         let toast = this.toastController.create({
                             message: "Se ha asignado el vehículo " + vehicle.matricula + " al repartidor ",
