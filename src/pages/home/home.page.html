@@ -26,9 +26,10 @@
 <ion-content>
     <div [ngSwitch]="orderFilter" >
         <ion-grid *ngSwitchCase="'notAssigned'">
-                <ion-toolbar >
-                    <ion-searchbar (placeholder)="Buscar" [(ngModel)]="queryText" (ionInput)="search()"></ion-searchbar>
-                </ion-toolbar>
+            <ion-toolbar >
+                <ion-searchbar (placeholder)="Buscar" [(ngModel)]="queryText" (ionInput)="search()"></ion-searchbar>
+            </ion-toolbar>
+
             <ion-row >
                 <ng-container *ngFor="let codsPostales of nAssignedOrders">
                     <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="codsPostales.length != 0">

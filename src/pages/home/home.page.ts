@@ -110,6 +110,7 @@ import { OrderPage } from '../pages';
         *   Parece que no se asigna bien el filtrado del filteredOrders a la variable nAssignedOrders
         *   ¿Puede ser porque los datos tienen que introducirse a partir de un bucle 'for'?
         */
+        
         this.nAssignedOrders = _.chain(filteredOrders)
                                 .filter(o => o.estado === "En el almacén")
                                 .groupBy('direccion')
