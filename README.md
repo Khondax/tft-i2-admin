@@ -5,6 +5,7 @@ TAREAS PENDIENTES
 
 ~ HOME ~
 - Buscador de pedidos no entregados (multifiltrado)  --------> (requiere revisión)
+- Corregir segment de pedidos asignados
 
 
 ~ Localización de repartidores ~
@@ -12,8 +13,8 @@ TAREAS PENDIENTES
 
 
 ~ REPARTIDOR ~
-- Poner tabs (una página para la información general/actual (del repartidor y de los paquetes seleccionados por él), otra para los paquetes asignados y una tercera para los paquetes entregados.
 - Configurar siguiente dirección de entrega en repartidores
+- Añadir más campos, mejor visualización, etc. etc.
 
 
 ~ FIREBASE ~
