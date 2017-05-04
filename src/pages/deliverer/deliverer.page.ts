@@ -13,6 +13,8 @@ import { OrderPage } from '../pages';
  })
 
  export class DelivererPage {
+    
+    withCar: boolean = false;
 
     deliverer: any = {};
 
@@ -35,12 +37,13 @@ import { OrderPage } from '../pages';
                 public angularFire: AngularFire,
                 public alertController: AlertController){
 
-        this.deliverer = this.navParams.data;
+        
 
     }
 
     ionViewDidLoad(){
-
+        this.deliverer = this.navParams.data;
+        console.log(this.deliverer);
         let loader = this.loadingController.create({
             content: 'Cargando...',
             spinner: 'bubbles'
@@ -59,7 +62,9 @@ import { OrderPage } from '../pages';
                 }
             });
 
-            
+            if(this.deliverer.coche){
+                this.withCar = true;
+            }
 
             this.angularFire.database.list('/coches').subscribe(data =>{
                 this.vehiclesData = _.chain(data)
@@ -67,7 +72,6 @@ import { OrderPage } from '../pages';
                                     .value();
 
                 this.vehicles = this.vehiclesData;
-
                 this.vehiclesDatabase = this.angularFire.database.list('/coches');
                 this.deliveryMen = this.angularFire.database.list('/repartidores');
 
@@ -89,11 +93,10 @@ import { OrderPage } from '../pages';
                 {
                     text: 'Si',
                     handler: data =>{
-
-                        this.deliveryMen.update(this.deliverer.$key, {coche: vehicle.matricula});
                         this.vehiclesDatabase.update(vehicle.$key, {repartidor: this.deliverer.nombre,  disponibilidad: "Ocupado"});
+                        this.deliveryMen.update(this.deliverer.$key, {coche: vehicle.matricula});
 
-                        this.nav.pop();
+                        
 
                         let toast = this.toastController.create({
                             message: "Se ha asignado el vehículo " + vehicle.matricula + " al repartidor ",
@@ -128,8 +131,6 @@ import { OrderPage } from '../pages';
         this.deliveryMen.update(this.deliverer.$key, {coche: ""});
 
         temp.unsubscribe();
-
-        this.nav.pop();
 
         let toast = this.toastController.create({
             message: "Se ha desasignado el vehículo al repartidor",

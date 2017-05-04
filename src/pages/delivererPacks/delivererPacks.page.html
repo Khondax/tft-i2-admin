@@ -5,7 +5,27 @@
 </ion-header>
 
 <ion-content padding>
-    
-<h2>DNI: {{deliverer.dni}}</h2>
 
+    
+
+    <ion-row >
+        <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3>
+
+            <ion-card *ngFor="let order of orders">
+                <ion-card-header>
+                    {{order.idPaquete}}
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-list >
+                        <ion-item  (click)="goToOrder($event, order)" >
+                            <p>{{order.codigoPostal}}</p>
+                            <br>
+                            <p>{{order.direccion}}</p>
+                        </ion-item>
+                    </ion-list>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+    
 </ion-content>

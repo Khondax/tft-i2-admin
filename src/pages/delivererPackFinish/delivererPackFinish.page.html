@@ -6,6 +6,44 @@
 
 <ion-content padding>
 
-<h2>DNI: {{deliverer.dni}}</h2>
+    <ion-row >
+        <ng-container *ngFor="let codsPostales of orders">
+            <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="codsPostales.length != 0">
+
+                <ion-card>
+                    <ion-card-header>
+                        {{codsPostales[0].codigoPostal}}
+                    </ion-card-header>
+                    
+                    <ion-list >
+                        <ion-item-group>
+
+                            <ng-container *ngFor="let item of codsPostales">
+                                    <button ion-item icon-right outline (click)="goToOrder($event, item)">
+                                        <ion-row>
+                                            <ion-col col-10>
+                                                <h1>{{item.idPaquete}}</h1>
+                                                <h2>Remitente: {{item.remitente}}</h2>
+                                                <h3>Dirección: {{item.direccion}}</h3>
+                                                <p>Fech. Entrega: {{item.fechaEntrega | date:'d/MM/yy'}} - {{item.fechaEntrega | date:'shortTime'}}</p>
+                                                
+                                            </ion-col>
+                                            <ion-col col-2>
+                                                <br>
+                                                <ion-icon *ngIf="item.urgente" name="alert"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </button>
+                            </ng-container>
+
+                        </ion-item-group>
+                    </ion-list>
+
+                </ion-card>
+
+            </ion-col>
+        </ng-container>
+        
+    </ion-row>
 
 </ion-content>

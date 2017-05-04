@@ -33,20 +33,20 @@
         </ion-col>
     </ion-row>
 
-    
-    <ion-card *ngIf="!deliverer.coche"  class="card-background-page">
-            <ion-slides pager>
-                <ion-slide *ngFor="let vehicle of vehicles" (click)="addCar($event, vehicle)" >
-                    <img src={{vehicle.imagen}}/>
-                    <div class="card-title">Matricula: {{vehicle.matricula}}</div>
-                    <div class="card-subtitle">Modelo: {{vehicle.modelo}}</div>
-                    <br>
-                </ion-slide>
-            </ion-slides>   
-    </ion-card>
-
-    <button *ngIf="deliverer.coche" ion-button full (click)="removeCar()" >
+    <button *ngIf="deliverer.coche; else elseBlock" ion-button full (click)="removeCar()">
         Desasignar vehículo
     </button>
 
+    <!--<ng-template #elseBlock>
+        <ion-card class="card-background-page">
+            <ion-slides pager>
+                <ion-slide *ngFor="let vehicle of vehicles" (click)="addCar($event, vehicle)" >
+                    <img src={{vehicle.imagen}}/>
+                    <div class="card-title">Matrícula: {{vehicle.matricula}}</div>
+                    <div class="card-subtitle">Modelo: {{vehicle.modelo}}</div>
+                    <br>
+                </ion-slide>
+            </ion-slides> 
+        </ion-card>
+    </ng-template>-->
 </ion-content>
