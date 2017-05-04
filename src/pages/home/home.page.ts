@@ -15,7 +15,10 @@ import { OrderPage } from '../pages';
      
      private ordersData: any;
      nAssignedOrders = [];
+
+     assignedOrdersData: any;
      assignedOrders = [];
+
      ordersError = [];
      orderFilter: string = "notAssigned";
      queryText: string = "";
@@ -48,15 +51,12 @@ import { OrderPage } from '../pages';
                                   .value();
 
                 var index = 0;
-                var index2 = 0;
                 var index3 = 0;
                 for(var i = 0; i < this.ordersData.length; i++){
                     var indexTemp = 0;
-                    var indexTempA = 0;
                     var k = 0;
                     var orderError = [];
                     var temp = [];
-                    var tempAssign = [];
                     for(var j = 0; j < this.ordersData[i].pedido.length; j++){
                         if(this.ordersData[i].pedido[j].observaciones !=""){
                             orderError[k] = this.ordersData[i].pedido[j];
@@ -64,9 +64,6 @@ import { OrderPage } from '../pages';
                         }else if(this.ordersData[i].pedido[j].estado == "En el almacén"){
                             temp[indexTemp] = this.ordersData[i].pedido[j];
                             indexTemp++;
-                        }else if (this.ordersData[i].pedido[j].estado == "Asignado") {
-                            tempAssign[indexTempA] = this.ordersData[i].pedido[j];
-                            indexTempA++;
                         }
                     }
                     
@@ -75,22 +72,22 @@ import { OrderPage } from '../pages';
                                                     .toPairs()
                                                     .map(item => _.zipObject(['dir', 'pedido'], item))
                                                     .value();
-                    index++;        
-
-                
-                    this.assignedOrders[index2] = _.chain(tempAssign)
-                                                    .orderBy('direccion')
-                                                    .toPairs()
-                                                    .map(item => _.zipObject(['dir', 'pedido'], item))
-                                                    .value();
-                    index2++;
+                    index++;
 
                     this.ordersError[index3] = orderError;
                     index3++;
                 }
-                console.log(this.ordersError);
-                
-                //this.orders = this.ordersData;
+
+                this.assignedOrdersData = _.chain(data)
+                                          .filter(o => o.estado === "Asignado")
+                                          .groupBy('repartidor')
+                                          .toPairs()
+                                          .map(item => _.zipObject(['repart', 'pedido'], item))
+                                          .value();
+
+                this.assignedOrders = this.assignedOrdersData;
+
+
                 loader.dismiss();
             });
         });
@@ -99,16 +96,29 @@ import { OrderPage } from '../pages';
     search(){
         let queryTextLower = this.queryText.toLowerCase();
         let filteredOrders = [];
-        
-        _.forEach(this.nAssignedOrders, dat => {
-            let orders = _.filter(dat => dat.repartidor.toLowerCase()
-            .includes(queryTextLower) || dat.remitente.toLowerCase()
-            .includes(queryTextLower) || dat.idPaquete.toString().includes(queryTextLower));
+
+        _.forEach(this.ordersData, dat => {
+            let orders = _.filter(dat.pedido, or => (<any>or).repartidor.toLowerCase()
+            .includes(queryTextLower) || (<any>or).remitente.toLowerCase()
+            .includes(queryTextLower) || (<any>or).idPaquete.toString().includes(queryTextLower));
             if (orders.length) {
-                filteredOrders.push({orders});
+                filteredOrders.push({codPos: dat.codPos, pedido: orders});
             }
         });
 
-        this.nAssignedOrders = filteredOrders;
+        /* LA SIGUIENTE LINEA NO FUNCIONA, PERO EL FILTRADO PREVIO SE REALIZA CORRECTAMENTE.
+        *   Parece que no se asigna bien el filtrado del filteredOrders a la variable nAssignedOrders
+        *   ¿Puede ser porque los datos tienen que introducirse a partir de un bucle 'for'?
+        */
+        this.nAssignedOrders = _.chain(filteredOrders)
+                                .filter(o => o.estado === "En el almacén")
+                                .groupBy('direccion')
+                                .toPairs()
+                                .map(item => _.zipObject(['dir', 'pedido'], item))
+                                .value();
+
+        console.log("aisg", this.nAssignedOrders);
+
+        //this.nAssignedOrders = filteredOrders;
     }
  }

@@ -5,7 +5,6 @@ TAREAS PENDIENTES
 
 ~ HOME ~
 - Buscador de pedidos no entregados (multifiltrado)  --------> (requiere revisión)
-- Corregir segment de pedidos asignados
 
 
 ~ Localización de repartidores ~
