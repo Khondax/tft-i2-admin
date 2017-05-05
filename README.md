@@ -13,7 +13,6 @@ TAREAS PENDIENTES
 
 ~ REPARTIDOR ~
 - Configurar siguiente dirección de entrega en repartidores
-- Añadir más campos, mejor visualización, etc. etc.
 
 
 ~ FIREBASE ~

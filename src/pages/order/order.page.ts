@@ -96,7 +96,7 @@ import { MapPage } from '../pages';
 
     removeDeliveryMan(){
         
-        this.orders.update(this.order.$key, {repartidor: "", estado: "En el almacén"});
+        this.orders.update(this.order.$key, {repartidor: "", estado: "En el almacén", idRepartidor: ""});
         var numOrders = 0;
         var deliveryMan = this.angularFire.database.object(`repartidores/${this.order.idRepartidor}`).subscribe((deliveryMan) =>
                 numOrders = deliveryMan.numPedidos-1

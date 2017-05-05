@@ -6,26 +6,34 @@
 
 <ion-content padding>
 
-    
-
     <ion-row >
-        <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3>
+        <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let order of orders">
+            <ion-card>
+                
+                <ion-list >
+                    <ion-item>
+                        <button ion-item icon-right outline (click)="goToOrder($event, item)">
+                            <ion-row>
+                                <ion-col col-10>
+                                    <h1>{{order.idPaquete}}</h1>
+                                    <h2>{{order.codigoPostal}}</h2>
+                                    <h3>{{order.direccion}}</h3>    
+                                    <p>{{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>   
+                                </ion-col>
+                                <ion-col col-2>
+                                    <br>
+                                    <ion-icon *ngIf="order.urgente" name="alert"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                        </button>
+                    </ion-item>
+                </ion-list>
 
-            <ion-card *ngFor="let order of orders">
-                <ion-card-header>
-                    {{order.idPaquete}}
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-list >
-                        <ion-item  (click)="goToOrder($event, order)" >
-                            <p>{{order.codigoPostal}}</p>
-                            <br>
-                            <p>{{order.direccion}}</p>
-                        </ion-item>
-                    </ion-list>
-                </ion-card-content>
             </ion-card>
+
         </ion-col>
+        
     </ion-row>
+
     
 </ion-content>
