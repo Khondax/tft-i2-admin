@@ -17,12 +17,14 @@ import { OrderPage } from '../pages';
      nAssignedOrders = [];
 
      assignedOrdersData: any;
+     nAssignedOrdersData: any;
      assignedOrders = [];
 
      ordersError = [];
      orderFilter: string = "notAssigned";
      queryText: string = "";
-    
+     queryTextAssigned: string = "";
+
     constructor(private loadingController: LoadingController,
                 private nav: NavController,
                 public angularFire: AngularFire){ 
@@ -45,38 +47,26 @@ import { OrderPage } from '../pages';
         loader.present().then(() => { 
             this.angularFire.database.list('/pedidos').subscribe(data => {
                 this.ordersData = _.chain(data)
+                                  .filter(o => o.estado === "En el almacén")
                                   .groupBy('codigoPostal')
                                   .toPairs()
                                   .map(item => _.zipObject(['codPos', 'pedido'], item))
                                   .value();
 
-                var index = 0;
-                var index3 = 0;
-                for(var i = 0; i < this.ordersData.length; i++){
-                    var indexTemp = 0;
-                    var k = 0;
-                    var orderError = [];
-                    var temp = [];
-                    for(var j = 0; j < this.ordersData[i].pedido.length; j++){
-                        if(this.ordersData[i].pedido[j].observaciones !=""){
-                            orderError[k] = this.ordersData[i].pedido[j];
-                            k++;
-                        }else if(this.ordersData[i].pedido[j].estado == "En el almacén"){
-                            temp[indexTemp] = this.ordersData[i].pedido[j];
-                            indexTemp++;
-                        }
-                    }
-                    
-                    this.nAssignedOrders[index] =  _.chain(temp)
-                                                    .groupBy('direccion')
-                                                    .toPairs()
-                                                    .map(item => _.zipObject(['dir', 'pedido'], item))
-                                                    .value();
-                    index++;
+                // this.nAssignedOrdersData = _.chain(this.ordersData)
+                //                           .groupBy('direccion')
+                //                           .toPairs()
+                //                           .map(item => _.zipObject(['dir', 'pedido'], item))
+                //                           .value();
+                this.nAssignedOrdersData =_.chain(this.ordersData)
+                                       .orderBy('direccion')
+                                       .value();
 
-                    this.ordersError[index3] = orderError;
-                    index3++;
-                }
+                this.nAssignedOrders = this.nAssignedOrdersData;
+
+                this.ordersError = _.chain(data)
+                                    .filter(o => o.estado === "Incidencia registrada")
+                                    .value();
 
                 this.assignedOrdersData = _.chain(data)
                                           .filter(o => o.estado === "Asignado")
@@ -97,29 +87,31 @@ import { OrderPage } from '../pages';
         let queryTextLower = this.queryText.toLowerCase();
         let filteredOrders = [];
 
-        _.forEach(this.ordersData, dat => {
-            let orders = _.filter(dat.pedido, or => (<any>or).repartidor.toLowerCase()
+        _.forEach(this.nAssignedOrdersData, dat => {
+            let orders = _.filter(dat.pedido, or => (<any>or).direccion.toLowerCase()
             .includes(queryTextLower) || (<any>or).remitente.toLowerCase()
             .includes(queryTextLower) || (<any>or).idPaquete.toString().includes(queryTextLower));
             if (orders.length) {
                 filteredOrders.push({codPos: dat.codPos, pedido: orders});
             }
         });
-
-        /* LA SIGUIENTE LINEA NO FUNCIONA, PERO EL FILTRADO PREVIO SE REALIZA CORRECTAMENTE.
-        *   Parece que no se asigna bien el filtrado del filteredOrders a la variable nAssignedOrders
-        *   ¿Puede ser porque los datos tienen que introducirse a partir de un bucle 'for'?
-        */
         
-        this.nAssignedOrders = _.chain(filteredOrders)
-                                .filter(o => o.estado === "En el almacén")
-                                .groupBy('direccion')
-                                .toPairs()
-                                .map(item => _.zipObject(['dir', 'pedido'], item))
-                                .value();
+        this.nAssignedOrders = filteredOrders;
+    }
 
-        console.log("aisg", this.nAssignedOrders);
+    assignedSearch(){
+        let queryTextLower = this.queryTextAssigned.toLowerCase();
+        let filteredOrders = [];
 
-        //this.nAssignedOrders = filteredOrders;
+        _.forEach(this.assignedOrdersData, dat => {
+            let orders = _.filter(dat.pedido, or => (<any>or).direccion.toLowerCase()
+            .includes(queryTextLower) || (<any>or).remitente.toLowerCase()
+            .includes(queryTextLower) || (<any>or).idPaquete.toString().includes(queryTextLower));
+            if (orders.length) {
+                filteredOrders.push({repart: dat.repart, pedido: orders});
+            }
+        });
+        
+        this.assignedOrders = filteredOrders;
     }
  }

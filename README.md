@@ -3,10 +3,6 @@ Proyecto en ionic2 para el trabajo final del Grado en Ingeniería Informática -
 
 TAREAS PENDIENTES
 
-~ HOME ~
-- Buscador de pedidos no entregados (multifiltrado)  --------> (requiere revisión)
-
-
 ~ Localización de repartidores ~
 - Ver ubicaciones de los repartidores en tiempo real (geolocalización) (añadir botón en vista general de repartidores)
 

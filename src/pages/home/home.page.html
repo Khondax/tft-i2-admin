@@ -31,37 +31,32 @@
             </ion-toolbar>
 
             <ion-row >
-                <ng-container *ngFor="let codsPostales of nAssignedOrders">
-                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="codsPostales.length != 0">
+                <ng-container *ngFor="let deliverers of nAssignedOrders">
+                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="deliverers.length != 0">
 
                         <ion-card>
                             <ion-card-header>
-                                {{codsPostales[0].pedido[0].codigoPostal}}
+                                {{deliverers.codPos}}
                             </ion-card-header>
                             
                             <ion-list >
                                 <ion-item-group>
 
-                                    <ng-container *ngFor="let item of codsPostales">
-                                        <ion-item-divider >
-                                            {{item.dir}}
-                                        </ion-item-divider>
-                                        <button *ngFor="let order of item.pedido"  ion-item icon-right outline (click)="goToOrder($event, order)">
-                                            <ion-row>
-                                                <ion-col col-10>
-                                                    <h1>{{order.idPaquete}}</h1>
-                                                    <h2>Remitente: {{order.remitente}}</h2>
-                                                    <h3>Dirección: {{order.direccion}}</h3>
-                                                    <p>Fech. Entrada: {{order.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
-                                                    
-                                                </ion-col>
-                                                <ion-col col-2>
-                                                    <br>
-                                                    <ion-icon *ngIf="order.urgente" name="alert"></ion-icon>
-                                                </ion-col>
-                                            </ion-row>
+                                    <button *ngFor="let order of deliverers.pedido" ion-item icon-right outline (click)="goToOrder($event, order)">
+                                        <ion-row>
+                                            <ion-col col-10>
+                                                <h1>{{order.idPaquete}}</h1>
+                                                <h2>Remitente: {{order.remitente}}</h2>
+                                                <h3>Dirección: {{order.direccion}}</h3>
+                                                <p>Fech. Entrada: {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                                
+                                            </ion-col>
+                                            <ion-col col-2>
+                                                <br>
+                                                <ion-icon *ngIf="order.urgente" name="alert"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
                                         </button>
-                                    </ng-container>
 
                                 </ion-item-group>
                             </ion-list>
@@ -75,6 +70,9 @@
         </ion-grid>
 
         <ion-grid *ngSwitchCase="'assigned'">
+            <ion-toolbar >
+                <ion-searchbar (placeholder)="Buscar" [(ngModel)]="queryTextAssigned" (ionInput)="assignedSearch()"></ion-searchbar>
+            </ion-toolbar>
             <ion-row >
                 <ng-container *ngFor="let deliverers of assignedOrders">
                     <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="deliverers.length != 0">
@@ -93,7 +91,7 @@
                                                 <h1>{{order.idPaquete}}</h1>
                                                 <h2>Remitente: {{order.remitente}}</h2>
                                                 <h3>Dirección: {{order.direccion}}</h3>
-                                                <p>Fech. Entrada: {{order.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                                <p>Fech. Entrada: {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
                                                 
                                             </ion-col>
                                             <ion-col col-2>
@@ -115,38 +113,27 @@
         </ion-grid>
 
         <ion-grid *ngSwitchCase="'error'">
-            <ion-row >
-                <ng-container *ngFor="let codsPostales of ordersError">
-                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="codsPostales.length != 0">
+             <ion-row >
+                <ng-container *ngFor="let order of ordersError">
+                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="order.length != 0">
 
-                        <ion-card>
-                            <ion-card-header>
-                                {{codsPostales[0].codigoPostal}}
-                            </ion-card-header>
-                            
+                        <ion-card> 
                             <ion-list >
-                                <ion-item-group>
-
-                                    <ng-container *ngFor="let item of codsPostales">
-                                            <ion-item ion-item icon-right outline>
-                                                <ion-row>
-                                                    <ion-col col-10>
-                                                        <h1>{{item.idPaquete}}</h1>
-                                                        <h2>Remitente: {{item.remitente}}</h2>
-                                                        <h3>Dirección: {{item.direccion}}</h3>
-                                                        <p>Fech. Entrada: {{item.fechaEntradaAlmacen | date:'d/MM/yy'}} - {{item.fechaEntradaAlmacen | date:'shortTime'}}</p>
-                                                        <p text-wrap >Observaciones: {{item.observaciones}}</p>
-                                                        
-                                                    </ion-col>
-                                                    <ion-col col-2>
-                                                        <br>
-                                                        <ion-icon *ngIf="item.urgente" name="alert"></ion-icon>
-                                                    </ion-col>
-                                                </ion-row>
-                                            </ion-item>
-                                    </ng-container>
-
-                                </ion-item-group>
+                                <ion-item ion-item icon-right outline>
+                                    <ion-row>
+                                        <ion-col col-10>
+                                            <h1>{{order.idPaquete}}</h1>
+                                            <h2>Remitente: {{order.remitente}}</h2>
+                                            <h3>Dirección: {{order.direccion}}</h3>
+                                            <p>Fech. Entrada: {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                            
+                                        </ion-col>
+                                        <ion-col col-2>
+                                            <br>
+                                            <ion-icon *ngIf="order.urgente" name="alert"></ion-icon>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-item>
                             </ion-list>
 
                         </ion-card>
