@@ -35,9 +35,13 @@
                     <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="deliverers.length != 0">
 
                         <ion-card>
-                            <ion-card-header>
+                            <!--<ion-card-header>
                                 {{deliverers.codPos}}
-                            </ion-card-header>
+                            </ion-card-header>-->
+
+                            <ion-item-divider color="secondary">
+                                {{deliverers.codPos}}
+                            </ion-item-divider>
                             
                             <ion-list >
                                 <ion-item-group>
@@ -78,9 +82,9 @@
                     <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="deliverers.length != 0">
 
                         <ion-card>
-                            <ion-card-header>
+                            <ion-item-divider color="secondary">
                                 {{deliverers.repart}}
-                            </ion-card-header>
+                            </ion-item-divider>
                             
                             <ion-list >
                                 <ion-item-group>

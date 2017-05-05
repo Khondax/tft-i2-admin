@@ -11,10 +11,14 @@
         <ion-col col-9>
             <ion-list >
                 <ion-item-divider color="secondary" >Información del repartidor</ion-item-divider>
-
                 <p>DNI: {{deliverer.dni}}</p>
+                <p>Número de paquetes asignados: {{deliverer.numPedidos}}</p>
+                <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliverer)">{{deliverer.disponibilidad}}</ion-badge></p>
+                <p *ngIf="deliverer.coche">Coche asignado: {{deliverer.coche}}</p>
+                <p *ngIf="!deliverer.coche">Coche asignado: Ninguno</p>
+                <p *ngIf="deliverer.sigDireccion">Siguiente Dirección de reparto: {{deliverer.sigDireccion}}</p>
 
-                <ion-item-divider color="secondary" >Paquetes asignados</ion-item-divider>
+                <ion-item-divider color="secondary" >Paquetes seleccionados</ion-item-divider>
                 
                 <ion-list >
                     <ion-item *ngFor="let order of orders"  (click)="goToOrder($event, order)" >

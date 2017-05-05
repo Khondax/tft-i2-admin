@@ -53,11 +53,6 @@ import { OrderPage } from '../pages';
                                   .map(item => _.zipObject(['codPos', 'pedido'], item))
                                   .value();
 
-                // this.nAssignedOrdersData = _.chain(this.ordersData)
-                //                           .groupBy('direccion')
-                //                           .toPairs()
-                //                           .map(item => _.zipObject(['dir', 'pedido'], item))
-                //                           .value();
                 this.nAssignedOrdersData =_.chain(this.ordersData)
                                        .orderBy('direccion')
                                        .value();

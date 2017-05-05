@@ -30,8 +30,9 @@
                                     <p>DNI: {{deliveryMan.dni}}</p>
                                     <p>Número de paquetes asignados: {{deliveryMan.numPedidos}}</p>
                                     <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
-                                    <p>Coche asignado: {{deliveryMan.coche}}</p>
-                                    <p>Siguiente Dirección de reparto: {{deliveryMan.sigDireccion}}</p>
+                                    <p *ngIf="deliveryMan.coche">Coche asignado: {{deliveryMan.coche}}</p>
+                                    <p *ngIf="!deliveryMan.coche">Coche asignado: Ninguno</p>
+                                    <p *ngIf="deliveryMan.sigDireccion">Siguiente Dirección de reparto: {{deliveryMan.sigDireccion}}</p>
                                 </ion-card-content>
                             </ion-col>
                             <ion-col col-2>

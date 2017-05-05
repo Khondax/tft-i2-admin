@@ -49,14 +49,10 @@ import { OrderPage } from '../pages';
         loader.present().then(() => {
             this.angularFire.database.list('/pedidos').subscribe(data => {
                 this.ordersData = _.chain(data)
-                                  .filter(o => o.idRepartidor === this.deliverer.$key)
+                                  .filter(o => o.idRepartidor === this.deliverer.$key && o.estado == "En ruta")
                                   .value();
 
-                for (var index = 0; index < this.ordersData.length; index++) {
-                    if (this.ordersData[index].fechaEntrega == "" && this.ordersData[index].estado == "En ruta" ) {
-                        this.orders[index] = this.ordersData[index];
-                    }
-                }
+                this.orders = this.ordersData;
             });
 
             this.angularFire.database.list('/coches').subscribe(data => {
@@ -136,6 +132,10 @@ import { OrderPage } from '../pages';
 
     goToOrder($event, order){
         this.nav.push(OrderPage, order);
+    }
+
+    getCorrectColor(deliveryMan){
+        return deliveryMan.disponibilidad === "Ocupado" ? 'primary' : 'verde';
     }
 
 
