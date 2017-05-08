@@ -37,10 +37,22 @@
         </ion-col>
     </ion-row>
 
-    <button *ngIf="deliverer.coche; else elseBlock" ion-button full (click)="removeCar()">
-        Desasignar vehículo
-    </button>
-
+    <ng-container *ngIf="deliverer.coche; else elseBlock">
+        <ion-card class="map-page">
+            <agm-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" >
+            <agm-marker [latitude]="map.lat" [longitude]="map.lng">
+                <agm-info-window>
+                    <strong>{{map.markerLabel}}</strong>
+                </agm-info-window>
+            </agm-marker>
+        </agm-map>
+        </ion-card>
+        <br>
+        <button  ion-button full (click)="removeCar()">
+            Desasignar vehículo
+        </button>
+    </ng-container>
+    
     <ng-template #elseBlock>
         <ion-card>
             <ion-list>

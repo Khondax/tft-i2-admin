@@ -8,7 +8,8 @@ import _ from 'lodash';
 import { OrderPage } from '../pages';
 
  @Component ({
-     templateUrl: 'deliverer.page.html'
+     templateUrl: 'deliverer.page.html',
+     selector: 'deliverer.page.scss'
  })
 
  export class DelivererPage {
@@ -23,6 +24,8 @@ import { OrderPage } from '../pages';
     
     carsData: any;
     car = [];
+
+    map: any = {};
     
     vehiclesDatabase: FirebaseListObservable<any>;
     deliveryMen: FirebaseListObservable<any>;
@@ -38,8 +41,6 @@ import { OrderPage } from '../pages';
 
     ionViewDidLoad(){
         this.deliverer = this.navParams.data;
-
-        console.log(this.deliverer);
 
         let loader = this.loadingController.create({
             content: 'Cargando...',
@@ -63,6 +64,14 @@ import { OrderPage } from '../pages';
                 this.vehicles = this.vehiclesData;
                 this.vehiclesDatabase = this.angularFire.database.list('/coches');
                 this.deliveryMen = this.angularFire.database.list('/repartidores');
+
+                 this.map = {
+                    lat: this.deliverer.latitud,
+                    lng: this.deliverer.longitud,
+                    zoom: 15,
+                    markerLabel: this.deliverer.nombre
+                };
+
 
                 loader.dismiss();
             });
