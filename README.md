@@ -4,7 +4,7 @@ Proyecto en ionic2 para el trabajo final del Grado en Ingeniería Informática -
 TAREAS PENDIENTES
 
 ~ Localización de repartidores ~
-- Ver ubicaciones de los repartidores en tiempo real (geolocalización) (añadir botón en vista general de repartidores)
+- (añadir botón en vista general de repartidores)
 
 
 ~ REPARTIDOR ~
