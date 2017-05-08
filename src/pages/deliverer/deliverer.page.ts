@@ -42,12 +42,12 @@ import { OrderPage } from '../pages';
     ionViewDidLoad(){
         this.deliverer = this.navParams.data;
 
-         this.map = {
-                    lat: this.deliverer.latitud,
-                    lng: this.deliverer.longitud,
-                    zoom: 15,
-                    markerLabel: this.deliverer.nombre
-                };
+        //  this.map = {
+        //             lat: this.deliverer.latitud,
+        //             lng: this.deliverer.longitud,
+        //             zoom: 15,
+        //             markerLabel: this.deliverer.nombre
+        //         };
 
         let loader = this.loadingController.create({
             content: 'Cargando...',
@@ -63,6 +63,13 @@ import { OrderPage } from '../pages';
                 this.orders = this.ordersData;
             });
 
+            this.map = {
+                    lat: this.deliverer.latitud,
+                    lng: this.deliverer.longitud,
+                    zoom: 15,
+                    markerLabel: this.deliverer.nombre
+                };
+
             this.angularFire.database.list('/coches').subscribe(data => {
                 this.vehiclesData = _.chain(data)
                                     .filter(v => v.disponibilidad === "Libre")
@@ -71,14 +78,6 @@ import { OrderPage } from '../pages';
                 this.vehicles = this.vehiclesData;
                 this.vehiclesDatabase = this.angularFire.database.list('/coches');
                 this.deliveryMen = this.angularFire.database.list('/repartidores');
-
-                /* this.map = {
-                    lat: this.deliverer.latitud,
-                    lng: this.deliverer.longitud,
-                    zoom: 15,
-                    markerLabel: this.deliverer.nombre
-                };*/
-
 
                 loader.dismiss();
             });
@@ -127,13 +126,14 @@ import { OrderPage } from '../pages';
 
             this.car = this.carsData;
             //SER UN GENIO NIVEL DIOS
-            //this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
+            this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
+            
         });
 
-        this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
+        //this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
         this.deliveryMen.update(this.deliverer.$key, {coche: ""});
 
-        temp.unsubscribe();
+        
 
         let toast = this.toastController.create({
             message: "Se ha desasignado el vehículo al repartidor",
@@ -142,6 +142,7 @@ import { OrderPage } from '../pages';
         });
 
         toast.present();
+        
 
     }
 

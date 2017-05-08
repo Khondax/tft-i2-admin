@@ -75,13 +75,12 @@ export class DeliveryMenPage {
                             .filter(c => c.matricula === deliverer.coche)
                             .value();
 
-            this.car = this.carsData;
+            this.vehiclesDatabase.update(this.carsData[0].$key, {repartidor: "", disponibilidad: "Libre"});
         });
 
-        this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
+        
         this.deliveryMenDatabase.update(deliverer.$key, {coche: ""});
         
-        temp.unsubscribe();
 
         let toast = this.toastController.create({
             message: "Se ha desasignado el vehículo al repartidor",
