@@ -7,7 +7,6 @@ import { HomePage, DeliveryMenPage, RegistryPage, OrderPage, MapPage, VehiclesPa
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 
 import { AgmCoreModule } from "@agm/core";
 
@@ -62,7 +61,6 @@ export const firebaseConfig = {
         DelivererPackFinishPage
     ],
     providers: [
-        BarcodeScanner,
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler}

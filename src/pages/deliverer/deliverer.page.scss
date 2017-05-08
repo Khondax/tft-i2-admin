@@ -1,4 +1,10 @@
-.map-page #map {
+.map-page {
+  align-content: center;
+  width: 96%;
+  height: 80%;
+}
+
+#map {
   width: 100%;
   height: 100%;
   //opacity: 0;

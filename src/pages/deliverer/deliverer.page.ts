@@ -42,6 +42,13 @@ import { OrderPage } from '../pages';
     ionViewDidLoad(){
         this.deliverer = this.navParams.data;
 
+         this.map = {
+                    lat: this.deliverer.latitud,
+                    lng: this.deliverer.longitud,
+                    zoom: 15,
+                    markerLabel: this.deliverer.nombre
+                };
+
         let loader = this.loadingController.create({
             content: 'Cargando...',
             spinner: 'bubbles'
@@ -65,12 +72,12 @@ import { OrderPage } from '../pages';
                 this.vehiclesDatabase = this.angularFire.database.list('/coches');
                 this.deliveryMen = this.angularFire.database.list('/repartidores');
 
-                 this.map = {
+                /* this.map = {
                     lat: this.deliverer.latitud,
                     lng: this.deliverer.longitud,
                     zoom: 15,
                     markerLabel: this.deliverer.nombre
-                };
+                };*/
 
 
                 loader.dismiss();
