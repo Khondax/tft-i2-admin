@@ -1,6 +1,5 @@
 {
   "name": "tft-i2-admin",
   "app_id": "0b4ba4d0",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }
