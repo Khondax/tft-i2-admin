@@ -26,6 +26,8 @@ import { OrderPage } from '../pages';
     car = [];
 
     map: any = {};
+
+    nextOrder: any;
     
     vehiclesDatabase: FirebaseListObservable<any>;
     deliveryMen: FirebaseListObservable<any>;
@@ -61,6 +63,12 @@ import { OrderPage } from '../pages';
                                   .value();
 
                 this.orders = this.ordersData;
+                for (var i = 0; i< this.ordersData.length; i++){
+                    if(this.ordersData[i].estado == "Siguiente en entrega"){
+                        this.nextOrder = this.ordersData[i];
+                    }
+                }
+
             });
 
             this.map = {

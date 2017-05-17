@@ -3,9 +3,6 @@ Proyecto en ionic2 para el trabajo final del Grado en Ingeniería Informática -
 
 TAREAS PENDIENTES
 
-~ REPARTIDOR ~
-- Configurar siguiente dirección de entrega en repartidores
-
 
 ~ FIREBASE ~
 - Habilitar control de usuarios (admin, repartidores, clientes) con sus permisos y autenticación.

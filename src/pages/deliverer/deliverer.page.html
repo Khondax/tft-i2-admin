@@ -45,6 +45,12 @@
                         <strong>{{map.markerLabel}}</strong>
                     </agm-info-window>
                 </agm-marker>
+
+                <agm-marker *ngIf="nextOrder" [latitude]="nextOrder.latitud" [longitude]="nextOrder.longitud">
+                    <agm-info-window>
+                        <strong>{{nextOrder.direccion}}</strong>
+                    </agm-info-window>
+                </agm-marker>
             </agm-map>
         </ion-card>
         <br>
