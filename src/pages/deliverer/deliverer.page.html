@@ -21,7 +21,7 @@
                 <ion-item-divider color="secondary" >Paquetes seleccionados</ion-item-divider>
                 
                 <ion-list >
-                    <ion-item *ngFor="let order of orders"  (click)="goToOrder($event, order)" >
+                    <ion-item *ngFor="let order of orders"  (click)="goToOrder($event, order)" [class.next-order]="order.estado == 'Siguiente en entrega'" >
                         <p>{{order.idPaquete}}</p>
                         <br>
                         <p>{{order.direccion}}</p>

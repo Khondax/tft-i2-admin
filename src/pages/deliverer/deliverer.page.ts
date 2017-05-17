@@ -57,7 +57,7 @@ import { OrderPage } from '../pages';
         loader.present().then(() => {
             this.angularFire.database.list('/pedidos').subscribe(data => {
                 this.ordersData = _.chain(data)
-                                  .filter(o => o.idRepartidor === this.deliverer.$key && o.estado == "En ruta")
+                                  .filter(o => o.idRepartidor === this.deliverer.$key && o.estado == "En reparto" || o.estado == "Siguiente en entrega")
                                   .value();
 
                 this.orders = this.ordersData;
