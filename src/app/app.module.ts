@@ -3,14 +3,17 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage, DeliveryMenPage, RegistryPage, OrderPage, MapPage, VehiclesPage, DelivererPage, DelivererLocationPage, DelivererHomePage, DelivererPackFinishPage, DelivererPacksPage } from "../pages/pages";
+import { HomePage, DeliveryMenPage, RegistryPage, OrderPage, MapPage, VehiclesPage, DelivererPage, DelivererLocationPage, DelivererHomePage, DelivererPackFinishPage, DelivererPacksPage, LoginPage } from "../pages/pages";
+
+import { AuthData } from '../providers/auth-data';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AgmCoreModule } from "@agm/core";
 
-import { AngularFireModule } from "angularfire2";
+import { AngularFireModule, AuthProviders, AuthMethods } from "angularfire2";
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDka8ZQF6bzjPhVJMZFAf7d0BBztxP_spg",
@@ -19,6 +22,11 @@ export const firebaseConfig = {
     projectId: "app-repartos-tft",
     storageBucket: "app-repartos-tft.appspot.com",
     messagingSenderId: "1059307361256"
+};
+
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
 };
 
 
@@ -35,7 +43,8 @@ export const firebaseConfig = {
         DelivererLocationPage,
         DelivererHomePage,
         DelivererPacksPage,
-        DelivererPackFinishPage
+        DelivererPackFinishPage,
+        LoginPage
     ],
     imports: [
         BrowserModule,
@@ -43,7 +52,7 @@ export const firebaseConfig = {
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBXhy5nvQy6bLf9B-FCTqyOk78Py9L-b4U'
         }),
-        AngularFireModule.initializeApp(firebaseConfig)
+        AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
      ],
      bootstrap: [IonicApp],
      entryComponents: [
@@ -58,11 +67,13 @@ export const firebaseConfig = {
         DelivererLocationPage,
         DelivererHomePage,
         DelivererPacksPage,
-        DelivererPackFinishPage
+        DelivererPackFinishPage,
+        LoginPage
     ],
     providers: [
         StatusBar,
-        SplashScreen,
+        SplashScreen, 
+        AuthData,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

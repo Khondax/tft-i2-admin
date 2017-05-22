@@ -1,9 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, LoadingController } from 'ionic-angular';
+import { Nav, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage, DeliveryMenPage, RegistryPage, VehiclesPage, DelivererLocationPage } from '../pages/pages';
+import { AuthData } from '../providers/auth-data';
+
+import { HomePage, DeliveryMenPage, RegistryPage, VehiclesPage, DelivererLocationPage, LoginPage } from '../pages/pages';
+import { AngularFire } from "angularfire2";
 
 @Component({
     templateUrl: 'app.html'
@@ -12,19 +15,28 @@ import { HomePage, DeliveryMenPage, RegistryPage, VehiclesPage, DelivererLocatio
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = HomePage;
+    //rootPage: any = HomePage;
+    rootPage: any;
 
     pages: Array<{title: string, component: any}>;
 
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public platform: Platform, 
+                public statusBar: StatusBar, 
+                public authData: AuthData,
+                public angularFire: AngularFire, 
+                public splashScreen: SplashScreen,
+                public alertCtrl: AlertController) {
+        
+        const authObserver = angularFire.auth.subscribe( user => {
+            if (user) {
+            this.rootPage = HomePage;
+            authObserver.unsubscribe();
+            } else {
+            this.rootPage = LoginPage;
+            authObserver.unsubscribe();
+            }
+        });
         this.initializeApp();
-
-        // used for an example of ngFor and navigation
-    /*    this.pages = [
-        { title: 'Repartidores', component: DeliveryManPage },
-        { title: 'Vehiculos', component: VehiclesPage },
-        { title: 'Historial', component: RegistryPage },
-        ];*/
 
     }
 
@@ -36,12 +48,6 @@ export class MyApp {
             this.splashScreen.hide();
         });
     }
-
-    /*  openPage(page) {
-        // Reset the content nav to have just this page
-        
-        this.nav.push(page.component);
-    }*/
 
     goHome(){
         this.nav.setRoot(HomePage);
@@ -62,5 +68,25 @@ export class MyApp {
     goRegistry(){
         this.nav.push(RegistryPage);
     }
+
+    logout(){
+
+    let alert = this.alertCtrl.create({
+              message: "¿Quieres cerrar sesión?",
+              buttons: [
+                {
+                  text: "No"
+                },
+                {
+                  text: 'Sí',
+                  handler: data =>{
+                    this.authData.logoutUser();
+                    this.nav.push(LoginPage);
+                  }
+                }
+              ]
+            });
+            alert.present();
+  }
 
 }

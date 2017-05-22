@@ -1,4 +1,4 @@
-<ion-split-pane>
+
     <ion-menu [content]="content">
         <ion-header>
             <ion-toolbar color="secondary">
@@ -29,6 +29,10 @@
                     <ion-icon name="albums"></ion-icon>
                     Historial
                 </button>
+                <button menuClose ion-item (click)="logout()">
+                    <ion-icon name="close-circle"></ion-icon>
+                    Cerrar Sesión
+                </button>
             </ion-list>
         </ion-content>
 
@@ -36,5 +40,3 @@
 
     <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
     <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main></ion-nav>
-
-</ion-split-pane>

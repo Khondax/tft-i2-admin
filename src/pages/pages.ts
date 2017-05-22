@@ -9,3 +9,4 @@ export * from './registry/registry.page';
 export * from './map/map.page';
 export * from './vehicles/vehicles.page';
 export * from './delivererLocation/delivererLocation.page';
+export * from './login/login.page';

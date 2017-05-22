@@ -1,0 +1,125 @@
+.login-page {
+    background-color: #f53d3d;
+
+    .form-box{
+        background: #FA5858;
+    }
+    
+
+    @media screen and (max-width: 767px) {
+        
+        form {
+            width: 95%;
+            margin: 20px auto; 
+        }
+
+        .form-box{
+            width: 100%;
+            margin: 200px auto;
+        }
+
+        .login-button {
+            font-size: 1.1em;
+        }
+
+        ion-item {
+            font-size: 1.3em;
+        }
+    }
+
+    @media screen and (max-width: 991px) and (min-width: 768px) {
+         .form-box{
+            width: 700px;
+            margin: 300px auto;
+        }
+    
+        form {
+            width: 600px;
+            margin: 40px auto;   
+        }
+
+        .login-button {
+            font-size: 1.8em;
+        }
+
+        ion-item {
+            font-size: 2em;
+        }
+    }
+
+    @media screen and (max-width: 1023px) and (min-width: 992px) {
+         .form-box{
+            width: 750px;
+            margin: 200px auto;
+        }
+    
+        form {
+            width: 650px;
+            margin: 40px auto;   
+        }
+
+        .login-button {
+            font-size: 1.7em;
+        }
+
+        ion-item {
+            font-size: 1.9em;
+        }
+    }
+
+    @media screen and (min-width: 1024px) and (max-width: 1279px) {
+         .form-box{
+            width: 900px;
+            margin: 450px auto;
+        }
+    
+        form {
+            width: 800px;
+            margin: 40px auto;
+            
+        }
+
+        .login-button {
+            font-size: 2em;
+        }
+
+        ion-item {
+            font-size: 2.3em;
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
+         .form-box{
+            width: 700px;
+            margin: 150px auto;
+        }
+    
+        form {
+            width: 600px;
+            margin: 40px auto;
+            
+        }
+
+        .login-button {
+            font-size: 1.3em;
+        }
+
+        ion-item {
+            font-size: 2em;
+        }
+    }
+    
+    ion-item {
+          border-radius: 30px !important;
+          margin-bottom: 20px;
+          background-color: #f6f6f6;
+      }
+ 
+      .login-button {
+          width: 100%;
+          border-radius: 30px;
+          margin-top: 2px;
+          border: 1px solid #fff;
+          background-color: #D71919;
+      }
+}
