@@ -73,11 +73,6 @@ export class LoginPage {
             alert.present();
           });
         });
-
-        this.loading = this.loadingCtrl.create({
-          dismissOnPageChange: true,
-        });
-        this.loading.present();
       }
   }
 
