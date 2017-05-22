@@ -27,12 +27,12 @@
     <div [ngSwitch]="orderFilter" >
         <ion-grid *ngSwitchCase="'notAssigned'">
             <ion-toolbar >
-                <ion-searchbar (placeholder)="Buscar" [(ngModel)]="queryText" (ionInput)="search()"></ion-searchbar>
+                <ion-searchbar placeholder="Buscar" [(ngModel)]="queryText" (ionInput)="search()"></ion-searchbar>
             </ion-toolbar>
 
             <ion-row >
                 <ng-container *ngFor="let deliverers of nAssignedOrders">
-                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="deliverers.length != 0">
+                    <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngIf="deliverers.length != 0">
 
                         <ion-card>
                             <!--<ion-card-header>
@@ -50,9 +50,9 @@
                                         <ion-row>
                                             <ion-col col-10>
                                                 <h1>{{order.idPaquete}}</h1>
-                                                <h2>Remitente: {{order.remitente}}</h2>
-                                                <h3>Dirección: {{order.direccion}}</h3>
-                                                <p>Fech. Entrada: {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                                <h2><b>Remitente:</b> {{order.remitente}}</h2>
+                                                <h3><b>Dirección:</b> {{order.direccion}}</h3>
+                                                <p><b>Fech. Entrada:</b> {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
                                                 
                                             </ion-col>
                                             <ion-col col-2>
@@ -75,7 +75,7 @@
 
         <ion-grid *ngSwitchCase="'assigned'">
             <ion-toolbar >
-                <ion-searchbar (placeholder)="Buscar" [(ngModel)]="queryTextAssigned" (ionInput)="assignedSearch()"></ion-searchbar>
+                <ion-searchbar placeholder="Buscar" [(ngModel)]="queryTextAssigned" (ionInput)="assignedSearch()"></ion-searchbar>
             </ion-toolbar>
             <ion-row >
                 <ng-container *ngFor="let deliverers of assignedOrders">
