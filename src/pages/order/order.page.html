@@ -25,7 +25,7 @@
             <ion-col col-10>
                 <p>Remitente: {{order.remitente}}</p>
                 <p>Fecha de Entrada al Almacén: {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
-                <p>Estado del Pedido: {{order.estado}}</p>
+                <p *ngIf="!order.fechaEntrega">Estado del Pedido: {{order.estado}}</p>
                 <p *ngIf="order.fechaEntrega">Fecha de Entrega: {{order.fechaEntrega | date:'d/M/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
                 <p>Peso: {{order.peso}}</p>
                 <p>Dimensiones: {{order.dimensiones}}</p>
@@ -57,5 +57,7 @@
     <button *ngIf="order.repartidor && !order.fechaEntrega" ion-button full (click)="removeDeliveryMan()" >
         Desasignar repartidor
     </button>
+
+    <img src="{{order.firma}}" *ngIf="order.firma" />
 
 </ion-content>
