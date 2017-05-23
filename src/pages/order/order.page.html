@@ -9,10 +9,10 @@
         <ion-item-divider color="secondary" >Información Destino</ion-item-divider>
         <ion-row>
             <ion-col col-10>
-                <p>Destino: {{order.destinatario}}</p>
-                <p>DNI: {{order.dni}}</p>
-                <p>Dirección: {{order.direccion}}</p>
-                <p>Teléfono: {{order.telf}}</p>
+                <p><b>Destino:</b> {{order.destinatario}}</p>
+                <p><b>DNI:</b> {{order.dni}}</p>
+                <p><b>Dirección:</b> {{order.direccion}}</p>
+                <p><b>Teléfono:</b> {{order.telf}}</p>
             </ion-col>
             <ion-col col-2 text-right>
                 <button ion-button icon-only outline (click)="goToMap()">
@@ -23,14 +23,14 @@
         <ion-item-divider color="secondary" >Información Paquete</ion-item-divider>
         <ion-row>
             <ion-col col-10>
-                <p>Remitente: {{order.remitente}}</p>
-                <p>Fecha de Entrada al Almacén: {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
-                <p *ngIf="!order.fechaEntrega">Estado del Pedido: {{order.estado}}</p>
-                <p *ngIf="order.fechaEntrega">Fecha de Entrega: {{order.fechaEntrega | date:'d/M/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
-                <p>Peso: {{order.peso}}</p>
-                <p>Dimensiones: {{order.dimensiones}}</p>
-                <p *ngIf="order.repartidor">Repartidor: {{order.repartidor}}</p>
-                <p *ngIf="!order.repartidor">Repartidor: Sin asignar</p>
+                <p><b>Remitente:</b> {{order.remitente}}</p>
+                <p><b>Fecha de Entrada al Almacén:</b> {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                <p *ngIf="!order.fechaEntrega"><b>Estado del Pedido:</b> {{order.estado}}</p>
+                <p *ngIf="order.fechaEntrega"><b>Fecha de Entrega:</b> {{order.fechaEntrega | date:'d/M/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
+                <p><b>Peso:</b> {{order.peso}}</p>
+                <p><b>Dimensiones:</b> {{order.dimensiones}}</p>
+                <p *ngIf="order.repartidor"><b>Repartidor:</b> {{order.repartidor}}</p>
+                <p *ngIf="!order.repartidor"><b>Repartidor:</b> Sin asignar</p>
             </ion-col>
             <ion-col col-2 text-right>
                 <button ion-button icon-only outline (click)="addComment()">
@@ -44,10 +44,16 @@
         <ion-card-content>
             <ion-slides pager>
                 <ion-slide *ngFor="let deliveryMan of deliveryMen" (click)="assignDeliveryMan($event, deliveryMan)" >
-                    <p>Nombre: {{deliveryMan.nombre}}</p>
-                    <p>Número de paquetes asignados: {{deliveryMan.numPedidos}}</p>
-                    <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
-                    <p>Coche asignado: {{deliveryMan.coche}}</p>
+                    <ion-item class="avatar">
+                        <ion-avatar>
+                            <img src={{deliveryMan.imagen}}>
+                        </ion-avatar>
+                    </ion-item>
+                    
+                    <p><b>Nombre:</b> {{deliveryMan.nombre}}</p>
+                    <p><b>Número de paquetes asignados:</b> {{deliveryMan.numPedidos}}</p>
+                    <p><b>Disponibilidad:</b> <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
+                    <p><b>Coche asignado:</b> {{deliveryMan.coche}}</p>
                     <br>
                 </ion-slide>
             </ion-slides>   

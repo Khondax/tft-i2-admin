@@ -9,6 +9,7 @@ import { MapPage } from '../pages';
 
  @Component ({
      templateUrl: 'order.page.html',
+     selector: 'order.page.scss'
  })
 
  export class OrderPage {
