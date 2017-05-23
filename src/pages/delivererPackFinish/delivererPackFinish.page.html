@@ -8,12 +8,11 @@
 
     <ion-row >
         <ng-container *ngFor="let codsPostales of orders">
-            <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="codsPostales.length != 0">
-
+            <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngIf="codsPostales.length != 0">
                 <ion-card>
-                    <ion-card-header>
+                    <ion-item-divider color="secondary">
                         {{codsPostales[0].codigoPostal}}
-                    </ion-card-header>
+                    </ion-item-divider>
                     
                     <ion-list >
                         <ion-item-group>
@@ -23,9 +22,9 @@
                                         <ion-row>
                                             <ion-col col-10>
                                                 <h1>{{item.idPaquete}}</h1>
-                                                <h2>Remitente: {{item.remitente}}</h2>
-                                                <h3>Dirección: {{item.direccion}}</h3>
-                                                <p>Fech. Entrega: {{item.fechaEntrega | date:'dd/MM/yy'}} - {{item.fechaEntrega | date:'shortTime'}}</p>
+                                                <h2><b>Remitente:</b> {{item.remitente}}</h2>
+                                                <h3><b>Dirección:</b> {{item.direccion}}</h3>
+                                                <p><b>Fech. Entrega:</b> {{item.fechaEntrega | date:'dd/MM/yy'}} - {{item.fechaEntrega | date:'shortTime'}}</p>
                                                 
                                             </ion-col>
                                             <ion-col col-2>

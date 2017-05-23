@@ -6,12 +6,12 @@ import _ from 'lodash';
 
 import { OrderPage } from "../pages";
 
-
  @Component ({
      templateUrl: 'delivererPacks.page.html'
  })
 
  export class DelivererPacksPage {
+         ordersGroup: any;
          
     ordersData: any;
     orders = [];
@@ -27,11 +27,17 @@ import { OrderPage } from "../pages";
          this.deliverer = this.navParams.data;
 
          this.angularFire.database.list('/pedidos').subscribe(data => {
-                this.ordersData = _.chain(data)
-                                    .filter(o => o.idRepartidor === this.deliverer.$key && o.fechaEntrega === "")
-                                    .value();
 
-                this.orders = this.ordersData;
+                this.ordersData = _.chain(data)
+                                  .filter(o => o.idRepartidor === this.deliverer.$key && o.fechaEntrega === "")
+                                  .groupBy('codigoPostal')
+                                  .toPairs()
+                                  .map(item => _.zipObject(['codPos', 'pedido'], item))
+                                  .value();
+
+                this.orders = _.chain(this.ordersData)
+                                    .orderBy('direccion')
+                                    .value();
             });
     }
 

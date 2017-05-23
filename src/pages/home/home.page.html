@@ -79,7 +79,7 @@
             </ion-toolbar>
             <ion-row >
                 <ng-container *ngFor="let deliverers of assignedOrders">
-                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="deliverers.length != 0">
+                    <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngIf="deliverers.length != 0">
 
                         <ion-card>
                             <ion-item-divider color="secondary">
@@ -119,7 +119,7 @@
         <ion-grid *ngSwitchCase="'error'">
              <ion-row >
                 <ng-container *ngFor="let order of ordersError">
-                    <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngIf="order.length != 0">
+                    <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngIf="order.length != 0">
 
                         <ion-card> 
                             <ion-list >
