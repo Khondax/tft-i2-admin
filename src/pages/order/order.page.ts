@@ -58,7 +58,7 @@ import { MapPage } from '../pages';
     }
 
     getCorrectColor(deliveryMan){
-        return deliveryMan.disponibilidad === "Ocupado" ? 'primary' : 'verde';
+        return deliveryMan.disponibilidad === "En ruta" ? 'primary' : 'verde';
     }
 
     assignDeliveryMan($event, deliveryMan){
