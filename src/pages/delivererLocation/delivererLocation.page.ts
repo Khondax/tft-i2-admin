@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 
-import { } from '../pages';
+import { DelivererHomePage } from '../pages';
 import _ from 'lodash';
 
  @Component ({
@@ -32,6 +32,10 @@ import _ from 'lodash';
                 this.deliverer = this.delivererData;
             });
         
+    }
+
+    goToDeliverer($event, deliveryMan){
+        this.nav.push(DelivererHomePage, deliveryMan);
     }
 
 

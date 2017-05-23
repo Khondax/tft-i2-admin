@@ -4,13 +4,13 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content class="map-page">
+<ion-content class="location-page">
 
     <agm-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" >
         <ng-container *ngFor="let deliveryMan of deliverer">
             <agm-marker [latitude]="deliveryMan.latitud" [longitude]="deliveryMan.longitud">
-                <agm-info-window>
-                    <strong>{{deliveryMan.nombre}}</strong>
+                <agm-info-window >
+                    <strong (click)="goToDeliverer($event, deliveryMan)">{{deliveryMan.nombre}}</strong>
                 </agm-info-window>
             </agm-marker>
         </ng-container>
