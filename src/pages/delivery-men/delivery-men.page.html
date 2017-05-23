@@ -20,19 +20,19 @@
                                 <img src={{deliveryMan.imagen}}>
                             </ion-avatar>
                             <ion-card-header>
-                                {{deliveryMan.nombre}}
+                                <b>{{deliveryMan.nombre}}</b>
                             </ion-card-header>
                         </ion-item>
 
                         <ion-row>
                             <ion-col col-10>
                                 <ion-card-content>
-                                    <p>DNI: {{deliveryMan.dni}}</p>
-                                    <p>Número de paquetes asignados: {{deliveryMan.numPedidos}}</p>
-                                    <p>Disponibilidad: <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
-                                    <p *ngIf="deliveryMan.coche">Coche asignado: {{deliveryMan.coche}}</p>
-                                    <p *ngIf="!deliveryMan.coche">Coche asignado: Ninguno</p>
-                                    <p *ngIf="deliveryMan.sigDireccion">Siguiente Dirección de reparto: {{deliveryMan.sigDireccion}}</p>
+                                    <p><b>DNI:</b> {{deliveryMan.dni}}</p>
+                                    <p><b>Número de paquetes asignados:</b> {{deliveryMan.numPedidos}}</p>
+                                    <p><b>Disponibilidad:</b> <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
+                                    <p *ngIf="deliveryMan.coche"><b>Coche asignado:</b> {{deliveryMan.coche}}</p>
+                                    <p *ngIf="!deliveryMan.coche"><b>Coche asignado:</b> Ninguno</p>
+                                    <p *ngIf="deliveryMan.sigDireccion"><b>Siguiente Dirección de reparto:</b> {{deliveryMan.sigDireccion}}</p>
                                 </ion-card-content>
                             </ion-col>
                             <ion-col col-2>
