@@ -92,10 +92,10 @@
                                     <button *ngFor="let order of deliverers.pedido" ion-item icon-right outline (click)="goToOrder($event, order)">
                                         <ion-row>
                                             <ion-col col-10>
-                                                <h1>{{order.idPaquete}}</h1>
-                                                <h2>Remitente: {{order.remitente}}</h2>
-                                                <h3>Dirección: {{order.direccion}}</h3>
-                                                <p>Fech. Entrada: {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                                <h1><b>{{order.idPaquete}}</b></h1>
+                                                <h2><b>Remitente:</b> {{order.remitente}}</h2>
+                                                <h3><b>Dirección:</b> {{order.direccion}}</h3>
+                                                <p><b>Fech. Entrada:</b> {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
                                                 
                                             </ion-col>
                                             <ion-col col-2>
@@ -127,9 +127,9 @@
                                     <ion-row>
                                         <ion-col col-10>
                                             <h1>{{order.idPaquete}}</h1>
-                                            <h2>Remitente: {{order.remitente}}</h2>
-                                            <h3>Dirección: {{order.direccion}}</h3>
-                                            <p>Fech. Entrada: {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                                            <h2><b>Remitente:</b> {{order.remitente}}</h2>
+                                            <h3><b>Dirección:</b>{{order.direccion}}</h3>
+                                            <p><b>Fech. Entrada:</b> {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} - {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
                                             
                                         </ion-col>
                                         <ion-col col-2>
