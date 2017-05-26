@@ -33,7 +33,7 @@
                 <p *ngIf="!order.repartidor"><b>Repartidor:</b> Sin asignar</p>
             </ion-col>
             <ion-col col-2 text-right>
-                <button ion-button icon-only outline (click)="addComment()">
+                <button *ngIf="order.estado == 'En el almacén'" ion-button icon-only outline (click)="addComment()">
                     <ion-icon name="warning"></ion-icon>
                 </button>
             </ion-col>
