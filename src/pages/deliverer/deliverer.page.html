@@ -14,8 +14,8 @@
                 <p><b>DNI:</b> {{deliverer.dni}}</p>
                 <p><b>Número de paquetes asignados:</b> {{deliverer.numPedidos}}</p>
                 <p><b>Disponibilidad:</b> <ion-badge [color]="getCorrectColor(deliverer)">{{deliverer.disponibilidad}}</ion-badge></p>
-                <p *ngIf="deliverer.coche"><b>Coche asignado:</b> {{deliverer.coche}}</p>
-                <p *ngIf="!deliverer.coche"><b>Coche asignado:</b> Ninguno</p>
+                <p *ngIf="deliverer.coche"><b>Vehículo asignado:</b> {{deliverer.coche}}</p>
+                <p *ngIf="!deliverer.coche"><b>Vehículo asignado:</b> Ninguno</p>
                 <p *ngIf="deliverer.sigDireccion"><b>Siguiente Dirección de reparto:</b> {{deliverer.sigDireccion}}</p>
 
                 <ion-item-divider color="secondary" >Paquetes seleccionados</ion-item-divider>

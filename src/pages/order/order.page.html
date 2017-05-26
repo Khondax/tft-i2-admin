@@ -53,7 +53,8 @@
                     <p><b>Nombre:</b> {{deliveryMan.nombre}}</p>
                     <p><b>Número de paquetes asignados:</b> {{deliveryMan.numPedidos}}</p>
                     <p><b>Disponibilidad:</b> <ion-badge [color]="getCorrectColor(deliveryMan)">{{deliveryMan.disponibilidad}}</ion-badge></p>
-                    <p><b>Coche asignado:</b> {{deliveryMan.coche}}</p>
+                    <p *ngIf="deliveryMan.coche"><b>Vehículo asignado:</b> {{deliveryMan.coche}}</p>
+                    <p *ngIf="!deliveryMan.coche"><b>Vehículo asignado:</b> Ninguno</p>
                     <br>
                 </ion-slide>
             </ion-slides>   
