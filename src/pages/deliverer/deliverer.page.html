@@ -38,7 +38,7 @@
     </ion-row>
 
     <ng-container *ngIf="deliverer.coche; else elseBlock">
-        <ion-card class="map-page" *ngIf="deliverer.horaCapturaGPS">
+        <ion-card class="deliveryMap-page" *ngIf="deliverer.horaCapturaGPS">
             <agm-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" >
                 <agm-marker [latitude]="map.lat" [longitude]="map.lng">
                     <agm-info-window>
