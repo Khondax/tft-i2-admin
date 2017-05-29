@@ -44,13 +44,6 @@ import { OrderPage } from '../pages';
     ionViewDidLoad(){
         this.deliverer = this.navParams.data;
 
-        //  this.map = {
-        //             lat: this.deliverer.latitud,
-        //             lng: this.deliverer.longitud,
-        //             zoom: 15,
-        //             markerLabel: this.deliverer.nombre
-        //         };
-
         let loader = this.loadingController.create({
             content: 'Cargando...',
             spinner: 'bubbles'
@@ -109,7 +102,7 @@ import { OrderPage } from '../pages';
                         this.deliveryMen.update(this.deliverer.$key, {coche: vehicle.matricula});
 
                         let toast = this.toastController.create({
-                            message: "Se ha asignado el vehículo " + vehicle.matricula + " al repartidor ",
+                            message: "Se ha asignado el vehículo " + vehicle.matricula + " al repartidor",
                             duration: 4000,
                             position: 'bottom'
                         });
@@ -127,18 +120,16 @@ import { OrderPage } from '../pages';
 
     removeCar(){
 
-        var temp = this.angularFire.database.list('/coches').subscribe(data =>{
+        this.angularFire.database.list('/coches').subscribe(data =>{
             this.carsData = _.chain(data)
                             .filter(c => c.matricula === this.deliverer.coche)
                             .value();
 
             this.car = this.carsData;
-            //SER UN GENIO NIVEL DIOS
             this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
             
         });
 
-        //this.vehiclesDatabase.update(this.car[0].$key, {repartidor: "", disponibilidad: "Libre"});
         this.deliveryMen.update(this.deliverer.$key, {coche: ""});
 
         

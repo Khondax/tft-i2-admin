@@ -66,7 +66,7 @@ import {  } from '../pages';
                         this.vehiclesDatabase.update(car.$key, {ultimaRevision: moment().format()});
 
                         let toast = this.toastController.create({
-                            message: "Se ha actualizado la fecha de la última revisión del coche " + car.matricula,
+                            message: "Se ha actualizado la fecha de la última revisión del vehículo " + car.matricula,
                             duration: 4000,
                             position: 'bottom'
                         });

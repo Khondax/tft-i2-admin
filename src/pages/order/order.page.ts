@@ -66,7 +66,7 @@ import { MapPage } from '../pages';
 
         let prompt = this.alertController.create({
             title: 'Asignar',
-            message: "¿Quieres añadir el repartidor " + deliveryMan.nombre + " al pedido? ",
+            message: "¿Quieres asisgar este pedido al repartidor " + deliveryMan.nombre + "?",
             buttons: [
                 {
                     text: 'Cancelar'
@@ -81,7 +81,7 @@ import { MapPage } from '../pages';
                         this.nav.popToRoot();
 
                         let toast = this.toastController.create({
-                            message: "Se ha asignado el paquete " + this.order.$key + " al repartidor " + deliveryMan.nombre,
+                            message: "Se ha asignado el paquete " + this.order.idPaquete + " al repartidor " + deliveryMan.nombre,
                             duration: 4000,
                             position: 'bottom'
                         });
@@ -108,7 +108,7 @@ import { MapPage } from '../pages';
         this.nav.popToRoot();
 
         let toast = this.toastController.create({
-            message: "Se ha desasignado el paquete " + this.order.$key + " del repartidor " + this.order.repartidor,
+            message: "Se ha desasignado el paquete " + this.order.idPaquete + " del repartidor " + this.order.repartidor,
             duration: 4000,
             position: 'bottom'
         });
