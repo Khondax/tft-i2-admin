@@ -16,6 +16,7 @@ import { OrderPage } from "../pages";
     ordersData: any;
     orders = [];
     deliverer: any = {};
+    map: any = {};
 
     constructor (public nav: NavController,
                  public navParams: NavParams,
@@ -25,6 +26,12 @@ import { OrderPage } from "../pages";
 
     ionViewDidLoad(){
          this.deliverer = this.navParams.data;
+
+         this.map = {
+                    lat: 27.942246703329612,
+                    lng: -15.598526000976562,
+                    zoom: 9
+            };
 
          this.angularFire.database.list('/pedidos').subscribe(data => {
 

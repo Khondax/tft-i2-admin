@@ -39,5 +39,19 @@
         </ng-container>
     </ion-row>
 
+    <ion-card class="assignedMap-page" *ngIf="orders.length != 0">
+        <agm-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" >
+            <ng-container *ngFor="let codPos of orders">
+                <ng-container *ngFor="let order of codPos.pedido">
+                    <agm-marker [latitude]="order.latitud" [longitude]="order.longitud">
+                        <agm-info-window >
+                            <strong>{{order.idPaquete}}</strong>
+                        </agm-info-window>
+                    </agm-marker>
+                </ng-container>
+            </ng-container>
+        </agm-map>
+    </ion-card>
+
     
 </ion-content>
