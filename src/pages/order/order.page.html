@@ -24,9 +24,9 @@
         <ion-row>
             <ion-col col-10>
                 <p><b>Remitente:</b> {{order.remitente}}</p>
-                <p><b>Fecha de Entrada al Almacén:</b> {{order.fechaEntradaAlmacen | date:'d/M/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
+                <p><b>Fecha de Entrada al Almacén:</b> {{order.fechaEntradaAlmacen | date:'dd/MM/yy'}} {{order.fechaEntradaAlmacen | date:'shortTime'}}</p>
                 <p *ngIf="!order.fechaEntrega"><b>Estado del Pedido:</b> {{order.estado}}</p>
-                <p *ngIf="order.fechaEntrega"><b>Fecha de Entrega:</b> {{order.fechaEntrega | date:'d/M/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
+                <p *ngIf="order.fechaEntrega"><b>Fecha de Entrega:</b> {{order.fechaEntrega | date:'dd/MM/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
                 <p><b>Peso:</b> {{order.peso}}</p>
                 <p><b>Dimensiones:</b> {{order.dimensiones}}</p>
                 <p *ngIf="order.repartidor"><b>Repartidor:</b> {{order.repartidor}}</p>
