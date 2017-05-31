@@ -24,6 +24,18 @@
 </ion-header>
 
 <ion-content>
+    <ion-card class="assignedMap-page">
+        <agm-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom">
+            <ng-container *ngFor="let order of allOrders">
+                <agm-marker [latitude]="order.latitud" [longitude]="order.longitud" [iconUrl]="getCorrectColor(order)">
+                    <agm-info-window >
+                        <strong (click)="goToOrder($event, order)">{{order.idPaquete}}</strong>
+                    </agm-info-window>
+                </agm-marker>
+            </ng-container>
+        </agm-map>
+    </ion-card>
+
     <div [ngSwitch]="orderFilter" >
         <ion-grid *ngSwitchCase="'notAssigned'">
             <ion-toolbar >
@@ -35,9 +47,6 @@
                     <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngIf="deliverers.length != 0">
 
                         <ion-card>
-                            <!--<ion-card-header>
-                                {{deliverers.codPos}}
-                            </ion-card-header>-->
 
                             <ion-item-divider color="secondary">
                                 {{deliverers.codPos}}

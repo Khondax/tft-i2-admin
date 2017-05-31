@@ -25,6 +25,10 @@ import { OrderPage } from '../pages';
      queryText: string = "";
      queryTextAssigned: string = "";
 
+     allOrders= [];
+
+     map: any = {};
+
     constructor(private loadingController: LoadingController,
                 private nav: NavController,
                 public angularFire: AngularFire,
@@ -62,6 +66,10 @@ import { OrderPage } from '../pages';
 
                 this.nAssignedOrders = this.nAssignedOrdersData;
 
+                this.allOrders = _.chain(data)
+                                  .filter(o => o.estado != "Incidencia registrada")
+                                  .value();
+
                 this.ordersError = _.chain(data)
                                     .filter(o => o.estado === "Incidencia registrada")
                                     .value();
@@ -78,6 +86,12 @@ import { OrderPage } from '../pages';
 
                 loader.dismiss();
             });
+
+             this.map = {
+                    lat: 27.942246703329612,
+                    lng: -15.598526000976562,
+                    zoom: 9
+            };
         });
     }
 
@@ -111,5 +125,20 @@ import { OrderPage } from '../pages';
         });
         
         this.assignedOrders = filteredOrders;
+    }
+
+    getCorrectColor(order){
+        switch (order.estado) {
+            case "En el almacén":
+                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_orange.png?raw=true';
+            case "Entregado":
+                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_blue.png?raw=true';
+            case "Asignado":
+                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_purple.png?raw=true';
+            case "En reparto":
+                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_white.png?raw=true';
+            case "Siguiente en entrega":
+                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_green.png?raw=true';
+        }
     }
  }
