@@ -40,7 +40,10 @@ import { OrderPage } from '../pages';
                     .map(item => _.zipObject(['date', 'order'], item))
                     .value();
 
-                this.orders = this.allDates;
+                this.orders = _.chain(this.allDates)
+                               .orderBy('date', 'desc')
+                               .value();
+
                 loader.dismiss();
 
             });
