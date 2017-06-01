@@ -12,17 +12,52 @@
 <ion-content padding>
 
     <ion-list *ngFor="let fechaEntrega of orders" >
-        <ion-item-group *ngIf="fechaEntrega.date" >
-            <ion-item-divider color="secondary">
-                {{fechaEntrega.date | date:'dd/MM/yy'}}
-            </ion-item-divider>
 
-            <button ion-item *ngFor="let order of fechaEntrega.order" (click)="itemTapped($event, order)">
-                <h3>{{order.idPaquete}}</h3>
-                <p>{{order.repartidor}}</p>
-                <p>{{order.remitente}}</p>
-                <p>{{order.fechaEntrega | date:'dd/MM/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
-            </button>
+        <ion-item-group *ngIf="fechaEntrega.date" >
+                    <ion-item-divider color="secondary">
+                        <h3>{{fechaEntrega.date | date:'dd/MM/yy'}}</h3>
+                    </ion-item-divider>
+
+                <ion-row class="text">
+                        <ion-col class="col-3" >
+                            <p><b>ID del paquete</b></p>
+                        </ion-col>
+
+                        <ion-col class="col-3" >
+                            <p><b>Remitente</b></p>
+                        </ion-col>
+
+                        <ion-col class="col-3" >
+                            <p><b>Repartidor</b></p>
+                        </ion-col>
+
+                        <ion-col class="col-3" >
+                            <p><b>Fecha de entrada</b></p>
+                        </ion-col>
+                </ion-row>
+
+                <ion-list *ngFor="let order of fechaEntrega.order" (click)="itemTapped($event, order)">
+                    <ion-row class="text">
+                        <ion-col class="col-3" >
+                            <p>{{order.idPaquete}}</p>
+                        </ion-col>
+
+                        <ion-col class="col-3" >
+                            <p>{{order.remitente}}</p>
+                        </ion-col>
+
+                        <ion-col class="col-3" >
+                            <p>{{order.repartidor}}</p>
+                        </ion-col>
+
+                        <ion-col class="col-3" >
+                            <p>{{order.fechaEntrega | date:'dd/MM/yy'}} {{order.fechaEntrega | date:'shortTime'}}</p>
+                        </ion-col>
+                    </ion-row>
+                    
+                </ion-list>
+            
+            
             
 
         </ion-item-group>

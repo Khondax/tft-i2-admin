@@ -8,7 +8,8 @@ import _ from 'lodash';
 import { OrderPage } from '../pages';
 
  @Component ({
-     templateUrl: 'registry.page.html'
+     templateUrl: 'registry.page.html',
+     selector: 'registry.page.scss'
  })
 
  export class RegistryPage {
