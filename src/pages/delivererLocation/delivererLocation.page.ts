@@ -38,6 +38,8 @@ import _ from 'lodash';
         this.nav.push(DelivererHomePage, deliveryMan);
     }
 
-
+    getCorrectColor(deliveryMan){
+        return deliveryMan.disponibilidad === "En ruta" ? 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_red.png?raw=true' : 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_green.png?raw=true';
+    }
 
  }

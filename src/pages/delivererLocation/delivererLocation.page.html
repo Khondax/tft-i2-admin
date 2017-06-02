@@ -8,7 +8,7 @@
 
     <agm-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" >
         <ng-container *ngFor="let deliveryMan of deliverer">
-            <agm-marker [latitude]="deliveryMan.latitud" [longitude]="deliveryMan.longitud">
+            <agm-marker [latitude]="deliveryMan.latitud" [longitude]="deliveryMan.longitud" [iconUrl]="getCorrectColor(deliveryMan)">
                 <agm-info-window >
                     <strong (click)="goToDeliverer($event, deliveryMan)">{{deliveryMan.nombre}}</strong>
                 </agm-info-window>
