@@ -67,7 +67,7 @@ import { OrderPage } from '../pages';
                 this.nAssignedOrders = this.nAssignedOrdersData;
 
                 this.allOrders = _.chain(data)
-                                  .filter(o => o.estado != "Incidencia registrada")
+                                  .filter(o => o.estado === "En el almacén" || o.estado === "Asignado" || o.estado === "En reparto" || o.estado === "Siguiente en entrega" )
                                   .value();
 
                 this.ordersError = _.chain(data)
@@ -130,15 +130,13 @@ import { OrderPage } from '../pages';
     getCorrectColor(order){
         switch (order.estado) {
             case "En el almacén":
-                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_orange.png?raw=true';
-            case "Entregado":
-                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_blue.png?raw=true';
-            case "Asignado":
-                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_purple.png?raw=true';
-            case "En reparto":
-                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_white.png?raw=true';
-            case "Siguiente en entrega":
                 return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_green.png?raw=true';
+            case "Asignado":
+                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_blue.png?raw=true';
+            case "En reparto":
+                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_red.png?raw=true';
+            case "Siguiente en entrega":
+                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_orange.png?raw=true';
         }
     }
  }
