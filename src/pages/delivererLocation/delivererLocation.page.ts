@@ -39,7 +39,7 @@ import _ from 'lodash';
     }
 
     getCorrectColor(deliveryMan){
-        return deliveryMan.disponibilidad === "En ruta" ? 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_red.png?raw=true' : 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_green.png?raw=true';
+        return deliveryMan.disponibilidad === "En ruta" ? '../../assets/marker-icons/marker_red.png' : '../../assets/marker-icons/marker_green.png';
     }
 
  }

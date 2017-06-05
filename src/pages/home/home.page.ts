@@ -130,13 +130,13 @@ import { OrderPage } from '../pages';
     getCorrectColor(order){
         switch (order.estado) {
             case "En el almacén":
-                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_green.png?raw=true';
+                return '../../assets/marker-icons/marker_green.png';
             case "Asignado":
-                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_blue.png?raw=true';
+                return '../../assets/marker-icons/marker_blue.png';
             case "En reparto":
-                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_red.png?raw=true';
+                return '../../assets/marker-icons/marker_red.png';
             case "Siguiente en entrega":
-                return 'https://github.com/Concept211/Google-Maps-Markers/blob/master/images/marker_orange.png?raw=true';
+                return '../../assets/marker-icons/marker_orange.png';
         }
     }
  }
