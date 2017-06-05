@@ -47,8 +47,11 @@ const myFirebaseAuthConfig = {
         LoginPage
     ],
     imports: [
+        IonicModule.forRoot(MyApp, {
+            scrollAssist: false, 
+            autoFocusAssist: false
+        }),
         BrowserModule,
-        IonicModule.forRoot(MyApp),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBXhy5nvQy6bLf9B-FCTqyOk78Py9L-b4U'
         }),

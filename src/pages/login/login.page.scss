@@ -4,6 +4,9 @@
     .form-box{
         background: #FA5858;
     }
+
+    
+
     
 
     @media screen and (max-width: 767px) {
@@ -13,9 +16,15 @@
             margin: 20px auto; 
         }
 
+        .icon{
+            width: 65%;
+            margin:5px auto;
+	        display:block;
+        }
+
         .form-box{
             width: 100%;
-            margin: 200px auto;
+            margin: 10px auto;
         }
 
         .login-button {
@@ -30,7 +39,13 @@
     @media screen and (max-width: 991px) and (min-width: 768px) {
          .form-box{
             width: 700px;
-            margin: 300px auto;
+            margin: 20px auto;
+        }
+
+        .icon{
+            width: 50%;
+            margin:5px auto;
+	        display:block;
         }
     
         form {
@@ -50,7 +65,13 @@
     @media screen and (max-width: 1023px) and (min-width: 992px) {
          .form-box{
             width: 750px;
-            margin: 200px auto;
+            margin: 20px auto;
+        }
+
+        .icon{
+            width: 50%;
+            margin:5px auto;
+	        display:block;
         }
     
         form {
@@ -70,7 +91,13 @@
     @media screen and (min-width: 1024px) and (max-width: 1279px) {
          .form-box{
             width: 900px;
-            margin: 450px auto;
+            margin: 20px auto;
+        }
+
+        .icon{
+            width: 65%;
+            margin:5px auto;
+	        display:block;
         }
     
         form {
@@ -91,12 +118,18 @@
     @media screen and (min-width: 1280px) {
          .form-box{
             width: 700px;
-            margin: 150px auto;
+            margin: 20px auto;
+        }
+
+        .icon{
+            width: 25%;
+            margin:5px auto;
+	        display:block;
         }
     
         form {
             width: 600px;
-            margin: 40px auto;
+            margin: 20px auto;
             
         }
 
