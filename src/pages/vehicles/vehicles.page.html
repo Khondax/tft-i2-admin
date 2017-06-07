@@ -26,7 +26,8 @@
                                     <p><b>Fecha de última revisión:</b> {{car.ultimaRevision | date:'dd/MM/yy'}}</p>
                                     <p><b>Capacidad de carga:</b> {{car.carga}} Kg</p>
                                     <p><b>Disponibilidad:</b> <ion-badge [color]="getCorrectColor(car)">{{car.disponibilidad}}</ion-badge></p>
-                                    <p><b>Repartidor asignado:</b> {{car.repartidor}}</p>
+                                    <p *ngIf="car.repartidor"><b>Repartidor asignado:</b> {{car.repartidor}}</p>
+                                    <p *ngIf="!car.repartidor"><b>Repartidor asignado:</b> Ninguno</p>
                                 </ion-col>
 
                                 <ion-col col-2>                               
