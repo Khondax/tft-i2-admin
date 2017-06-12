@@ -9,35 +9,35 @@
 
     <ion-row>
         <ion-col col-9>
-            <ion-list >
+            
                 <ion-item-divider color="secondary" >Información del repartidor</ion-item-divider>
+                <ion-list class="text">
                 <p><b>DNI:</b> {{deliverer.dni}}</p>
                 <p><b>Número de paquetes asignados:</b> {{deliverer.numPedidos}}</p>
                 <p><b>Disponibilidad:</b> <ion-badge [color]="getCorrectColor(deliverer)">{{deliverer.disponibilidad}}</ion-badge></p>
                 <p *ngIf="deliverer.coche"><b>Vehículo asignado:</b> {{deliverer.coche}}</p>
                 <p *ngIf="!deliverer.coche"><b>Vehículo asignado:</b> Ninguno</p>
-                <p *ngIf="deliverer.sigDireccion"><b>Siguiente Dirección de reparto:</b> {{deliverer.sigDireccion}}</p>
-
-                <ion-item-divider color="secondary" >Paquetes seleccionados</ion-item-divider>
-                
-                <ion-list >
-                    <ion-item *ngFor="let order of orders"  (click)="goToOrder($event, order)" [class.next-order]="order.estado == 'Siguiente en entrega'" >
-                        <p>{{order.idPaquete}}</p>
-                        <br>
-                        <p>{{order.direccion}}</p>
-                    </ion-item>
-                </ion-list>
+                <p *ngIf="deliverer.sigDireccion"><b>Siguiente Dirección de reparto:</b> {{deliverer.sigDireccion}}</p> 
             </ion-list>
         </ion-col>
 
         <ion-col col-3>
             <ion-card>
-                <img src={{deliverer.imagen}} style="width:100%; max-height:auto"/>
+                <img class="deliveryImage" src={{deliverer.imagen}} style="width:100%; max-height:auto"/>
             </ion-card>
         </ion-col>
     </ion-row>
 
     <ng-container *ngIf="deliverer.coche; else elseBlock">
+        <ion-item-divider color="secondary" >Paquetes seleccionados</ion-item-divider> 
+        <ion-list >
+            <ion-item *ngFor="let order of orders"  (click)="goToOrder($event, order)" [class.next-order]="order.estado == 'Siguiente en entrega'" >
+                <p>{{order.idPaquete}}</p>
+                <br>
+                <p>{{order.direccion}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-item-divider color="secondary" >Ruta del repartidor</ion-item-divider>
         <ion-card class="deliveryMap-page" *ngIf="deliverer.horaCapturaGPS">
             <agm-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" >
                 <agm-marker [latitude]="map.lat" [longitude]="map.lng">
@@ -60,16 +60,19 @@
     </ng-container>
     
     <ng-template #elseBlock>
-        <ion-card>
-            <ion-list>
-                <ion-item *ngFor="let vehicle of vehicles" (click)="addCar($event, vehicle)" >
-                    <ion-avatar item-left>
-                        <img src={{vehicle.imagen}}>
-                    </ion-avatar>
-                    <h2>{{vehicle.matricula}}</h2>
-                    <p>{{vehicle.modelo}}</p>
-                </ion-item>
+        <ion-item-divider color="secondary" >Vehículos disponibles</ion-item-divider>
+        <ion-row>
+            <ion-list *ngFor="let vehicle of vehicles">
+                <ion-col>
+                     <ion-item (click)="addCar($event, vehicle)" >
+                        <ion-avatar item-left>
+                            <img src={{vehicle.imagen}}>
+                        </ion-avatar>
+                        <h2>{{vehicle.matricula}}</h2>
+                        <p>{{vehicle.modelo}}</p>
+                    </ion-item>
+                </ion-col>
             </ion-list>
-        </ion-card>
+        </ion-row>
     </ng-template>
 </ion-content>
