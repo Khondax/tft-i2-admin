@@ -7,7 +7,7 @@
 <ion-content padding>
     <ion-list >
         <ion-row>
-            <ion-col class="col-6">
+            <ion-col>
                 <ion-item-divider color="secondary" >Información del destino</ion-item-divider>
                 <ion-row>
                     <ion-col col-10>
@@ -25,7 +25,7 @@
             </ion-col>
             
 
-            <ion-col class="col-6">
+            <ion-col>
                 <ion-item-divider color="secondary" >Información del paquete</ion-item-divider>
                 <ion-row>
                     <ion-col col-10>
@@ -49,15 +49,23 @@
        
         <ng-container *ngIf="order.estado === 'Entregado'">
             <ion-row>
-                <ion-col class="col-6">
+                <ion-col>
                     <ion-item-divider color="secondary" >Información de la entrega</ion-item-divider>
                     <ion-row>
                         <ion-col>
                             <p><b>Lugar de entrega:</b> ...</p>
                             <p><b>Hora de entrega:</b> ...</p>
                             <p><b>Observaciones:</b> ...</p>
-                            <p><b>Firma del cliente:</b></p>
-                            <img class="signature" src="{{order.firma}}" *ngIf="order.firma" />
+                        </ion-col>
+                        <ion-col>
+                            <ion-row>
+                                <ion-col col-3>
+                                    <p><b>Firma del cliente:</b></p>
+                                </ion-col>
+                                <ion-col col-9>
+                                    <img class="signature" src="{{order.firma}}" *ngIf="order.firma" />
+                                </ion-col>
+                            </ion-row>
                         </ion-col>
                     </ion-row>
                 </ion-col>
