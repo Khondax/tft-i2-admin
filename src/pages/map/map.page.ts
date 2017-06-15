@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 
-import { OrderPage } from '../pages'; 
-
 @Component({
   templateUrl: 'map.page.html',
   selector: 'map.page.scss'

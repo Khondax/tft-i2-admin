@@ -70,7 +70,7 @@ export class DeliveryMenPage {
 
     removeCar($event, deliverer){
 
-        var temp = this.angularFire.database.list('/coches').subscribe(data =>{
+        this.angularFire.database.list('/coches').subscribe(data =>{
             this.carsData = _.chain(data)
                             .filter(c => c.matricula === deliverer.coche)
                             .value();
