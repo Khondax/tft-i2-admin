@@ -43,7 +43,7 @@ export class LoginPage {
             alert.present();
         }else{
           let alert = this.alertCtrl.create({
-              message: "El email es incorrecto",
+              message: "No es una dirección de correo electrónico",
               buttons: [
                 {
                   text: "Ok",
@@ -55,14 +55,9 @@ export class LoginPage {
         }
         
       } else {
-        this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
-        .then( authData => {
-          this.navCtrl.insert(0,HomePage);
-          this.navCtrl.popToRoot();
-        }, error => {
-          this.loading.dismiss().then( () => {
-            let alert = this.alertCtrl.create({
-              message: error.message,
+        if(this.loginForm.value.email != "admin@administrador.es"){
+          let alert = this.alertCtrl.create({
+              message: "El email es incorrecto",
               buttons: [
                 {
                   text: "Ok",
@@ -71,8 +66,25 @@ export class LoginPage {
               ]
             });
             alert.present();
+        }else{
+            this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
+          .then( authData => {
+            this.navCtrl.insert(0,HomePage);
+            this.navCtrl.popToRoot();
+          }, error => {
+              let alert = this.alertCtrl.create({
+                message: "La contraseña es incorrecta",
+                buttons: [
+                  {
+                    text: "Ok",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert.present();
           });
-        });
+        }
+        
       }
   }
 

@@ -4,7 +4,7 @@ export class EmailValidator {
 
 static isValid(control: FormControl){
 
-var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@administrador.es/.test(control.value);
+var re = /^\w+@[a-zA-Z_.]+?\.[a-zA-Z]{2,3}$/.test(control.value);
 
 if (re){
 return null;
