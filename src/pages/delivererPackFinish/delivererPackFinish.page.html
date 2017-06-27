@@ -11,13 +11,13 @@
             <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngIf="codsPostales.length != 0">
                 <ion-card>
                     <ion-item-divider color="secondary">
-                        {{codsPostales[0].codigoPostal}}
+                        {{codsPostales.codPos}}
                     </ion-item-divider>
                     
                     <ion-list >
                         <ion-item-group>
 
-                            <ng-container *ngFor="let item of codsPostales">
+                            <ng-container *ngFor="let item of codsPostales.pedido">
                                     <button ion-item icon-right outline (click)="goToOrder($event, item)">
                                         <ion-row>
                                             <ion-col col-10>
