@@ -2,7 +2,7 @@
 <widget id="com.ionicframework.tfti2admin761527" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>tft-i2-admin</name>
     <description>Primera aplicación del TFT</description>
-    <author email="miguel.gonzalez.villa@gmail.com" href="http://ionicframework.com/">María y Miguel</author>
+    <author email="" href="http://ionicframework.com/">María</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
