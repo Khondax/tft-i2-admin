@@ -36,6 +36,7 @@ import { OrderPage } from '../pages';
             this.angularFire.database.list('/pedidos').subscribe(data => {
                 this.allDates = 
                     _.chain(data)
+                    .orderBy('fechaEntrega', 'desc')
                     .groupBy(fecha => fecha.fechaEntrega.split('T').shift())
                     .toPairs()
                     .map(item => _.zipObject(['date', 'order'], item))
